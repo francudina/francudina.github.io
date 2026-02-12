@@ -18,8 +18,20 @@
             --color-text: #111111;
             --color-text-muted: #666666;
             --color-border: #e5e5e5;
+            --color-nav-bg: rgba(255, 255, 255, 0.9);
+            --color-nav-mobile-bg: rgba(255, 255, 255, 0.98);
             --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --max-width: 900px;
+        }
+
+        [data-theme="dark"] {
+            --color-bg: #0e0e0e;
+            --color-bg-alt: #161616;
+            --color-text: #e8e8e8;
+            --color-text-muted: #999999;
+            --color-border: #2a2a2a;
+            --color-nav-bg: rgba(14, 14, 14, 0.9);
+            --color-nav-mobile-bg: rgba(14, 14, 14, 0.98);
         }
 
         html {
@@ -45,7 +57,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--color-nav-bg);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
         }
@@ -56,6 +68,12 @@
             color: var(--color-text);
             text-decoration: none;
             letter-spacing: -0.5px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
         }
 
         .nav-toggle {
@@ -191,7 +209,7 @@
         }
 
         .service {
-            background: var(--color-bg);
+            background: var(--color-bg-alt);
             padding: 40px 32px;
         }
 
@@ -371,7 +389,7 @@
             height: 44px;
             border-radius: 50%;
             background: var(--color-text);
-            color: #fff;
+            color: var(--color-bg);
             border: none;
             cursor: pointer;
             display: flex;
@@ -397,6 +415,36 @@
             height: 20px;
         }
 
+        /* ── Theme toggle ── */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+            transition: border-color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--color-text-muted);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .theme-toggle .icon-moon { display: block; }
+        .theme-toggle .icon-sun { display: none; }
+
+        [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
         /* ── Footer ── */
         .footer {
             padding: 40px 32px;
@@ -421,7 +469,7 @@
                 top: 70px;
                 left: 0;
                 right: 0;
-                background: rgba(255, 255, 255, 0.98);
+                background: var(--color-nav-mobile-bg);
                 backdrop-filter: blur(16px);
                 flex-direction: column;
                 padding: 24px 32px;
@@ -481,16 +529,26 @@
 <!-- Nav -->
 <nav class="nav">
     <a href="#" class="nav-logo">nioquant</a>
-    <ul class="nav-links" id="navLinks">
-        <li><a href="#company">Company</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#about">About</a></li>
-    </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#company">Company</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
 </nav>
 
 <!-- Hero -->
@@ -608,6 +666,19 @@
 </footer>
 
 <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+
     // Mobile nav toggle
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
