@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>nioquant</title>
     <meta name="description" content="nioquant — Less noise, more solution.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 245 237'><path d='M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z' fill='%233A3A3A'/><path d='M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693' fill='%233A3A3A'/><path d='M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z' fill='%233A3A3A'/></svg>">
+    <link rel="icon" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -697,18 +697,28 @@
     const themeToggle = document.getElementById('themeToggle');
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const systemTheme = () => darkQuery.matches ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || systemTheme());
+
+    const faviconSvg = (color) => `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 245 237'><path d='M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z' fill='${color}'/><path d='M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693' fill='${color}'/><path d='M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z' fill='${color}'/></svg>`;
+
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        const favicon = document.querySelector('link[rel="icon"]');
+        favicon.setAttribute('media', '');
+        favicon.href = faviconSvg(theme === 'dark' ? '%23D3D3D3' : '%233A3A3A');
+    }
+
+    setTheme(localStorage.getItem('theme') || systemTheme());
 
     themeToggle.addEventListener('click', () => {
         const current = document.documentElement.getAttribute('data-theme');
         const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
+        setTheme(next);
     });
 
     darkQuery.addEventListener('change', () => {
         localStorage.removeItem('theme');
-        document.documentElement.setAttribute('data-theme', systemTheme());
+        setTheme(systemTheme());
     });
 
     // Mobile nav toggle
