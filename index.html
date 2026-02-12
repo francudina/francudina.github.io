@@ -68,6 +68,14 @@
             color: var(--color-text);
             text-decoration: none;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
         }
 
         .nav-right {
@@ -528,7 +536,14 @@
 
 <!-- Nav -->
 <nav class="nav">
-    <a href="#" class="nav-logo">nioquant</a>
+    <a href="#" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 245 237" xmlns="http://www.w3.org/2000/svg">
+            <path d="M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z" fill="currentColor"/>
+            <path d="M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693" fill="currentColor"/>
+            <path d="M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z" fill="currentColor"/>
+        </svg>
+        nioquant
+    </a>
     <div class="nav-right">
         <ul class="nav-links" id="navLinks">
             <li><a href="#company">Company</a></li>
