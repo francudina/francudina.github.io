@@ -344,7 +344,7 @@
         }
 
         .contact-link:last-child {
-            border-bottom: none;
+            border-bottom: 1px solid var(--color-border);
         }
 
         .contact-link:hover {
@@ -355,6 +355,18 @@
             width: 20px;
             height: 20px;
             flex-shrink: 0;
+        }
+
+        /* ── Company info ── */
+        .company-info {
+            padding: 16px 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .company-info p {
+            font-size: 0.82rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
         }
 
         /* ── Scroll indicator ── */
@@ -676,6 +688,12 @@
                 </svg>
                 @nioquant
             </a>
+        </div>
+        <div class="company-info">
+            <p>Nioquant, vl. Fran Čudina</p>
+            <p>Štefanićeva ulica 1, 10000 Zagreb, Croatia</p>
+            <p>OIB (Tax Number): HR31539609567</p>
+            <p>Not registered for VAT (small business exemption, Article 90 Croatian VAT Act)</p>
         </div>
     </div>
 </section>
