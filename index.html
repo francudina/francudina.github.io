@@ -486,6 +486,11 @@
         [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
         /* ── Main content ── */
+        .scene-last {
+            min-height: auto;
+            padding-bottom: 60px;
+        }
+
         .main-content {
             position: relative;
             z-index: 1;
@@ -725,7 +730,7 @@
 </section>
 
 <!-- About & Contact -->
-<section class="scene" id="about">
+<section class="scene scene-last" id="about">
     <div class="scene-inner reveal">
         <div class="label">About</div>
         <h2 class="scene-title">About us</h2>
@@ -735,7 +740,9 @@
                 <p>Software engineer focused on using modern technologies to automate everyday activities and connect software with the real world through IoT. Passionate about open-source and building solutions that fit real needs, not the other way around.</p>
             </div>
         </div>
-        <div class="contact-links" id="contact">
+        <div class="label" style="margin-top: 48px;">Contact</div>
+        <h2 class="scene-title" id="contact">Get in touch</h2>
+        <div class="contact-links">
             <a href="https://www.linkedin.com/in/francudina/" target="_blank" rel="noopener noreferrer" class="contact-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
