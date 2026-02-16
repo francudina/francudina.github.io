@@ -828,11 +828,15 @@
         favicon.setAttribute('media', '');
         favicon.href = faviconSvg(theme === 'dark' ? '%23D3D3D3' : '%233A3A3A');
         const color = theme === 'dark' ? '#0e0e0e' : '#FAF8F3';
-        document.getElementById('themeColor').setAttribute('content', color);
         // Force iOS Safari to re-evaluate bar colors
-        const y = window.scrollY;
-        window.scrollTo(0, y + 1);
-        requestAnimationFrame(() => window.scrollTo(0, y));
+        const old = document.getElementById('themeColor');
+        old.remove();
+        const meta = document.createElement('meta');
+        meta.name = 'theme-color';
+        meta.id = 'themeColor';
+        meta.content = color;
+        document.head.appendChild(meta);
+        document.body.style.backgroundColor = color;
     }
 
     setTheme(localStorage.getItem('theme') || systemTheme());
