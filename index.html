@@ -344,7 +344,7 @@
         }
 
         .contact-link:last-child {
-            border-bottom: 1px solid var(--color-border);
+            border-bottom: none;
         }
 
         .contact-link:hover {
@@ -359,8 +359,10 @@
 
         /* ── Company info ── */
         .company-info {
-            padding: 16px 0;
-            border-top: 1px solid var(--color-border);
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--color-border);
+            text-align: center;
         }
 
         .company-info p {
@@ -477,7 +479,6 @@
         .footer {
             padding: 40px 32px;
             text-align: center;
-            border-top: 1px solid var(--color-border);
         }
 
         .footer p {
@@ -689,12 +690,6 @@
                 @nioquant
             </a>
         </div>
-        <div class="company-info">
-            <p>Nioquant, vl. Fran Čudina</p>
-            <p>Štefanićeva ulica 1, 10000 Zagreb, Croatia</p>
-            <p>OIB (Tax Number): HR31539609567</p>
-            <p>Not registered for VAT (small business exemption, Article 90 Croatian VAT Act)</p>
-        </div>
     </div>
 </section>
 
@@ -707,6 +702,12 @@
 
 <!-- Footer -->
 <footer class="footer">
+    <div class="company-info">
+        <p>Nioquant, vl. Fran Čudina</p>
+        <p>Štefanićeva ulica 1, 10000 Zagreb, Croatia</p>
+        <p>OIB (Tax Number): HR31539609567</p>
+        <p>Not registered for VAT (small business exemption, Article 90 Croatian VAT Act)</p>
+    </div>
     <p>Copyright &copy; 2026 nioquant. All rights reserved.</p>
 </footer>
 
