@@ -906,7 +906,8 @@
         clearTimeout(scrollTimer);
         scrollTimer = setTimeout(() => {
             const mainBottom = mainContent.getBoundingClientRect().bottom;
-            if (mainBottom > window.innerHeight * 0.5) {
+            const atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight;
+            if (mainBottom > window.innerHeight * 0.5 && !atBottom) {
                 hint.classList.remove('hidden');
             }
         }, 1500);
