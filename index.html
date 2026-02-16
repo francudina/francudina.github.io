@@ -898,15 +898,15 @@
         }
     });
 
-    // Hide while scrolling, show when paused; hide near footer
+    // Hide while scrolling, show when paused; hide near video
     let scrollTimer;
-    const footer = document.querySelector('.footer');
+    const mainContent = document.querySelector('.main-content');
     window.addEventListener('scroll', () => {
         hint.classList.add('hidden');
         clearTimeout(scrollTimer);
         scrollTimer = setTimeout(() => {
-            const footerTop = footer.getBoundingClientRect().top;
-            if (footerTop > window.innerHeight) {
+            const mainBottom = mainContent.getBoundingClientRect().bottom;
+            if (mainBottom > window.innerHeight * 0.5) {
                 hint.classList.remove('hidden');
             }
         }, 1500);
