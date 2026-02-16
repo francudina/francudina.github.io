@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#FAF8F3">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FAF8F3" id="themeColor">
     <title>nioquant</title>
     <meta name="description" content="Everyday software, automations, and 3D modeling. Built to simplify real-world problems.">
     <link rel="canonical" href="https://nioquant.com/">
@@ -59,6 +59,17 @@
             background: var(--color-bg);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Safe area ── */
+        .nav {
+            padding-top: max(24px, env(safe-area-inset-top));
+            padding-left: max(32px, env(safe-area-inset-left));
+            padding-right: max(32px, env(safe-area-inset-right));
+        }
+
+        .footer {
+            padding-bottom: max(40px, calc(40px + env(safe-area-inset-bottom)));
         }
 
         /* ── Nav ── */
@@ -816,7 +827,10 @@
         const favicon = document.querySelector('link[rel="icon"]');
         favicon.setAttribute('media', '');
         favicon.href = faviconSvg(theme === 'dark' ? '%23D3D3D3' : '%233A3A3A');
-        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0e0e0e' : '#FAF8F3';
+        const tc = document.getElementById('themeColor');
+        tc.remove();
+        tc.content = theme === 'dark' ? '#0e0e0e' : '#FAF8F3';
+        document.head.appendChild(tc);
     }
 
     setTheme(localStorage.getItem('theme') || systemTheme());
