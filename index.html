@@ -49,6 +49,7 @@
 
         html {
             scroll-behavior: smooth;
+            overscroll-behavior: none;
         }
 
         body {
@@ -370,13 +371,13 @@
         .company-info {
             margin-bottom: 24px;
             padding-bottom: 24px;
-            border-bottom: 1px solid var(--color-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
         }
 
         .company-info p {
             font-size: 0.82rem;
-            color: var(--color-text-muted);
+            color: rgba(255, 255, 255, 0.6);
             line-height: 1.8;
         }
 
@@ -484,15 +485,60 @@
         [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
         [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
+        /* ── Main content ── */
+        .main-content {
+            position: relative;
+            z-index: 1;
+            background: var(--color-bg);
+            margin-bottom: 40vh;
+        }
+
+        .main-content::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: var(--color-bg);
+            border-radius: 0 0 15px 15px;
+        }
+
+        /* ── Footer video ── */
+        .footer-video-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 0;
+        }
+
+        .footer-video {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center 15%;
+            height: 40vh;
+        }
+
         /* ── Footer ── */
         .footer {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 40px 32px;
             text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
 
         .footer p {
             font-size: 0.8rem;
-            color: var(--color-text-muted);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* ── Mobile ── */
@@ -579,6 +625,8 @@
     </style>
 </head>
 <body>
+
+<div class="main-content">
 
 <!-- Nav -->
 <nav class="nav">
@@ -728,16 +776,24 @@
     </svg>
 </button>
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="company-info">
-        <p>Nioquant, vl. Fran Čudina</p>
-        <p>Štefanićeva ulica 1, 10000 Zagreb, Croatia</p>
-        <p>OIB (Tax Number): HR31539609567</p>
-        <p>Not registered for VAT (small business exemption, Article 90 Croatian VAT Act)</p>
-    </div>
-    <p>Copyright &copy; 2026 nioquant. All rights reserved.</p>
-</footer>
+</div>
+
+<!-- Footer video -->
+<div class="footer-video-wrapper">
+    <video class="footer-video" autoplay muted loop playsinline>
+        <source src="assets/footer-video.webm" type="video/webm">
+        <source src="assets/footer-video.mp4" type="video/mp4">
+    </video>
+    <footer class="footer">
+        <div class="company-info">
+            <p>Nioquant, vl. Fran Čudina</p>
+            <p>Štefanićeva ulica 1, 10000 Zagreb, Croatia</p>
+            <p>OIB (Tax Number): HR31539609567</p>
+            <p>Not registered for VAT (small business exemption, Article 90 Croatian VAT Act)</p>
+        </div>
+        <p>Copyright &copy; 2026 nioquant. All rights reserved.</p>
+    </footer>
+</div>
 
 <script>
     // Theme toggle
