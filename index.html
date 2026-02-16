@@ -435,8 +435,8 @@
         /* ── Back to top ── */
         .back-to-top {
             position: fixed;
-            bottom: 32px;
-            right: 32px;
+            bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+            right: 24px;
             width: 44px;
             height: 44px;
             border-radius: 50%;
