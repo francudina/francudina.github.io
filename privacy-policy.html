@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FAF8F3" id="themeColor">
+    <title>Privacy Policy - RacketScore</title>
+    <meta name="description" content="Privacy Policy for RacketScore - Racket Sports Tracker for Garmin">
+    <link rel="canonical" href="https://nioquant.com/privacy-policy.html">
+
+    <link rel="icon" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #FAF8F3;
+            --color-bg-alt: #F1EFEA;
+            --color-text: #3A3A3A;
+            --color-text-muted: #666666;
+            --color-border: #e5e5e5;
+            --color-nav-bg: rgba(250, 248, 243, 0.9);
+            --color-nav-mobile-bg: rgba(250, 248, 243, 0.98);
+            --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --max-width: 900px;
+            --sidebar-width: 220px;
+        }
+
+        [data-theme="dark"] {
+            --color-bg: #0e0e0e;
+            --color-bg-alt: #161616;
+            --color-text: #D3D3D3;
+            --color-text-muted: #999999;
+            --color-border: #2a2a2a;
+            --color-nav-bg: rgba(14, 14, 14, 0.9);
+            --color-nav-mobile-bg: rgba(14, 14, 14, 0.98);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overscroll-behavior: none;
+        }
+
+        body {
+            font-family: var(--font);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Nav ── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 24px 32px;
+            padding-top: max(24px, env(safe-area-inset-top));
+            padding-left: max(32px, env(safe-area-inset-left));
+            padding-right: max(32px, env(safe-area-inset-right));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--color-nav-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--color-text);
+            margin: 5px 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        /* ── Theme toggle ── */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+            transition: border-color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--color-text-muted);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .theme-toggle .icon-moon { display: block; }
+        .theme-toggle .icon-sun { display: none; }
+
+        [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+        /* ── Layout ── */
+        .page-layout {
+            display: flex;
+            padding-top: 90px;
+            min-height: 100vh;
+        }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            position: fixed;
+            top: 90px;
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            padding: 32px 24px;
+            border-right: 1px solid var(--color-border);
+            overflow-y: auto;
+        }
+
+        .sidebar-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-bottom: 16px;
+        }
+
+        .sidebar-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-item {
+            display: block;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background: var(--color-bg-alt);
+            color: var(--color-text);
+        }
+
+        .sidebar-item.active {
+            background: var(--color-bg-alt);
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+
+        /* ── Content ── */
+        .policy-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            max-width: calc(var(--max-width) + 64px);
+            padding: 40px 48px 80px;
+        }
+
+        .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-bottom: 32px;
+        }
+
+        .policy-title {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .policy-app-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            margin-bottom: 6px;
+        }
+
+        .policy-date {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin-bottom: 48px;
+        }
+
+        .policy-section {
+            margin-bottom: 40px;
+        }
+
+        .policy-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .policy-section p {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .policy-section ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 12px;
+        }
+
+        .policy-section ul li {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .policy-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--color-border);
+        }
+
+        .policy-section a {
+            color: var(--color-text);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s;
+        }
+
+        .policy-section a:hover {
+            color: var(--color-text-muted);
+        }
+
+        /* ── App content panels ── */
+        .app-panel {
+            display: none;
+        }
+
+        .app-panel.active {
+            display: block;
+        }
+
+        /* ── Back to top ── */
+        .back-to-top {
+            position: fixed;
+            bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-text);
+            color: var(--color-bg);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            opacity: 0.7;
+        }
+
+        .back-to-top svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--color-nav-mobile-bg);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 24px 32px;
+                gap: 16px;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .page-layout {
+                flex-direction: column;
+                padding-top: 70px;
+            }
+
+            .sidebar {
+                position: relative;
+                top: auto;
+                left: auto;
+                bottom: auto;
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+                padding: 20px 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .sidebar-list {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .sidebar-item {
+                padding: 8px 16px;
+                font-size: 0.82rem;
+                border: 1px solid var(--color-border);
+            }
+
+            .sidebar-item.active {
+                border-color: var(--color-text-muted);
+            }
+
+            .sidebar-back {
+                display: none;
+            }
+
+            .policy-content {
+                margin-left: 0;
+                padding: 32px 24px 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+    <a href="/" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 245 237" xmlns="http://www.w3.org/2000/svg">
+            <path d="M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z" fill="currentColor"/>
+            <path d="M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693" fill="currentColor"/>
+            <path d="M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z" fill="currentColor"/>
+        </svg>
+        nioquant
+    </a>
+    <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<div class="page-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-label">Apps</div>
+        <ul class="sidebar-list">
+            <li><a class="sidebar-item active" data-app="racketscore">RacketScore</a></li>
+        </ul>
+    </aside>
+
+    <!-- Content -->
+    <main class="policy-content">
+
+        <!-- RacketScore -->
+        <div class="app-panel active" id="panel-racketscore">
+            <div class="label">Legal</div>
+            <h1 class="policy-title">Privacy Policy</h1>
+            <p class="policy-app-name">RacketScore</p>
+            <p class="policy-date">Effective date: February 28, 2026</p>
+
+            <div class="policy-section">
+                <h2>Introduction</h2>
+                <p>This Privacy Policy describes how RacketScore ("the App"), developed and operated by Nioquant, vl. Fran Čudina ("we", "us", "our"), collects, uses, and protects your information. RacketScore is a racket sports tracker available on the Garmin Connect IQ platform, supporting padel, tennis, pickleball, badminton, squash, and table tennis.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>Data We Collect</h2>
+                <p>The App collects the following types of data during use:</p>
+
+                <p><strong>Sensor Data</strong></p>
+                <ul>
+                    <li>Accelerometer data (used for swing detection and shot power measurement)</li>
+                    <li>Heart rate (average and maximum during a match)</li>
+                    <li>GPS location (optional, can be disabled in settings)</li>
+                </ul>
+
+                <p><strong>Activity Data</strong></p>
+                <ul>
+                    <li>Steps, distance traveled, and calories burned during a match</li>
+                    <li>Match duration and elapsed time</li>
+                </ul>
+
+                <p><strong>Match Data</strong></p>
+                <ul>
+                    <li>Scores (points, games, sets) and match results</li>
+                    <li>Swing analytics (swing count, G-force, estimated power)</li>
+                    <li>Serve statistics and point-by-point history</li>
+                    <li>Error tracking (net, wall, out errors)</li>
+                    <li>Game configuration (sport type, game mode, team mode)</li>
+                </ul>
+
+                <p><strong>Device Information</strong></p>
+                <ul>
+                    <li>Device identifier (Garmin device ID)</li>
+                    <li>Screen dimensions and battery level</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>How We Use Your Data</h2>
+                <p>All collected data is used solely to provide the core functionality of the App:</p>
+                <ul>
+                    <li>Tracking and displaying real-time match statistics on your Garmin watch</li>
+                    <li>Recording match activity via the Garmin FIT format</li>
+                    <li>Enabling real-time multiplayer score synchronization between watches</li>
+                    <li>Syncing match history to your optional self-hosted web dashboard</li>
+                    <li>Providing performance analytics and match history review</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>Data Storage</h2>
+                <p><strong>On your Garmin watch:</strong> Match history, user settings, and game configurations are stored locally on the device.</p>
+                <p><strong>Backend sync (optional):</strong> If you choose to enable sync, match data is transmitted to a server endpoint that you configure. The backend is designed to be self-hosted on your own infrastructure. No data is sent to our servers.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>Data Sharing</h2>
+                <p>We do not sell, rent, or share your data with any third parties. Specifically:</p>
+                <ul>
+                    <li>No third-party analytics or tracking services are used</li>
+                    <li>No crash reporting is sent to external services</li>
+                    <li>No advertising networks receive your data</li>
+                    <li>ANT+ multiplayer communication is local and peer-to-peer only (no internet required)</li>
+                    <li>All synced data goes only to your own self-hosted server, if configured</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>Your Controls</h2>
+                <p>You have full control over what data the App collects and transmits:</p>
+                <ul>
+                    <li><strong>GPS:</strong> Enable or disable location tracking in the App settings</li>
+                    <li><strong>Activity Recording:</strong> Enable or disable Garmin FIT activity saving</li>
+                    <li><strong>Data Sync:</strong> Enable or disable backend sync entirely</li>
+                    <li><strong>Sync Endpoint:</strong> Configure your own server address for data sync</li>
+                    <li><strong>Swing Sensitivity:</strong> Adjust accelerometer detection sensitivity (Low, Medium, High)</li>
+                    <li><strong>Live Sync:</strong> Enable or disable real-time score updates to the web dashboard</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>Third-Party Services</h2>
+                <p>RacketScore runs on the Garmin Connect IQ platform. Your use of a Garmin device is subject to <a href="https://www.garmin.com/en-US/privacy/connect/" target="_blank" rel="noopener noreferrer">Garmin's Privacy Policy</a>. We are not responsible for data collected by Garmin independently of our App.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>Children's Privacy</h2>
+                <p>The App is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated effective date. We encourage you to review this page periodically.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>Contact Us</h2>
+                <p>If you have questions about this Privacy Policy or your data, please contact us at <a href="mailto:info@nioquant.com">info@nioquant.com</a>.</p>
+            </div>
+        </div>
+
+    </main>
+
+</div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+    </svg>
+</button>
+
+<script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const systemTheme = () => darkQuery.matches ? 'dark' : 'light';
+
+    const faviconSvg = (color) => `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 245 237'><path d='M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z' fill='${color}'/><path d='M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693' fill='${color}'/><path d='M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z' fill='${color}'/></svg>`;
+
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        const favicon = document.querySelector('link[rel="icon"]');
+        favicon.setAttribute('media', '');
+        favicon.href = faviconSvg(theme === 'dark' ? '%23D3D3D3' : '%233A3A3A');
+        const color = theme === 'dark' ? '#0e0e0e' : '#FAF8F3';
+        const old = document.getElementById('themeColor');
+        old.remove();
+        const meta = document.createElement('meta');
+        meta.name = 'theme-color';
+        meta.id = 'themeColor';
+        meta.content = color;
+        document.head.appendChild(meta);
+        document.body.style.backgroundColor = color;
+    }
+
+    setTheme(localStorage.getItem('theme') || systemTheme());
+
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+    });
+
+    darkQuery.addEventListener('change', () => {
+        localStorage.removeItem('theme');
+        setTheme(systemTheme());
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            navLinks.classList.remove('open');
+        });
+    });
+
+    // App switcher
+    document.querySelectorAll('.sidebar-item').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.app-panel').forEach(p => p.classList.remove('active'));
+
+            item.classList.add('active');
+            const panel = document.getElementById('panel-' + item.dataset.app);
+            if (panel) {
+                panel.classList.add('active');
+                const nameEl = panel.querySelector('.policy-app-name');
+                if (nameEl) nameEl.textContent = item.textContent;
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('visible', window.scrollY > window.innerHeight * 0.5);
+    });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+
+</body>
+</html>
