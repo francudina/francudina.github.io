@@ -24,7 +24,7 @@
             --color-nav-bg: rgba(250, 248, 243, 0.9);
             --color-nav-mobile-bg: rgba(250, 248, 243, 0.98);
             --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --max-width: 1100px;
+            --max-width: 900px;
         }
 
         [data-theme="dark"] {
@@ -117,14 +117,25 @@
         .page-subtitle { font-size: 1.05rem; color: var(--color-text-muted); margin-bottom: 48px; line-height: 1.8; }
 
         .hero-intro {
-            max-width: 640px;
+            display: flex;
+            align-items: center;
+            gap: 48px;
             margin-bottom: 72px;
         }
 
-        .hero-intro p {
+        .hero-intro-content {
+            flex: 1;
+        }
+
+        .hero-intro-content p {
             font-size: 1.15rem;
             color: var(--color-text-muted);
             line-height: 1.9;
+        }
+
+        .hero-watch {
+            width: 200px;
+            flex-shrink: 0;
         }
 
         .journey-section {
@@ -231,6 +242,8 @@
             }
             .nav-links.open { display: flex; }
             .page-content { padding: 100px 24px 60px; }
+            .hero-intro { flex-direction: column; gap: 28px; }
+            .hero-watch { width: 160px; }
             .journey-pair { grid-template-columns: 1fr; }
             .journey-section { margin-bottom: 56px; }
         }
@@ -266,7 +279,10 @@
     <p class="page-subtitle">Racket Sports Tracker for Garmin</p>
 
     <div class="hero-intro">
-        <p>You just finished a close match. Three sets, a couple of tiebreaks, a few shots that felt different. But by the time you grab water, the details are already fading. RacketScore keeps all of it, right from your wrist.</p>
+        <div class="hero-intro-content">
+            <p>You just finished a close match. Three sets, a couple of tiebreaks, a few shots that felt different. But by the time you grab water, the details are already fading. RacketScore keeps all of it, right from your wrist.</p>
+        </div>
+        <img src="/assets/racketscore/watch-scoreboard.png" alt="RacketScore on a Garmin watch showing a live match score" class="hero-watch" loading="lazy">
     </div>
 
     <!-- 1. Dashboard — the home base -->

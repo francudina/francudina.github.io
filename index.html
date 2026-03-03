@@ -284,10 +284,34 @@
             border-radius: 16px;
         }
 
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .product-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .product-link:hover .product-arrow {
+            transform: translateX(4px);
+        }
+
         .product-name {
             font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .product-arrow {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.2s;
         }
 
         .product-tagline {
@@ -323,27 +347,17 @@
         /* ── Product screenshots ── */
         .product-screenshots {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             margin-top: 24px;
         }
 
-        .product-screenshots a {
+        .product-screenshots img {
             flex: 1;
-            border-radius: 12px;
-            overflow: hidden;
+            min-width: 0;
+            width: 0;
+            border-radius: 8px;
             border: 1px solid var(--color-border);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .product-screenshots a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-screenshots img {
-            width: 100%;
-            display: block;
         }
 
         .product-more {
@@ -765,10 +779,10 @@
     <div class="scene-inner reveal">
         <div class="label">Products</div>
         <h2 class="scene-title">What we've built</h2>
-        <div class="product">
+        <a href="/racketscore/" class="product product-link">
             <img src="assets/racketscoreapp-logo.png" alt="RacketScore" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name">RacketScore</div>
+                <div class="product-name">RacketScore <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
                 <div class="product-tagline">Racket Sports Tracker for Garmin · <strong>Soon on Garmin Connect IQ</strong></div>
                 <p class="product-desc">Turn your Garmin watch into a smart sports companion. RacketScore tracks your swings, measures shot power, and keeps score across six racket sports, all from your wrist.</p>
                 <p class="product-desc">Play with friends using real-time multiplayer sync, and follow every match live from a web dashboard. Whether you play padel, tennis, pickleball, or beyond, RacketScore has you covered.</p>
@@ -781,13 +795,13 @@
                     <span class="tag">Pickleball</span>
                 </div>
                 <div class="product-screenshots">
-                    <a href="/racketscore/"><img src="assets/racketscore/match-history.png" alt="Match History" loading="lazy"></a>
-                    <a href="/racketscore/"><img src="assets/racketscore/match-map.png" alt="Match Map" loading="lazy"></a>
-                    <a href="/racketscore/"><img src="assets/racketscore/global-stats.png" alt="Global Stats" loading="lazy"></a>
+                    <img src="assets/racketscore/match-history.png" alt="Match History" loading="lazy">
+                    <img src="assets/racketscore/match-map.png" alt="Match Map" loading="lazy">
+                    <img src="assets/racketscore/global-stats.png" alt="Global Stats" loading="lazy">
                 </div>
-                <a href="/racketscore/" class="product-more">Discover what your watch can do &rarr;</a>
+                <span class="product-more">Discover what your watch can do &rarr;</span>
             </div>
-        </div>
+        </a>
     </div>
 </section>
 
