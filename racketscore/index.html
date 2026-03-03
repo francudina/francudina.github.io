@@ -116,26 +116,21 @@
 
         .page-subtitle { font-size: 1.05rem; color: var(--color-text-muted); margin-bottom: 4px; line-height: 1.8; }
 
+        .hero-watch {
+            display: block;
+            width: 160px;
+            margin: 20px auto;
+        }
+
         .hero-intro {
-            display: flex;
-            align-items: center;
-            gap: 48px;
+            max-width: 640px;
             margin-bottom: 15px;
         }
 
-        .hero-intro-content {
-            flex: 1;
-        }
-
-        .hero-intro-content p {
+        .hero-intro p {
             font-size: 1.15rem;
             color: var(--color-text-muted);
             line-height: 1.9;
-        }
-
-        .hero-watch {
-            width: 200px;
-            flex-shrink: 0;
         }
 
         .journey-section {
@@ -242,8 +237,7 @@
             }
             .nav-links.open { display: flex; }
             .page-content { padding: 100px 24px 60px; }
-            .hero-intro { flex-direction: row; gap: 24px; }
-            .hero-watch { width: 120px; }
+            .hero-watch { width: 120px; margin-left: 0; }
             .journey-pair { grid-template-columns: 1fr; }
             .journey-section { margin-bottom: 56px; }
         }
@@ -278,11 +272,10 @@
     <h1 class="page-title"><img src="../assets/racketscoreapp-logo.png" alt="" class="page-title-logo">RacketScore</h1>
     <p class="page-subtitle">Racket Sports Tracker for Garmin</p>
 
+    <img src="../assets/racketscore/watch-scoreboard.png" alt="RacketScore on a Garmin watch showing a live match score" class="hero-watch" loading="lazy">
+
     <div class="hero-intro">
-        <div class="hero-intro-content">
-            <p>You just finished a close match. Three sets, a couple of tiebreaks, a few shots that felt different. But by the time you grab water, the details are already fading. RacketScore keeps all of it, right from your wrist.</p>
-        </div>
-        <img src="../assets/racketscore/watch-scoreboard.png" alt="RacketScore on a Garmin watch showing a live match score" class="hero-watch" loading="lazy">
+        <p>You just finished a close match. Three sets, a couple of tiebreaks, a few shots that felt different. But by the time you grab water, the details are already fading. RacketScore keeps all of it, right from your wrist.</p>
     </div>
 
     <!-- 1. Dashboard — the home base -->
