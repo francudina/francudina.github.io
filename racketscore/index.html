@@ -96,6 +96,18 @@
             padding: 120px 32px 80px;
         }
 
+        .back-link {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            margin-bottom: 32px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: var(--color-text); }
+
         .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 32px; }
 
         .page-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; letter-spacing: -1px; margin-bottom: 8px; }
@@ -246,6 +258,7 @@
 </nav>
 
 <main class="page-content">
+    <a href="/" class="back-link">&larr; Home</a>
     <div class="label">Product</div>
     <h1 class="page-title">RacketScore</h1>
     <p class="page-subtitle">Racket Sports Tracker for Garmin</p>
