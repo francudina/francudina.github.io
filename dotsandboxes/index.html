@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FAF8F3" id="themeColor">
+    <title>Dots and Boxes - Strategy Game for Garmin</title>
+    <meta name="description" content="Play Dots and Boxes on your Garmin watch. Three board sizes, AI difficulty levels, and real-time multiplayer over ANT+.">
+    <link rel="canonical" href="https://nioquant.com/dotsandboxes/">
+
+    <link rel="icon" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-bg: #FAF8F3;
+            --color-bg-alt: #F1EFEA;
+            --color-text: #3A3A3A;
+            --color-text-muted: #666666;
+            --color-border: #e5e5e5;
+            --color-nav-bg: rgba(250, 248, 243, 0.9);
+            --color-nav-mobile-bg: rgba(250, 248, 243, 0.98);
+            --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --max-width: 900px;
+        }
+
+        [data-theme="dark"] {
+            --color-bg: #0e0e0e;
+            --color-bg-alt: #161616;
+            --color-text: #D3D3D3;
+            --color-text-muted: #999999;
+            --color-border: #2a2a2a;
+            --color-nav-bg: rgba(14, 14, 14, 0.9);
+            --color-nav-mobile-bg: rgba(14, 14, 14, 0.98);
+        }
+
+        html { scroll-behavior: smooth; overscroll-behavior: none; }
+
+        body {
+            font-family: var(--font);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 24px 32px;
+            padding-top: max(24px, env(safe-area-inset-top));
+            padding-left: max(32px, env(safe-area-inset-left));
+            padding-right: max(32px, env(safe-area-inset-right));
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--color-nav-bg);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem; font-weight: 700; color: var(--color-text);
+            text-decoration: none; letter-spacing: -0.5px;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .nav-logo-icon { width: 40px; height: 40px; }
+        .nav-right { display: flex; align-items: center; gap: 24px; }
+
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--color-text); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+        .nav-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--color-text-muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--color-text); }
+
+        .theme-toggle {
+            background: none; border: 1px solid var(--color-border); border-radius: 50%;
+            width: 36px; height: 36px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--color-text); transition: border-color 0.2s;
+        }
+        .theme-toggle:hover { border-color: var(--color-text-muted); }
+        .theme-toggle svg { width: 18px; height: 18px; }
+        .theme-toggle .icon-moon { display: block; }
+        .theme-toggle .icon-sun { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+        .page-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 120px 32px 80px;
+        }
+
+        .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 32px; }
+
+        .page-title-row { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+
+        .page-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; letter-spacing: -1px; display: flex; align-items: center; gap: 16px; }
+
+        .page-title-logo { width: 52px; height: 52px; border-radius: 12px; }
+
+        .page-subtitle { font-size: 1.05rem; color: var(--color-text-muted); margin-bottom: 12px; line-height: 1.8; }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+            margin-bottom: 4px;
+        }
+
+        .page-header-text { flex: 1; }
+
+        .hero-watch {
+            width: 160px;
+            flex-shrink: 0;
+        }
+
+        .hero-intro {
+            max-width: 640px;
+            margin-bottom: 80px;
+        }
+
+        .hero-intro p {
+            font-size: 1.15rem;
+            color: var(--color-text-muted);
+            line-height: 1.9;
+        }
+
+        .journey-section {
+            margin-bottom: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+        }
+
+        .journey-section-text { flex: 1; }
+
+        .journey-section .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-bottom: 12px;
+        }
+
+        .journey-section h2 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .journey-section .journey-text {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            max-width: 580px;
+        }
+
+        .journey-screenshot {
+            flex-shrink: 0;
+        }
+
+        .journey-screenshot img {
+            width: 160px;
+            display: block;
+        }
+
+        .journey-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .closing {
+            margin-top: 80px;
+            max-width: 580px;
+        }
+
+        .closing h2 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .closing p {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+            margin-bottom: 28px;
+        }
+
+        .tags span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            color: var(--color-text-muted);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--color-text);
+            color: var(--color-bg);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .download-btn:hover { opacity: 0.8; }
+
+        .download-btn svg { width: 16px; height: 16px; }
+
+        .back-to-top {
+            position: fixed; bottom: calc(32px + env(safe-area-inset-bottom, 0px)); right: 24px;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--color-text); color: var(--color-bg); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 99;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { opacity: 0.7; }
+        .back-to-top svg { width: 20px; height: 20px; }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none; position: absolute; top: 70px; left: 0; right: 0;
+                background: var(--color-nav-mobile-bg); backdrop-filter: blur(16px);
+                flex-direction: column; padding: 24px 32px; gap: 16px;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .nav-links.open { display: flex; }
+            .page-content { padding: 100px 24px 60px; }
+            .page-header { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
+            .hero-watch { width: 120px; }
+            .journey-section { margin-bottom: 56px; flex-direction: column; align-items: flex-start; }
+            .journey-screenshot img { width: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 245 237" xmlns="http://www.w3.org/2000/svg">
+            <path d="M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z" fill="currentColor"/>
+            <path d="M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693" fill="currentColor"/>
+            <path d="M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z" fill="currentColor"/>
+        </svg>
+        nioquant
+    </a>
+    <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<main class="page-content">
+    <div class="page-header">
+        <div class="page-header-text">
+            <div class="label">Game</div>
+            <div class="page-title-row">
+                <h1 class="page-title"><img src="../assets/dotsandboxes/logo.svg" alt="" class="page-title-logo">Dots & Boxes</h1>
+                <a href="https://apps.garmin.com/apps/70d5c00b-9ce7-4a2f-a9f0-27a39d0196c1" target="_blank" rel="noopener noreferrer" class="download-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                    Get it on Connect IQ
+                </a>
+            </div>
+            <div class="tags">
+                <span>AI Opponent</span>
+                <span>2 Players</span>
+                <span>Multiplayer</span>
+                <span>ANT+ Sync</span>
+                <span>3 Board Sizes</span>
+                <span>Stats Tracking</span>
+            </div>
+            <p class="page-subtitle">Connect the dots, claim the boxes</p>
+        </div>
+        <img src="../assets/dotsandboxes/gameplay.png" alt="Dots and Boxes gameplay on a Garmin watch" class="hero-watch" loading="lazy">
+    </div>
+
+    <div class="hero-intro">
+        <p>Remember drawing lines on graph paper during class? Dots and Boxes brings that back, but on your Garmin watch. Simple rules, surprisingly deep strategy, and an AI that knows when to let you close a box and when to trap you.</p>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">Start playing</div>
+            <h2>Host, join, or go solo</h2>
+            <p class="journey-text">Play against the AI when you're on your own, or connect two Garmin watches over ANT+ for a head-to-head match. You can also pass the watch back and forth for a local game. One tap to start.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="../assets/dotsandboxes/menu.png" alt="Dots and Boxes main menu showing Host, Join, and Single options" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">Your board</div>
+            <h2>Pick the size that fits</h2>
+            <p class="journey-text">Small for a quick round, medium for a proper game, large when you want something that takes real planning. The board adapts to your watch display, so every dot and line stays clear no matter which size you choose.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="../assets/dotsandboxes/boardsize.png" alt="Board size selection showing 3x2 Small, 5x4 Medium, and 7x6 Large" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">Challenge yourself</div>
+            <h2>The AI learns your tricks</h2>
+            <p class="journey-text">Easy mode plays fair. Medium avoids obvious traps. Hard mode thinks in chains, sacrificing one box to take three. It knows the endgame patterns and forces you to play carefully from the first line.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="../assets/dotsandboxes/difficulty.png" alt="Difficulty selection showing Easy, Medium, Hard, and N Players" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">On the board</div>
+            <h2>Tap two dots, draw a line</h2>
+            <p class="journey-text">The controls are intuitive. Tap two adjacent dots to place your line. Complete the fourth side of a box and it fills with your color, giving you another turn. Chain multiple boxes together and watch your score jump. The score stays visible at the bottom so you always know where you stand.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="../assets/dotsandboxes/gameplay.png" alt="Dots and Boxes game in progress showing completed boxes and score" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">Your record</div>
+            <h2>Every game counts</h2>
+            <p class="journey-text">Wins, losses, draws, and win percentage tracked separately for single player, AI, and multiplayer. Check your stats anytime to see how you're improving, especially against the harder difficulty levels.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="../assets/dotsandboxes/stats.png" alt="Stats screen showing wins, losses, draws for SP, AI, and MP" loading="lazy">
+        </div>
+    </div>
+
+    <div class="closing">
+        <h2>A thinking game for your wrist</h2>
+        <p>Three board sizes, three difficulty levels, and a game that rewards patience over speed. No phone, no internet, just dots, lines, and the satisfaction of closing a chain. Works on 70+ Garmin models.</p>
+    </div>
+</main>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" /></svg>
+</button>
+
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const systemTheme = () => darkQuery.matches ? 'dark' : 'light';
+    const faviconSvg = (color) => `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 245 237'><path d='M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z' fill='${color}'/><path d='M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693' fill='${color}'/><path d='M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z' fill='${color}'/></svg>`;
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        const favicon = document.querySelector('link[rel="icon"]');
+        favicon.setAttribute('media', '');
+        favicon.href = faviconSvg(theme === 'dark' ? '%23D3D3D3' : '%233A3A3A');
+        const color = theme === 'dark' ? '#0e0e0e' : '#FAF8F3';
+        const old = document.getElementById('themeColor');
+        old.remove();
+        const meta = document.createElement('meta');
+        meta.name = 'theme-color'; meta.id = 'themeColor'; meta.content = color;
+        document.head.appendChild(meta);
+        document.body.style.backgroundColor = color;
+    }
+    setTheme(localStorage.getItem('theme') || systemTheme());
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+    });
+    darkQuery.addEventListener('change', () => { localStorage.removeItem('theme'); setTheme(systemTheme()); });
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => { navToggle.classList.toggle('active'); navLinks.classList.toggle('open'); });
+    navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { navToggle.classList.remove('active'); navLinks.classList.remove('open'); }); });
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > window.innerHeight * 0.5); });
+    backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+</script>
+
+</body>
+</html>

@@ -384,6 +384,26 @@
             margin-top: 24px;
         }
 
+        .product-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 8px 18px;
+            background: var(--color-text);
+            color: var(--color-bg);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .product-download:hover { opacity: 0.8; }
+
+        .product-download svg { width: 16px; height: 16px; }
+
         .product-more {
             display: inline-block;
             margin-top: 20px;
@@ -823,15 +843,69 @@
                     <span class="tag">Squash</span>
                     <span class="tag">Pickleball</span>
                 </div>
+                <div class="product-screenshots">
+                    <img src="assets/racketscore/match-history.png" alt="Match History" loading="lazy">
+                    <img src="assets/racketscore/match-map.png" alt="Match Map" loading="lazy">
+                    <img src="assets/racketscore/global-stats.png" alt="Global Stats" loading="lazy">
+                </div>
+                <span class="product-more">Discover what your watch can do &rarr;</span>
             </div>
         </a>
-        <a href="/racketscore/" class="product-bottom">
-            <div class="product-screenshots">
-                <img src="assets/racketscore/match-history.png" alt="Match History" loading="lazy">
-                <img src="assets/racketscore/match-map.png" alt="Match Map" loading="lazy">
-                <img src="assets/racketscore/global-stats.png" alt="Global Stats" loading="lazy">
+        <!-- TicTacToe -->
+        <a href="/tictactoe/" class="product product-link">
+            <img src="assets/tictactoe/gameplay.png" alt="TicTacToe on Garmin watch" class="product-logo" loading="lazy">
+            <div>
+                <div class="product-name"><img src="assets/tictactoe/logo.svg" alt="" class="product-name-logo">TicTacToe <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-tagline">Classic game for Garmin</div>
+                <p class="product-desc">The game you already know, built for your wrist. Play solo or challenge a friend on another Garmin watch with real-time ANT+ multiplayer. No phone needed.</p>
+                <div class="tags">
+                    <span class="tag">Single Player</span>
+                    <span class="tag">Multiplayer</span>
+                    <span class="tag">ANT+ Sync</span>
+                </div>
+                <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://apps.garmin.com/apps/1166f5c7-6b4e-46c9-b00c-e67081076a7e', '_blank');">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                    Get it on Connect IQ
+                </span>
             </div>
-            <span class="product-more">Discover what your watch can do &rarr;</span>
+        </a>
+        <!-- Connect 4 -->
+        <a href="/connect4/" class="product product-link">
+            <img src="assets/connect4/gameplay.png" alt="Connect 4 on Garmin watch" class="product-logo" loading="lazy">
+            <div>
+                <div class="product-name"><img src="assets/connect4/logo.svg" alt="" class="product-name-logo">Connect 4 <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-tagline">Strategy game for Garmin</div>
+                <p class="product-desc">Drop discs, think ahead, connect four. Three AI difficulty levels that actually challenge you, local 2-player mode, and ANT+ multiplayer between watches.</p>
+                <div class="tags">
+                    <span class="tag">AI Opponent</span>
+                    <span class="tag">2 Players</span>
+                    <span class="tag">Multiplayer</span>
+                    <span class="tag">3 Difficulties</span>
+                </div>
+                <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://apps.garmin.com/apps/726d6a2b-6781-4b48-96a1-54011a8f4de1', '_blank');">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                    Get it on Connect IQ
+                </span>
+            </div>
+        </a>
+        <!-- Dots and Boxes -->
+        <a href="/dotsandboxes/" class="product product-link">
+            <img src="assets/dotsandboxes/gameplay.png" alt="Dots and Boxes on Garmin watch" class="product-logo" loading="lazy">
+            <div>
+                <div class="product-name"><img src="assets/dotsandboxes/logo.svg" alt="" class="product-name-logo">Dots & Boxes <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-tagline">Strategy game for Garmin</div>
+                <p class="product-desc">Draw lines between dots, complete boxes, outscore your opponent. Three board sizes, an AI that thinks in chains, and multiplayer over ANT+.</p>
+                <div class="tags">
+                    <span class="tag">AI Opponent</span>
+                    <span class="tag">2 Players</span>
+                    <span class="tag">Multiplayer</span>
+                    <span class="tag">3 Board Sizes</span>
+                </div>
+                <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); window.open('https://apps.garmin.com/apps/70d5c00b-9ce7-4a2f-a9f0-27a39d0196c1', '_blank');">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                    Get it on Connect IQ
+                </span>
+            </div>
         </a>
     </div>
 </section>
