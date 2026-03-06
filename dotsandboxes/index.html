@@ -545,6 +545,11 @@
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > window.innerHeight * 0.5); });
     backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    if (location.hash === '#changelog') {
+        const d = document.getElementById('changelogDetails');
+        if (d) { d.open = true; setTimeout(() => d.scrollIntoView({ behavior: 'smooth' }), 300); }
+    }
 </script>
 
 </body>

@@ -437,6 +437,34 @@
 
         .product-download svg { width: 16px; height: 16px; }
 
+        .btn-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .btn-row .product-download { margin-top: 0; }
+
+        .changelog-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--color-border);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .changelog-btn:hover { opacity: 0.7; }
+        .changelog-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
         .product-more {
             display: inline-block;
             margin-top: 20px;
@@ -896,10 +924,13 @@
                     <span class="tag">Multiplayer</span>
                     <span class="tag">ANT+ Sync</span>
                 </div>
-                <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_click', {event_category: 'engagement', event_label: 'TicTacToe'}); window.open('https://apps.garmin.com/apps/1166f5c7-6b4e-46c9-b00c-e67081076a7e', '_blank');">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                    Get it on Connect IQ
-                </span>
+                <div class="btn-row">
+                    <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_click', {event_category: 'engagement', event_label: 'TicTacToe'}); window.open('https://apps.garmin.com/apps/1166f5c7-6b4e-46c9-b00c-e67081076a7e', '_blank');">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                        Get it on Connect IQ
+                    </span>
+                    <span class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); window.location='/tictactoe/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
+                </div>
             </div>
         </a>
         <!-- Connect 4 -->
@@ -915,10 +946,13 @@
                     <span class="tag">Multiplayer</span>
                     <span class="tag">3 Difficulties</span>
                 </div>
-                <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_click', {event_category: 'engagement', event_label: 'Connect4'}); window.open('https://apps.garmin.com/apps/726d6a2b-6781-4b48-96a1-54011a8f4de1', '_blank');">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                    Get it on Connect IQ
-                </span>
+                <div class="btn-row">
+                    <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_click', {event_category: 'engagement', event_label: 'Connect4'}); window.open('https://apps.garmin.com/apps/726d6a2b-6781-4b48-96a1-54011a8f4de1', '_blank');">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                        Get it on Connect IQ
+                    </span>
+                    <span class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); window.location='/connect4/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
+                </div>
             </div>
         </a>
         <!-- Dots and Boxes -->
@@ -934,10 +968,13 @@
                     <span class="tag">Multiplayer</span>
                     <span class="tag">3 Board Sizes</span>
                 </div>
-                <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_click', {event_category: 'engagement', event_label: 'DotsAndBoxes'}); window.open('https://apps.garmin.com/apps/70d5c00b-9ce7-4a2f-a9f0-27a39d0196c1', '_blank');">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                    Get it on Connect IQ
-                </span>
+                <div class="btn-row">
+                    <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_click', {event_category: 'engagement', event_label: 'DotsAndBoxes'}); window.open('https://apps.garmin.com/apps/70d5c00b-9ce7-4a2f-a9f0-27a39d0196c1', '_blank');">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                        Get it on Connect IQ
+                    </span>
+                    <span class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); window.location='/dotsandboxes/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
+                </div>
             </div>
         </a>
     </div>
