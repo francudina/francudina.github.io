@@ -666,7 +666,7 @@
             position: relative;
             z-index: 1;
             background: var(--color-bg);
-            margin-bottom: 40vh;
+            margin-bottom: clamp(260px, 35vh, 360px);
         }
 
         .main-content::after {
@@ -694,7 +694,7 @@
             display: block;
             object-fit: cover;
             object-position: center 15%;
-            height: 40vh;
+            height: clamp(260px, 35vh, 360px);
         }
 
         /* ── Footer ── */
