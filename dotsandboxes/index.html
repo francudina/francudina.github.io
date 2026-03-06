@@ -548,8 +548,14 @@
 
     if (location.hash === '#changelog') {
         const d = document.getElementById('changelogDetails');
-        if (d) { d.open = true; setTimeout(() => d.scrollIntoView({ behavior: 'smooth' }), 300); }
+        if (d) { d.open = true; setTimeout(() => d.scrollIntoView({ behavior: 'smooth' }), 100); }
     }
+    window.addEventListener('load', () => {
+        if (location.hash === '#changelog') {
+            const d = document.getElementById('changelogDetails');
+            if (d) { d.open = true; d.scrollIntoView({ behavior: 'smooth' }); }
+        }
+    });
 </script>
 
 </body>
