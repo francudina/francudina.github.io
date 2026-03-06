@@ -228,6 +228,86 @@
             line-height: 1.8;
         }
 
+        .changelog-section {
+            margin-top: 64px;
+            border-top: 1px solid var(--color-border);
+            padding-top: 32px;
+        }
+
+        .changelog-section details summary {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            list-style: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            letter-spacing: 0.04em;
+            user-select: none;
+        }
+
+        .changelog-section details summary::-webkit-details-marker { display: none; }
+
+        .changelog-section details summary .chevron {
+            width: 16px; height: 16px;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .changelog-section details[open] summary .chevron {
+            transform: rotate(180deg);
+        }
+
+        .changelog-section details summary:hover { color: var(--color-text); }
+
+        .changelog-list {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .changelog-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 0 24px;
+            align-items: start;
+        }
+
+        .changelog-item-header {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-top: 2px;
+        }
+
+        .changelog-item-version {
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--color-text);
+        }
+
+        .changelog-item-date {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .changelog-item-text {
+            color: var(--color-text-muted);
+        }
+
+        .changelog-item-list {
+            list-style: disc;
+            padding-left: 16px;
+            color: var(--color-text-muted);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
         .tags {
             display: flex;
             flex-wrap: wrap;
@@ -263,6 +343,23 @@
         .download-btn:hover { opacity: 0.8; }
 
         .download-btn svg { width: 16px; height: 16px; }
+
+        .changelog-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--color-border);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .changelog-btn:hover { opacity: 0.7; }
 
         .back-to-top {
             position: fixed; bottom: calc(32px + env(safe-area-inset-bottom, 0px)); right: 24px;
@@ -325,6 +422,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
                     Get it on Connect IQ
                 </a>
+                <a href="#changelog" class="changelog-btn" onclick="const d=document.getElementById('changelogDetails');d.open=true;setTimeout(()=>d.scrollIntoView({behavior:'smooth'}),50);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</a>
             </div>
             <div class="tags">
                 <span>Single Player</span>
@@ -377,6 +475,34 @@
     <div class="closing">
         <h2>Simple, fast, always with you</h2>
         <p>No accounts, no loading screens, no ads. Just the game you already know how to play, built for a round watch face. Works on 70+ Garmin models.</p>
+    </div>
+
+    <div class="changelog-section" id="changelog">
+        <details id="changelogDetails">
+            <summary>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                What's new
+            </summary>
+            <div class="changelog-list">
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.1</span>
+                        <span class="changelog-item-date">Mar 5, 2026</span>
+                    </div>
+                    <ul class="changelog-item-list">
+                        <li>Real-time multiplayer between two watches</li>
+                        <li>Simple one-digit pairing code</li>
+                        <li>Turn indicator ring around the screen</li>
+                        <li>Live session score tracking</li>
+                        <li>Persistent stats — wins, losses, draws, and win percentage</li>
+                        <li>Haptic feedback on game events</li>
+                        <li>Auto-rematch with 3-second countdown</li>
+                        <li>Player disconnect detection</li>
+                        <li>Touch and button support on 70+ devices</li>
+                    </ul>
+                </div>
+            </div>
+        </details>
     </div>
 </main>
 
