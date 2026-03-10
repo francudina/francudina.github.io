@@ -172,51 +172,62 @@
             line-height: 1.9;
         }
 
+        /* Desktop: static row, no animation */
         .watch-row-wrap {
             position: relative;
             margin-top: 0;
         }
 
-        .watch-row {
+        .watch-track {
             display: flex;
-            justify-content: space-between;
+            gap: 0;
             flex-wrap: nowrap;
-            overflow: hidden;
+            justify-content: space-between;
         }
 
-        .watch-row img {
+        /* hide clones on desktop */
+        .watch-track img.clone { display: none; }
+
+        .watch-track img {
             width: 160px;
             flex-shrink: 0;
             border-radius: 8px;
+            pointer-events: none;
+            user-select: none;
         }
 
-        .watch-scroll-btn {
-            display: none;
+        @keyframes watchScroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
         }
 
-        @media (max-width: 768px) {
-            .watch-row-wrap { width: auto; margin-right: -24px; }
-            .watch-row { overflow-x: auto; scroll-behavior: smooth; padding-right: 24px; scrollbar-width: none; }
-            .watch-row::-webkit-scrollbar { display: none; }
-            .watch-row img { width: 130px; }
+        .watch-scroll-btn { display: none; }
+
+        /* Mobile: animated scrolling */
+        @media (max-width: 900px) {
+            .watch-row-wrap { margin-left: -24px; margin-right: -24px; overflow: hidden; }
+            .watch-track {
+                justify-content: flex-start;
+                gap: 20px;
+                animation: watchScroll 8s linear infinite;
+                will-change: transform;
+            }
+            .watch-track.paused { animation-play-state: paused; }
+            .watch-track img { width: 130px; }
+            .watch-track img.clone { display: block; }
             .watch-scroll-btn {
                 display: flex;
                 position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
+                top: 50%; transform: translateY(-50%);
                 z-index: 10;
                 background: var(--color-bg);
                 border: 1px solid var(--color-border);
                 border-radius: 50%;
-                width: 32px;
-                height: 32px;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                color: var(--color-text);
+                width: 32px; height: 32px;
+                align-items: center; justify-content: center;
+                cursor: pointer; color: var(--color-text);
                 box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                transition: opacity 0.2s;
-                flex-shrink: 0;
+                transition: opacity 0.2s; flex-shrink: 0;
             }
             .watch-scroll-btn:hover { opacity: 0.8; }
             .watch-scroll-btn svg { width: 14px; height: 14px; }
@@ -709,19 +720,13 @@
     </div>
 
     <div class="watch-row-wrap" style="margin-bottom:80px;">
-            <button class="watch-scroll-btn left hidden" id="watchScrollLeft" aria-label="Scroll left">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
-            </button>
-            <div class="watch-row" id="watchRow">
+            <div class="watch-track" id="watchTrack">
                 <img src="../assets/racketscore/watch-menu.png" alt="Racket Score main menu" loading="lazy">
                 <img src="../assets/racketscore/watch-sport-select.png" alt="Sport selection screen" loading="lazy">
                 <img src="../assets/racketscore/watch-won-by.png" alt="Won by screen" loading="lazy">
                 <img src="../assets/racketscore/watch-match-result.png" alt="Match result screen" loading="lazy">
                 <img src="../assets/racketscore/watch-stats.png" alt="Player stats table" loading="lazy">
             </div>
-            <button class="watch-scroll-btn right" id="watchScrollRight" aria-label="Scroll right">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
-            </button>
         </div>
 
     <!-- 1. Dashboard — the home base -->
@@ -1097,19 +1102,36 @@ docker compose up -d</div>
         }, 1500);
     });
 
-    const watchRow = document.getElementById('watchRow');
-    const watchLeft = document.getElementById('watchScrollLeft');
-    const watchRight = document.getElementById('watchScrollRight');
-    if (watchRow && watchLeft && watchRight) {
-        const updateBtns = () => {
-            watchLeft.classList.toggle('hidden', watchRow.scrollLeft <= 0);
-            watchRight.classList.toggle('hidden', watchRow.scrollLeft + watchRow.clientWidth >= watchRow.scrollWidth - 4);
-        };
-        watchLeft.addEventListener('click', () => { watchRow.scrollLeft -= 150; });
-        watchRight.addEventListener('click', () => { watchRow.scrollLeft += 150; });
-        watchRow.addEventListener('scroll', updateBtns);
-        updateBtns();
-    }
+    (function() {
+        const track = document.getElementById('watchTrack');
+        if (!track) return;
+
+        // Clone all images once → total = 2 sets → animation moves -50% = exactly 1 set
+        // Clones are hidden on desktop via CSS, visible only on mobile
+        Array.from(track.querySelectorAll('img')).forEach(img => {
+            const clone = img.cloneNode(true);
+            clone.classList.add('clone');
+            track.appendChild(clone);
+        });
+
+        const wrap = track.parentElement;
+        let resumeTimer;
+
+        function pause() {
+            clearTimeout(resumeTimer);
+            track.classList.add('paused');
+        }
+
+        function resume(delay) {
+            clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => track.classList.remove('paused'), delay || 0);
+        }
+
+        wrap.addEventListener('mouseenter', () => pause());
+        wrap.addEventListener('mouseleave', () => resume(600));
+        wrap.addEventListener('touchstart', () => pause(), { passive: true });
+        wrap.addEventListener('touchend', () => resume(1200), { passive: true });
+    })();
 
     function copyCode(btn) {
         const code = btn.nextElementSibling;
