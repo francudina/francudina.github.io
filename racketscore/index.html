@@ -255,6 +255,285 @@
             line-height: 1.8;
         }
 
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+            margin-bottom: 28px;
+        }
+
+        .tags span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            color: var(--color-text-muted);
+        }
+
+        .page-title-row { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--color-text);
+            color: var(--color-bg);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .download-btn:hover { opacity: 0.8; }
+        .download-btn svg { width: 16px; height: 16px; }
+
+        .changelog-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--color-border);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .changelog-btn:hover { opacity: 0.7; }
+
+        .selfhost-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: #8ecaab;
+            border: 1px solid #8ecaab;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .selfhost-btn:hover { opacity: 0.8; }
+
+        .changelog-section {
+            margin-top: 64px;
+            padding-top: 0;
+        }
+
+        .changelog-section details summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            list-style: none;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: var(--color-text);
+            letter-spacing: -0.5px;
+            user-select: none;
+        }
+
+        .changelog-section details summary::-webkit-details-marker { display: none; }
+
+        .changelog-section details summary .chevron {
+            width: 22px; height: 22px;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .changelog-section details[open] summary .chevron {
+            transform: rotate(180deg);
+        }
+
+        .changelog-section details summary:hover { opacity: 0.8; }
+
+        .changelog-list {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .changelog-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 0 24px;
+            align-items: start;
+        }
+
+        .changelog-item-header {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-top: 2px;
+        }
+
+        .changelog-item-version {
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--color-text);
+        }
+
+        .changelog-item-date {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .changelog-item-text {
+            color: var(--color-text-muted);
+        }
+
+        .changelog-item-list {
+            list-style: disc;
+            padding-left: 16px;
+            color: var(--color-text-muted);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .changelog-item-group {
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+
+        .selfhost-section {
+            margin-top: 0;
+            padding-top: 32px;
+        }
+
+        .selfhost-section details summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            list-style: none;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: var(--color-text);
+            letter-spacing: -0.5px;
+            user-select: none;
+        }
+
+        .selfhost-section details summary::-webkit-details-marker { display: none; }
+
+        .selfhost-section details summary .chevron {
+            width: 22px; height: 22px;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .selfhost-section details[open] summary .chevron {
+            transform: rotate(180deg);
+        }
+
+        .selfhost-section details summary:hover { opacity: 0.8; }
+
+        .selfhost-content {
+            margin-top: 24px;
+        }
+
+        .selfhost-intro {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 28px;
+        }
+
+        .selfhost-step {
+            margin-bottom: 28px;
+        }
+
+        .selfhost-step h4 {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-bottom: 10px;
+        }
+
+        .selfhost-step p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .selfhost-step ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+        }
+
+        .code-wrap {
+            position: relative;
+        }
+
+        .code-block {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            padding-right: 56px;
+            font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+            font-size: 0.8rem;
+            line-height: 1.7;
+            color: var(--color-text);
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--color-border);
+            border: none;
+            border-radius: 6px;
+            padding: 5px 8px;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            font-size: 0.72rem;
+            font-weight: 600;
+            transition: color 0.2s, background 0.2s;
+            line-height: 1;
+        }
+        .copy-btn:hover { color: var(--color-text); }
+        .copy-btn.copied { color: #2d8a57; }
+
+        .selfhost-note {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            border-left: 2px solid var(--color-border);
+            padding-left: 14px;
+            margin-top: 12px;
+            line-height: 1.7;
+        }
+
         /* ── Scroll indicator ── */
         .scroll-hint {
             position: fixed;
@@ -311,6 +590,9 @@
             .hero-watch { width: 120px; }
             .journey-pair { grid-template-columns: 1fr; }
             .journey-section { margin-bottom: 56px; }
+            .page-title-row { flex-direction: column; align-items: flex-start; }
+            .changelog-item { grid-template-columns: 80px 1fr; gap: 0 16px; }
+            .code-block { font-size: 0.72rem; }
         }
     </style>
 </head>
@@ -341,7 +623,26 @@
     <div class="page-header">
         <div class="page-header-text">
             <div class="label">Product</div>
-            <h1 class="page-title"><img src="../assets/racketscoreapp-logo.png" alt="" class="page-title-logo">RacketScore</h1>
+            <div class="page-title-row">
+                <h1 class="page-title"><img src="../assets/racketscoreapp-logo.png" alt="" class="page-title-logo">RacketScore</h1>
+                <a href="https://apps.garmin.com/apps/d99cae08-a4ca-4d7e-a3e1-e02779e03c1e" target="_blank" rel="noopener noreferrer" class="download-btn" onclick="gtag('event', 'download_click', {event_category: 'engagement', event_label: 'RacketScore'});">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                    Get it on Connect IQ
+                </a>
+                <a href="#changelog" class="changelog-btn" onclick="const d=document.getElementById('changelogDetails');d.open=true;setTimeout(()=>d.scrollIntoView({behavior:'smooth'}),50);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</a>
+                <a href="#selfhost" class="selfhost-btn" onclick="const d=document.getElementById('selfhostDetails');d.open=true;setTimeout(()=>d.scrollIntoView({behavior:'smooth'}),50);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" /></svg>Self Host</a>
+            </div>
+            <div class="tags">
+                <span>Padel</span>
+                <span>Tennis</span>
+                <span>Pickleball</span>
+                <span>Badminton</span>
+                <span>Squash</span>
+                <span>Table Tennis</span>
+                <span>Multiplayer</span>
+                <span>Swing Analytics</span>
+                <span>Live Scores</span>
+            </div>
             <p class="page-subtitle">Racket Sports Tracker for Garmin</p>
         </div>
         <img src="../assets/racketscore/watch-scoreboard.png" alt="RacketScore on a Garmin watch showing a live match score" class="hero-watch" loading="lazy">
@@ -443,6 +744,222 @@
         </div>
         <p>Each sport has its own scoring rules, serve logic, and game modes built in. <strong>Golden point, advantage, timed matches, Americano, best of 3 or 5</strong>, you set it up once and it just works. Connect watches with your playing partners over ANT+ and everyone stays in sync, <strong>no phone required</strong>. Every match is saved as a native Garmin activity.</p>
     </div>
+
+    <div class="selfhost-section" id="selfhost">
+        <details id="selfhostDetails" open>
+            <summary>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                Self Host (Docker)
+            </summary>
+            <div class="selfhost-content">
+                <p class="selfhost-intro">The web dashboard and API run as Docker containers on your own server or home machine. Pre-built images are published to the GitHub Container Registry, no build step needed. Available packages: <a href="https://github.com/users/francudina/packages/container/package/racketscore-api" target="_blank" rel="noopener noreferrer" style="color:var(--color-text);font-weight:600;">API</a> and <a href="https://github.com/users/francudina/packages/container/package/racketscore-web" target="_blank" rel="noopener noreferrer" style="color:var(--color-text);font-weight:600;">Web</a>.</p>
+
+                <div class="selfhost-step">
+                    <h4>Prerequisites</h4>
+                    <ul>
+                        <li>Docker and Docker Compose installed</li>
+                    </ul>
+                </div>
+
+                <div class="selfhost-step">
+                    <h4>1. Create docker-compose.yml</h4>
+                    <div class="code-wrap">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <div class="code-block">name: racketscore
+
+services:
+  db:
+    container_name: racketscore-db
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: /data/postgres
+      POSTGRES_INITDB_ARGS: --encoding=UTF-8
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/data/postgres
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  api:
+    image: ghcr.io/francudina/racketscore-api:${APP_VERSION:-latest}
+    container_name: racketscore-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
+      POSTGRES_SCHEMA: ${POSTGRES_SCHEMA}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      RESET_SECRET_KEY: ${RESET_SECRET_KEY}
+    ports:
+      - "${API_PORT:-8741}:8741"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "python -c 'import urllib.request; urllib.request.urlopen(\"http://localhost:8741/health\")'"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  web:
+    image: ghcr.io/francudina/racketscore-web:${APP_VERSION:-latest}
+    container_name: racketscore-web
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-3847}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  pgdata:</div>
+                    </div>
+                </div>
+
+                <div class="selfhost-step">
+                    <h4>2. Create .env</h4>
+                    <p>Create a <code style="font-family:monospace;font-size:0.85em;">.env</code> file in the same directory:</p>
+                    <div class="code-wrap">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    <div class="code-block"># Ports
+API_PORT=8741
+WEB_PORT=3847
+
+# Database
+POSTGRES_USER=racketscore
+POSTGRES_PASSWORD=change-me-use-a-strong-password
+POSTGRES_DB=racketscore
+POSTGRES_PORT=5432
+POSTGRES_SCHEMA=racketscore
+
+# Security - generate your own secrets!
+JWT_SECRET_KEY=change-me-in-production-use-a-real-secret
+RESET_SECRET_KEY=change-me-in-production-use-a-real-secret
+
+# App version (matches git tag, e.g. 1.0.0, or "latest")
+APP_VERSION=latest</div>
+                    </div>
+                    <p class="selfhost-note">Change at minimum: <code style="font-family:monospace;font-size:0.85em;">POSTGRES_PASSWORD</code>, <code style="font-family:monospace;font-size:0.85em;">JWT_SECRET_KEY</code>, and <code style="font-family:monospace;font-size:0.85em;">RESET_SECRET_KEY</code>. Generate secrets with <code style="font-family:monospace;font-size:0.85em;">openssl rand -hex 32</code>.</p>
+                </div>
+
+                <div class="selfhost-step">
+                    <h4>3. Start</h4>
+                    <div class="code-block">docker compose up -d</div>
+                    <p class="selfhost-note">The web UI is available at <strong>http://localhost:3847</strong> (or your configured <code style="font-family:monospace;font-size:0.85em;">WEB_PORT</code>). The API runs on port <strong>8741</strong>, which is the address you configure on the watch for syncing. Default password is <strong>admin</strong>; you'll be prompted to change it on first login.</p>
+                </div>
+
+                <div class="selfhost-step">
+                    <h4>Updating</h4>
+                    <div class="code-block">docker compose pull
+docker compose up -d</div>
+                </div>
+
+                <div class="selfhost-step">
+                    <h4>Watch → Server connectivity</h4>
+                    <p>The watch syncs over HTTP to your server's IP and port 8741. Make sure:</p>
+                    <ul>
+                        <li>The watch and server are on the <strong>same Wi-Fi network</strong>, or</li>
+                        <li>The server is reachable over the internet (port forwarded / VPN / public IP)</li>
+                    </ul>
+                    <p class="selfhost-note">You can find the correct IP addresses in <strong>Settings → Watch Connection</strong> inside the web dashboard.</p>
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <div class="changelog-section" id="changelog">
+        <details id="changelogDetails">
+            <summary>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                What's new
+            </summary>
+            <div class="changelog-list">
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.0</span>
+                        <span class="changelog-item-date">Mar 10, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Scoring</div>
+                        <ul class="changelog-item-list">
+                            <li>Full scoring for Padel, Tennis, Pickleball, Badminton, Squash and Table Tennis</li>
+                            <li>Each sport uses correct rules, point system and game structure</li>
+                            <li>Golden Point mode for padel</li>
+                            <li>Tiebreak support</li>
+                            <li>Singles and doubles</li>
+                            <li>Undo last point at any time</li>
+                        </ul>
+                        <div class="changelog-item-group">Multiplayer</div>
+                        <ul class="changelog-item-list">
+                            <li>Host a match and share the live score with every player on the court</li>
+                            <li>Everyone sees the score update in real time on their own watch</li>
+                            <li>Vibration alerts on every game and set won</li>
+                        </ul>
+                        <div class="changelog-item-group">Swing Analytics</div>
+                        <ul class="changelog-item-list">
+                            <li>Automatic swing detection on every shot</li>
+                            <li>Measures G-Force and estimates Power output in Watts per swing</li>
+                            <li>View average and peak values in the post-match summary</li>
+                            <li>Track whether your hitting is improving over time</li>
+                        </ul>
+                        <div class="changelog-item-group">Live Scores</div>
+                        <ul class="changelog-item-list">
+                            <li>Follow any active match in real time from a browser</li>
+                            <li>See live score, current game, set progress and physical stats as they update</li>
+                            <li>No need to be on the court</li>
+                        </ul>
+                        <div class="changelog-item-group">Connection</div>
+                        <ul class="changelog-item-list">
+                            <li>Live score streaming and match sync require a Bluetooth connection between your watch and your phone via the Garmin Connect app</li>
+                            <li>Multiplayer scoring between watches uses ANT+ directly and does not require a phone</li>
+                        </ul>
+                        <div class="changelog-item-group">Match History</div>
+                        <ul class="changelog-item-list">
+                            <li>Every match saved with full detail</li>
+                            <li>Set scores, point by point history, serve and return win rates, heart rate, calories, play time, swing count and power data</li>
+                            <li>Filter and browse past matches by sport, result, date and more</li>
+                        </ul>
+                        <div class="changelog-item-group">Player Profiles</div>
+                        <ul class="changelog-item-list">
+                            <li>Create player profiles and link them to Garmin devices</li>
+                            <li>Track individual performance over time</li>
+                            <li>Compare stats between players and sessions</li>
+                        </ul>
+                        <div class="changelog-item-group">Performance Stats</div>
+                        <ul class="changelog-item-list">
+                            <li>Win rate trends, serve and return win percentages, error analysis, fitness trends, power over time and intensity charts</li>
+                            <li>Filterable by sport, date range, result and team mode</li>
+                        </ul>
+                        <div class="changelog-item-group">Goals</div>
+                        <ul class="changelog-item-list">
+                            <li>Set weekly or monthly targets for matches played, win rate, play time, calories, power and more</li>
+                            <li>Track progress directly from the dashboard</li>
+                        </ul>
+                        <div class="changelog-item-group">Dashboard</div>
+                        <ul class="changelog-item-list">
+                            <li>Add the stat tiles and goals that matter to you</li>
+                            <li>Reorder and arrange sections to suit how you review your data</li>
+                        </ul>
+                        <div class="changelog-item-group">Backups</div>
+                        <ul class="changelog-item-list">
+                            <li>Create full database snapshots directly from settings and restore them at any time</li>
+                            <li>Device backups store match data uploaded from your Garmin watch and can be restored individually</li>
+                            <li>Never lose your match history</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </div>
 </main>
 
 <button class="back-to-top" id="backToTop" aria-label="Back to top">
@@ -507,6 +1024,28 @@
             if (!atBottom) hint.classList.remove('hidden');
         }, 1500);
     });
+
+    function copyCode(btn) {
+        const code = btn.nextElementSibling;
+        navigator.clipboard.writeText(code.textContent).then(() => {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+
+    function openHashSection() {
+        if (location.hash === '#changelog') {
+            const d = document.getElementById('changelogDetails');
+            if (d) { d.open = true; setTimeout(() => d.scrollIntoView({ behavior: 'smooth' }), 100); }
+        }
+        if (location.hash === '#selfhost') {
+            const d = document.getElementById('selfhostDetails');
+            if (d) { d.open = true; setTimeout(() => d.scrollIntoView({ behavior: 'smooth' }), 100); }
+        }
+    }
+    openHashSection();
+    window.addEventListener('load', openHashSection);
 </script>
 
 </body>
