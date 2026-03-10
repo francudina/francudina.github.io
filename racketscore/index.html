@@ -591,6 +591,7 @@
             .journey-pair { grid-template-columns: 1fr; }
             .journey-section { margin-bottom: 56px; }
             .page-title-row { flex-direction: column; align-items: flex-start; }
+            .page-title-btn-group { display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; }
             .changelog-item { grid-template-columns: 80px 1fr; gap: 0 16px; }
             .code-block { font-size: 0.72rem; }
         }
@@ -629,8 +630,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
                     Get it on Connect IQ
                 </a>
+                <div class="page-title-btn-group">
                 <a href="#changelog" class="changelog-btn" onclick="const d=document.getElementById('changelogDetails');d.open=true;setTimeout(()=>window.scrollTo({top:d.getBoundingClientRect().top+window.scrollY-96,behavior:'smooth'}),50);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</a>
                 <a href="#selfhost" class="selfhost-btn" onclick="const d=document.getElementById('selfhostDetails');d.open=true;setTimeout(()=>window.scrollTo({top:d.getBoundingClientRect().top+window.scrollY-96,behavior:'smooth'}),50);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" /></svg>Self Host</a>
+                </div>
             </div>
             <div class="tags">
                 <span>Padel</span>
