@@ -208,12 +208,13 @@
             .watch-row-wrap { margin-left: -24px; margin-right: -24px; overflow: hidden; }
             .watch-track {
                 justify-content: flex-start;
-                gap: 20px;
-                animation: watchScroll 8s linear infinite;
+                gap: 0;
+                width: max-content;
+                animation: watchScroll 12s linear infinite;
                 will-change: transform;
             }
             .watch-track.paused { animation-play-state: paused; }
-            .watch-track img { width: 130px; }
+            .watch-track img { width: 130px; margin-right: 20px; }
             .watch-track img.clone { display: block; }
             .watch-scroll-btn {
                 display: flex;
