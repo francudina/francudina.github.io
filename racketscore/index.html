@@ -210,10 +210,8 @@
                 justify-content: flex-start;
                 gap: 0;
                 width: max-content;
-                animation: watchScroll 12s linear infinite;
                 will-change: transform;
             }
-            .watch-track.paused { animation-play-state: paused; }
             .watch-track img { width: 130px; margin-right: 20px; }
             .watch-track img.clone { display: block; }
             .watch-scroll-btn {
@@ -698,8 +696,8 @@
                     Get it on Connect IQ
                 </a>
                 <div class="page-title-btn-group">
-                <a href="#changelog" class="changelog-btn" onclick="document.getElementById('changelogDetails').open=true;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</a>
-                <a href="#selfhost" class="selfhost-btn" onclick="document.getElementById('selfhostDetails').open=true;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" /></svg>Self Host</a>
+                <a href="#changelog" class="changelog-btn" onclick="event.preventDefault();(function(){var d=document.getElementById('changelogDetails'),n=document.querySelector('.nav');d.open=true;setTimeout(function(){window.scrollTo({top:d.getBoundingClientRect().top+window.scrollY-n.offsetHeight-16,behavior:'smooth'});},50);}())"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</a>
+                <a href="#selfhost" class="selfhost-btn" onclick="event.preventDefault();(function(){var d=document.getElementById('selfhostDetails'),n=document.querySelector('.nav');d.open=true;setTimeout(function(){window.scrollTo({top:d.getBoundingClientRect().top+window.scrollY-n.offsetHeight-16,behavior:'smooth'});},50);}())"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7m0 0a3 3 0 01-3 3m0 3h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008zm-3 6h.008v.008h-.008v-.008zm0-6h.008v.008h-.008v-.008z" /></svg>Self Host</a>
                 </div>
             </div>
             <div class="tags">
@@ -1109,8 +1107,7 @@ docker compose up -d</div>
         const track = document.getElementById('watchTrack');
         if (!track) return;
 
-        // Clone all images once → total = 2 sets → animation moves -50% = exactly 1 set
-        // Clones are hidden on desktop via CSS, visible only on mobile
+        // Clone images for seamless loop (clones hidden on desktop via CSS)
         Array.from(track.querySelectorAll('img')).forEach(img => {
             const clone = img.cloneNode(true);
             clone.classList.add('clone');
@@ -1118,21 +1115,42 @@ docker compose up -d</div>
         });
 
         const wrap = track.parentElement;
-        let resumeTimer;
+        const DURATION_MS = 12000;
+        let pos = 0, oneSetWidth = 0, lastTs = null, paused = false, resumeTimer;
 
-        function pause() {
-            clearTimeout(resumeTimer);
-            track.classList.add('paused');
+        function isMobile() { return window.innerWidth <= 900; }
+
+        function measure() {
+            const orig = track.querySelector('img:not(.clone)');
+            const clone = track.querySelector('img.clone');
+            if (orig && clone) oneSetWidth = clone.offsetLeft - orig.offsetLeft;
         }
 
+        function step(ts) {
+            requestAnimationFrame(step);
+            if (!isMobile() || oneSetWidth <= 0) return;
+            if (!paused) {
+                if (lastTs !== null) {
+                    pos += ((ts - lastTs) / DURATION_MS) * oneSetWidth;
+                    if (pos >= oneSetWidth) pos -= oneSetWidth;
+                }
+                track.style.transform = 'translateX(' + (-pos) + 'px)';
+            }
+            lastTs = ts;
+        }
+
+        window.addEventListener('load', () => { measure(); requestAnimationFrame(step); });
+        window.addEventListener('resize', measure);
+
+        function pause() { clearTimeout(resumeTimer); paused = true; }
         function resume(delay) {
             clearTimeout(resumeTimer);
-            resumeTimer = setTimeout(() => track.classList.remove('paused'), delay || 0);
+            resumeTimer = setTimeout(() => { paused = false; lastTs = null; }, delay || 0);
         }
 
-        wrap.addEventListener('mouseenter', () => pause());
+        wrap.addEventListener('mouseenter', pause);
         wrap.addEventListener('mouseleave', () => resume(600));
-        wrap.addEventListener('touchstart', () => pause(), { passive: true });
+        wrap.addEventListener('touchstart', pause, { passive: true });
         wrap.addEventListener('touchend', () => resume(400), { passive: true });
     })();
 
