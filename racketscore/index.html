@@ -830,9 +830,16 @@
                 Self Host (Docker)
             </summary>
             <div class="selfhost-content">
-                <p class="selfhost-intro">The web dashboard and API run as Docker containers on your own server or home machine. Pre-built images are published to the GitHub Container Registry, no build step needed. Available packages: <a href="https://github.com/users/francudina/packages/container/package/racketscore-api" target="_blank" rel="noopener noreferrer" style="color:var(--color-text);font-weight:600;">API</a> and <a href="https://github.com/users/francudina/packages/container/package/racketscore-web" target="_blank" rel="noopener noreferrer" style="color:var(--color-text);font-weight:600;">Web</a>.</p>
+                <p class="selfhost-intro">The web dashboard and API run as Docker containers on your own server or home machine. Pre-built images are published to the GitHub Container Registry, no build step needed.</p>
+                <div class="selfhost-step" style="margin-top:20px;">
+                    <h4>Available images</h4>
+                    <ul>
+                        <li><code>ghcr.io/francudina/racketscore-api:latest</code> <a href="https://ghcr.io/francudina/racketscore-api" target="_blank" rel="noopener noreferrer" style="color:var(--color-text-muted);text-decoration:none;opacity:0.6;font-family:var(--font);">↗ link</a></li>
+                        <li><code>ghcr.io/francudina/racketscore-web:latest</code> <a href="https://ghcr.io/francudina/racketscore-web" target="_blank" rel="noopener noreferrer" style="color:var(--color-text-muted);text-decoration:none;opacity:0.6;font-family:var(--font);">↗ link</a></li>
+                    </ul>
+                </div>
 
-                <div class="selfhost-step">
+                <div class="selfhost-step" style="margin-top:24px;">
                     <h4>Prerequisites</h4>
                     <ul>
                         <li>Docker and Docker Compose installed</li>
