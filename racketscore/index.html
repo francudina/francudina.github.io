@@ -248,12 +248,35 @@
             margin-bottom: 12px;
         }
 
+        .journey-section {
+            scroll-margin-top: var(--nav-offset, 96px);
+        }
+
         .journey-section h2 {
             font-size: clamp(1.3rem, 3vw, 1.8rem);
             font-weight: 700;
             letter-spacing: -0.5px;
             margin-bottom: 12px;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
         }
+
+        .section-anchor {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.6em;
+            font-weight: 500;
+            letter-spacing: 0;
+            flex-shrink: 0;
+        }
+        .journey-section:hover .section-anchor,
+        .selfhost-section:hover .section-anchor,
+        .changelog-section:hover .section-anchor,
+        .section-anchor:focus { opacity: 1; }
+        .section-anchor:hover { color: var(--color-text); }
 
         .journey-section .journey-text {
             font-size: 1rem;
@@ -722,7 +745,7 @@
         <p>You just finished a close match. Three sets, a couple of tiebreaks, a few shots that felt different. But by the time you grab water, the details are already fading. <strong>RacketScore keeps all of it, right from your wrist.</strong></p>
     </div>
 
-    <div class="watch-row-wrap" style="margin-bottom:80px;">
+    <div class="watch-row-wrap" id="watch" style="margin-bottom:80px;">
             <div class="watch-track" id="watchTrack">
                 <img src="../assets/racketscore/watch-menu.png" alt="Racket Score main menu" loading="lazy">
                 <img src="../assets/racketscore/watch-sport-select.png" alt="Sport selection screen" loading="lazy">
@@ -733,9 +756,9 @@
         </div>
 
     <!-- 1. Dashboard — the home base -->
-    <div class="journey-section">
+    <div class="journey-section" id="dashboard">
         <div class="section-label">Your home base</div>
-        <h2>Everything at a glance</h2>
+        <h2>Everything at a glance <a class="section-anchor" href="#dashboard">#</a></h2>
         <p class="journey-text">Open the dashboard and you immediately see where you stand. <strong>Win rate, play time, serve percentage, return wins.</strong> Your recent matches are right there with full scores and tags. Set <strong>weekly goals</strong> and track them without opening a spreadsheet.</p>
         <div class="journey-screenshot">
             <a href="../assets/racketscore/dashboard.png" target="_blank">
@@ -745,9 +768,9 @@
     </div>
 
     <!-- 2. Live Scoreboard — during the match -->
-    <div class="journey-section">
+    <div class="journey-section" id="live-scoreboard">
         <div class="section-label">During the match</div>
-        <h2>Let someone else watch the score</h2>
+        <h2>Let someone else watch the score <a class="section-anchor" href="#live-scoreboard">#</a></h2>
         <p class="journey-text">While you play, the <strong>live scoreboard streams the match to any browser</strong>. Friends waiting for the next court, your coach at home, or just your phone on the bench. Big, clean numbers that update in real time, point by point.</p>
         <div class="journey-screenshot">
             <a href="../assets/racketscore/live-scoreboard.png" target="_blank">
@@ -757,9 +780,9 @@
     </div>
 
     <!-- 3. Match History — after the match -->
-    <div class="journey-section">
+    <div class="journey-section" id="match-history">
         <div class="section-label">After the match</div>
-        <h2>Every match, saved and searchable</h2>
+        <h2>Every match, saved and searchable <a class="section-anchor" href="#match-history">#</a></h2>
         <p class="journey-text">Scroll through your match history and filter by sport, player, location, or tags. Every match card shows the score, duration, sport type, and who played. Tap into any match for <strong>point-by-point detail, swing data, and serve stats</strong>.</p>
         <div class="journey-screenshot">
             <a href="../assets/racketscore/match-history.png" target="_blank">
@@ -769,9 +792,9 @@
     </div>
 
     <!-- 4. Match Map — where you played -->
-    <div class="journey-section">
+    <div class="journey-section" id="match-map">
         <div class="section-label">Where you play</div>
-        <h2>Pin every court on the map</h2>
+        <h2>Pin every court on the map <a class="section-anchor" href="#match-map">#</a></h2>
         <p class="journey-text"><strong>GPS tags each match automatically.</strong> Over time, you build a map of every place you've played, from your local club to that court you found on vacation. Tap any pin to see what happened there.</p>
         <div class="journey-screenshot">
             <a href="../assets/racketscore/match-map.png" target="_blank">
@@ -781,9 +804,9 @@
     </div>
 
     <!-- 5 & 6. Analytics + Comparison — going deeper -->
-    <div class="journey-section">
+    <div class="journey-section" id="analytics">
         <div class="section-label">Go deeper</div>
-        <h2>Find out what's actually working</h2>
+        <h2>Find out what's actually working <a class="section-anchor" href="#analytics">#</a></h2>
         <p class="journey-text">Do you win more in shorter matches or longer ones? What's your win rate when your heart rate stays low? How do you stack up against a specific opponent across <strong>serve %, return %, clutch moments, and tiebreaks</strong>? Pick any two players and compare them side by side.</p>
         <div class="journey-pair">
             <div class="journey-screenshot">
@@ -800,9 +823,9 @@
     </div>
 
     <!-- 7. Global Stats — the big picture -->
-    <div class="journey-section">
+    <div class="journey-section" id="global-stats">
         <div class="section-label">The big picture</div>
-        <h2>Track how your game evolves</h2>
+        <h2>Track how your game evolves <a class="section-anchor" href="#global-stats">#</a></h2>
         <p class="journey-text"><strong>Shot power trends</strong> over weeks, intensity patterns across matches, error breakdowns for both sides. These aren't numbers you check once. They're the kind of thing that changes how you warm up, how you train, and which shots you trust in a tight game.</p>
         <div class="journey-screenshot">
             <a href="../assets/racketscore/global-stats.png" target="_blank">
@@ -830,6 +853,7 @@
             <summary>
                 <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
                 Self Host (Docker)
+                <a class="section-anchor" href="#selfhost">#</a>
             </summary>
             <div class="selfhost-content">
                 <p class="selfhost-intro">The web dashboard and API run as Docker containers on your own server or home machine. Pre-built images are published to the GitHub Container Registry, no build step needed.</p>
@@ -968,6 +992,7 @@ docker compose up -d</div>
             <summary>
                 <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
                 What's new
+                <a class="section-anchor" href="#changelog">#</a>
             </summary>
             <div class="changelog-list">
                 <div class="changelog-item">
@@ -1192,6 +1217,20 @@ docker compose up -d</div>
     document.querySelectorAll('img').forEach(img => {
         if (img.complete && img.naturalWidth > 0) img.classList.add('img-loaded');
         else img.addEventListener('load', () => img.classList.add('img-loaded'));
+    });
+
+    document.querySelectorAll('.section-anchor').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            const url = location.origin + location.pathname + anchor.getAttribute('href');
+            navigator.clipboard.writeText(url).then(() => {
+                const prev = anchor.textContent;
+                anchor.textContent = 'Copied!';
+                setTimeout(() => { anchor.textContent = prev; }, 1500);
+            });
+            history.replaceState(null, '', anchor.getAttribute('href'));
+        });
     });
 </script>
 
