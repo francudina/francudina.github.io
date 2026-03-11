@@ -657,6 +657,10 @@
             .changelog-item { grid-template-columns: 80px 1fr; gap: 0 16px; }
             .code-block { font-size: 0.72rem; }
         }
+
+        img { opacity: 0; transition: opacity 1s ease; }
+        img.img-loaded { opacity: 1; }
+        .watch-track img { transition: opacity 1.5s ease; }
     </style>
 </head>
 <body>
@@ -1183,6 +1187,11 @@ docker compose up -d</div>
         if (hash === '#changelog') { const d = document.getElementById('changelogDetails'); if (d) d.open = true; }
         if (hash === '#selfhost') { const d = document.getElementById('selfhostDetails'); if (d) d.open = true; }
     })();
+
+    document.querySelectorAll('img').forEach(img => {
+        if (img.complete && img.naturalWidth > 0) img.classList.add('img-loaded');
+        else img.addEventListener('load', () => img.classList.add('img-loaded'));
+    });
 </script>
 
 </body>

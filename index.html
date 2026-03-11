@@ -828,6 +828,9 @@
                 border-bottom: none;
             }
         }
+
+        img { opacity: 0; transition: opacity 1s ease; }
+        img.img-loaded { opacity: 1; }
     </style>
 </head>
 <body>
@@ -1192,6 +1195,11 @@
 
     backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.querySelectorAll('img').forEach(img => {
+        if (img.complete && img.naturalWidth > 0) img.classList.add('img-loaded');
+        else img.addEventListener('load', () => img.classList.add('img-loaded'));
     });
 </script>
 

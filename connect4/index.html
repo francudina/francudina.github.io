@@ -360,6 +360,9 @@
             .journey-section { margin-bottom: 56px; flex-direction: column; align-items: flex-start; }
             .journey-screenshot img { width: 120px; }
         }
+
+        img { opacity: 0; transition: opacity 1s ease; }
+        img.img-loaded { opacity: 1; }
     </style>
 </head>
 <body>
@@ -551,6 +554,11 @@
             const d = document.getElementById('changelogDetails');
             if (d) { d.open = true; window.scrollTo({ top: d.getBoundingClientRect().top + window.scrollY - 96, behavior: 'smooth' }); }
         }
+    });
+
+    document.querySelectorAll('img').forEach(img => {
+        if (img.complete && img.naturalWidth > 0) img.classList.add('img-loaded');
+        else img.addEventListener('load', () => img.classList.add('img-loaded'));
     });
 </script>
 
