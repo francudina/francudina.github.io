@@ -394,11 +394,11 @@
             <div class="label">Game</div>
             <div class="page-title-row">
                 <h1 class="page-title"><img src="../assets/connect4/logo.svg" alt="" class="page-title-logo">Connect 4</h1>
-                <a href="https://apps.garmin.com/apps/726d6a2b-6781-4b48-96a1-54011a8f4de1" target="_blank" rel="noopener noreferrer" class="download-btn" onclick="gtag('event', 'download_click', {event_category: 'engagement', event_label: 'Connect4'});">
+                <a id="download_link_connect4" href="https://apps.garmin.com/apps/726d6a2b-6781-4b48-96a1-54011a8f4de1" target="_blank" rel="noopener noreferrer" class="download-btn" onclick="gtag('event', 'download_link_connect4', {event_category: 'engagement', event_label: 'Connect4'});">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
                     Get it on Connect IQ
                 </a>
-                <a href="#changelog" class="changelog-btn" onclick="const d=document.getElementById('changelogDetails');d.open=true;setTimeout(()=>window.scrollTo({top:d.getBoundingClientRect().top+window.scrollY-96,behavior:'smooth'}),50);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</a>
+                <a id="whatsnew_link_connect4" href="#changelog" class="changelog-btn" onclick="gtag('event', 'whatsnew_link_connect4', {event_category: 'engagement', event_label: 'Connect4'});const d=document.getElementById('changelogDetails');d.open=true;setTimeout(()=>window.scrollTo({top:d.getBoundingClientRect().top+window.scrollY-96,behavior:'smooth'}),50);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</a>
             </div>
             <div class="tags">
                 <span>AI Opponent</span>
