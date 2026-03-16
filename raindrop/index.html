@@ -168,11 +168,14 @@
         .hero-banner::before {
             content: '';
             position: absolute;
-            inset: 0;
+            top: 0; left: 0; right: 0;
+            height: 65%;
             z-index: 0;
             background-image: url('../assets/raindrop/dune.jpg');
             background-size: cover;
-            background-position: center 50%;
+            background-position: center 43%;
+            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
             opacity: 0;
             animation: heroBgFadeIn 1.25s ease 0.1s forwards;
         }
