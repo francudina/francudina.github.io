@@ -153,12 +153,27 @@
         [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
         [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
+        @keyframes heroBgFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .hero-banner {
+            position: relative;
+            overflow: hidden;
+            background: var(--color-bg);
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
             background-image: url('../assets/raindrop/dune.jpg');
             background-size: cover;
             background-position: center 50%;
-            position: relative;
-            overflow: hidden;
+            opacity: 0;
+            animation: heroBgFadeIn 1.25s ease 0.1s forwards;
         }
 
         .hero-banner::after {
@@ -168,6 +183,7 @@
             height: 60%;
             background: linear-gradient(to bottom, transparent, var(--color-bg));
             pointer-events: none;
+            z-index: 1;
         }
 
         .hero-banner-inner {
@@ -175,7 +191,7 @@
             margin: 0 auto;
             padding: max(80px, env(safe-area-inset-top) + 80px) 32px 0;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
 
