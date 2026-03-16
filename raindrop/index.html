@@ -68,7 +68,32 @@
             --color-nav-mobile-bg: rgba(14, 14, 14, 0.98);
         }
 
-        html { scroll-behavior: smooth; overscroll-behavior: none; }
+        [data-theme="dark"] .hero-banner-inner {
+            --color-text: #3A3A3A;
+            --color-text-muted: #666666;
+            --color-border: #e5e5e5;
+            --color-bg: #FAF8F3;
+        }
+
+        [data-theme="dark"] .nav {
+            --color-text: #3A3A3A;
+            --color-text-muted: #666666;
+            --color-border: #e5e5e5;
+        }
+
+        [data-theme="dark"] .nav .theme-toggle {
+            border-color: #e5e5e5;
+        }
+
+        [data-theme="dark"] .hero-banner-inner .page-subtitle {
+            color: #D3D3D3;
+        }
+
+        [data-theme="dark"] .hero-banner-inner .hero-intro p {
+            color: #999999;
+        }
+
+        html { scroll-behavior: smooth; overscroll-behavior: none; background: var(--color-bg); }
 
         body {
             font-family: var(--font);
@@ -76,6 +101,7 @@
             background: var(--color-bg);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         .nav {
@@ -85,6 +111,12 @@
             padding-left: max(32px, env(safe-area-inset-left));
             padding-right: max(32px, env(safe-area-inset-right));
             display: flex; align-items: center; justify-content: space-between;
+            background: transparent;
+            backdrop-filter: none; -webkit-backdrop-filter: none;
+            transition: background 0.3s;
+        }
+
+        .nav.scrolled {
             background: var(--color-nav-bg);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
         }
@@ -121,21 +153,67 @@
         [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
         [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
+        .hero-banner {
+            background-image: url('../assets/raindrop/dune.jpg');
+            background-size: cover;
+            background-position: center 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 60%;
+            background: linear-gradient(to bottom, transparent, var(--color-bg));
+            pointer-events: none;
+        }
+
+        .hero-banner-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: max(80px, env(safe-area-inset-top) + 80px) 32px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+
         .page-content {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 120px 32px 80px;
+            padding: 0 32px 80px;
         }
 
         .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 32px; }
 
         .page-title-row { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
 
-        .page-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; letter-spacing: -1px; display: flex; align-items: center; gap: 16px; }
+        .page-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; letter-spacing: -1px; display: flex; align-items: center; gap: 16px; color: #3A3A3A; }
+        [data-theme="dark"] .page-title { color: #3A3A3A; }
 
         .page-title-logo { width: 52px; height: 52px; border-radius: 12px; }
 
-        .page-subtitle { font-size: 1.05rem; color: var(--color-text-muted); margin-bottom: 12px; line-height: 1.8; }
+        .page-subtitle {
+            font-size: 1.05rem;
+            color: var(--color-text);
+            margin-bottom: 12px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-subtitle::before {
+            content: '';
+            position: absolute;
+            inset: -80px -200px;
+            backdrop-filter: blur(64px);
+            -webkit-backdrop-filter: blur(64px);
+            mask-image: radial-gradient(ellipse 55% 55% at 30% 50%, black 0%, transparent 55%);
+            -webkit-mask-image: radial-gradient(ellipse 55% 55% at 30% 50%, black 0%, transparent 55%);
+            z-index: -1;
+            pointer-events: none;
+        }
 
         .page-header {
             display: flex;
@@ -155,12 +233,27 @@
         .hero-intro {
             max-width: 640px;
             margin-bottom: 80px;
+            position: relative;
+        }
+
+        .hero-intro::before {
+            content: '';
+            position: absolute;
+            inset: -80px -200px;
+            backdrop-filter: blur(64px);
+            -webkit-backdrop-filter: blur(64px);
+            mask-image: radial-gradient(ellipse 55% 60% at 35% 50%, black 0%, transparent 55%);
+            -webkit-mask-image: radial-gradient(ellipse 55% 60% at 35% 50%, black 0%, transparent 55%);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .hero-intro p {
             font-size: 1.15rem;
             color: var(--color-text-muted);
             line-height: 1.9;
+            position: relative;
+            z-index: 1;
         }
 
         .journey-section {
@@ -314,9 +407,12 @@
             font-size: 0.75rem;
             font-weight: 600;
             padding: 5px 12px;
-            border: 1px solid var(--color-border);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 20px;
-            color: var(--color-text-muted);
+            color: #fff;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .download-btn {
@@ -367,17 +463,25 @@
         .back-to-top svg { width: 20px; height: 20px; }
 
         @media (max-width: 768px) {
+            .nav {
+                padding: 16px 20px;
+                padding-top: max(16px, env(safe-area-inset-top));
+            }
+            .nav-right { gap: 12px; }
             .nav-toggle { display: block; }
             .nav-links {
-                display: none; position: absolute; top: 70px; left: 0; right: 0;
+                display: none; position: fixed; top: 56px; left: 0; right: 0;
                 background: var(--color-nav-mobile-bg); backdrop-filter: blur(16px);
-                flex-direction: column; padding: 24px 32px; gap: 16px;
+                -webkit-backdrop-filter: blur(16px);
+                flex-direction: column; padding: 24px 20px; gap: 16px;
                 border-bottom: 1px solid var(--color-border);
+                z-index: 101;
             }
             .nav-links.open { display: flex; }
-            .page-content { padding: 100px 24px 60px; }
-            .page-header { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
-            .hero-watch { width: 120px; }
+            .hero-banner-inner { padding: 72px 20px 0; }
+            .page-content { padding: 0 20px 60px; }
+            .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .hero-watch { display: none; }
             .journey-section { margin-bottom: 56px; flex-direction: column; align-items: flex-start; }
             .journey-screenshot img { width: 120px; }
         }
@@ -409,7 +513,8 @@
     </div>
 </nav>
 
-<main class="page-content">
+<div class="hero-banner">
+    <div class="hero-banner-inner">
     <div class="page-header">
         <div class="page-header-text">
             <div class="label">Watch Face</div>
@@ -436,7 +541,10 @@
     <div class="hero-intro">
         <p>Most watch faces are static. Raindrop isn't. <strong>A live raindrop animation plays across your screen</strong>, turning your Garmin into something worth looking at every time you glance down.</p>
     </div>
+    </div>
+</div>
 
+<main class="page-content">
     <div class="journey-section">
         <div class="journey-section-text">
             <div class="section-label">Always moving</div>
@@ -566,6 +674,9 @@
     const navLinks = document.getElementById('navLinks');
     navToggle.addEventListener('click', () => { navToggle.classList.toggle('active'); navLinks.classList.toggle('open'); });
     navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { navToggle.classList.remove('active'); navLinks.classList.remove('open'); }); });
+
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
 
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > window.innerHeight * 0.5); });
