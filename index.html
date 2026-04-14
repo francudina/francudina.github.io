@@ -466,6 +466,24 @@
         .changelog-btn:hover { opacity: 0.7; }
         .changelog-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
 
+        .app-stats {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+        .app-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+        .app-stat svg { width: 11px; height: 11px; flex-shrink: 0; }
+        .app-stat-stars { letter-spacing: 1px; color: #f5a623; }
+
         .product-more {
             display: inline-block;
             margin-top: 20px;
@@ -787,6 +805,16 @@
                 gap: 20px;
             }
 
+            .product-name {
+                flex-wrap: wrap;
+            }
+
+            .app-stats {
+                margin-left: 0;
+                width: 100%;
+                margin-bottom: 8px;
+            }
+
             .product-logo {
                 max-width: 140px;
                 margin: 0;
@@ -917,7 +945,7 @@
         <a href="/racketscore/" class="product product-link" style="align-items: start;">
             <img src="assets/racketscore/watch-scoreboard.png" alt="RacketScore on Garmin watch" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name"><img src="assets/racketscoreapp-logo.png" alt="" class="product-name-logo" loading="lazy">RacketScore <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-name"><img src="assets/racketscoreapp-logo.png" alt="" class="product-name-logo" loading="lazy">RacketScore <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_racketscore"></div></div>
                 <div class="product-tagline">Racket Sports Tracker for Garmin</div>
                 <p class="product-desc">Turn your Garmin watch into a smart sports companion. RacketScore tracks your swings, measures <strong>shot power</strong>, and keeps score across <strong>six racket sports</strong>, all from your wrist.</p>
                 <p class="product-desc">Play with friends using <strong>real-time multiplayer sync</strong>, and follow every match live from a <strong>web dashboard</strong>. Whether you play padel, tennis, pickleball, or beyond, RacketScore has you covered.</p>
@@ -947,7 +975,7 @@
         <a href="/tictactoe/" class="product product-link">
             <img src="assets/tictactoe/gameplay.png" alt="TicTacToe on Garmin watch" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name"><img src="assets/tictactoe/logo.svg" alt="" class="product-name-logo" loading="lazy">TicTacToe <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-name"><img src="assets/tictactoe/logo.svg" alt="" class="product-name-logo" loading="lazy">TicTacToe <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_tictactoe"></div></div>
                 <div class="product-tagline">Classic game for Garmin</div>
                 <p class="product-desc">The game you already know, built for your wrist. Play solo or <strong>challenge a friend</strong> on another Garmin watch with <strong>real-time ANT+ multiplayer</strong>. No phone needed.</p>
                 <div class="tags">
@@ -968,7 +996,7 @@
         <a href="/connect4/" class="product product-link">
             <img src="assets/connect4/gameplay.png" alt="Connect 4 on Garmin watch" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name"><img src="assets/connect4/logo.svg" alt="" class="product-name-logo" loading="lazy">Connect 4 <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-name"><img src="assets/connect4/logo.svg" alt="" class="product-name-logo" loading="lazy">Connect 4 <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_connect4"></div></div>
                 <div class="product-tagline">Strategy game for Garmin</div>
                 <p class="product-desc">Drop discs, think ahead, connect four. <strong>Three AI difficulty levels</strong> that actually challenge you, <strong>local 2-player mode</strong>, and <strong>ANT+ multiplayer</strong> between watches.</p>
                 <div class="tags">
@@ -990,7 +1018,7 @@
         <a href="/dotsandboxes/" class="product product-link">
             <img src="assets/dotsandboxes/gameplay.png" alt="Dots and Boxes on Garmin watch" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name"><img src="assets/dotsandboxes/logo.svg" alt="" class="product-name-logo" loading="lazy">Dots & Boxes <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-name"><img src="assets/dotsandboxes/logo.svg" alt="" class="product-name-logo" loading="lazy">Dots & Boxes <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_dotsandboxes"></div></div>
                 <div class="product-tagline">Strategy game for Garmin</div>
                 <p class="product-desc">Draw lines between dots, complete boxes, outscore your opponent. <strong>Three board sizes</strong>, an <strong>AI that thinks in chains</strong>, and <strong>multiplayer over ANT+</strong>.</p>
                 <div class="tags">
@@ -1012,7 +1040,7 @@
         <a href="/raindrop/" class="product product-link">
             <img src="assets/raindrop/watch4.png" alt="Raindrop watch face on Garmin watch" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name"><img src="assets/raindrop/logo.svg" alt="" class="product-name-logo" loading="lazy">Raindrop <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-name"><img src="assets/raindrop/logo.svg" alt="" class="product-name-logo" loading="lazy">Raindrop <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_raindrop"></div></div>
                 <div class="product-tagline">Animated watch face for Garmin</div>
                 <p class="product-desc">A watch face that moves. <strong>Live raindrop animation</strong>, <strong>14 preset themes</strong>, and a per-element color picker for arc, time, date, background, and dots. Make it yours, down to every detail.</p>
                 <div class="tags">
@@ -1035,7 +1063,7 @@
         <a href="/3dtime/" class="product product-link">
             <img src="assets/3dtime/watch1.png" alt="3D Time watch face on Garmin watch" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name"><img src="assets/3dtime/logo.png" alt="" class="product-name-logo" loading="lazy">3D Time <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-name"><img src="assets/3dtime/logo.png" alt="" class="product-name-logo" loading="lazy">3D Time <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_3dtime"></div></div>
                 <div class="product-tagline">Bold 3D watch face for Garmin</div>
                 <p class="product-desc">Large dimensional numerals that fill the screen. <strong>Four configurable data fields</strong>, full color control, and support for <strong>70+ Garmin devices</strong>.</p>
                 <div class="tags">
@@ -1057,7 +1085,7 @@
         <a href="/simple3dtime/" class="product product-link">
             <img src="assets/simple3dtime/watch1.png" alt="Simple 3D Time watch face on Garmin watch" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name"><img src="assets/simple3dtime/logo.png" alt="" class="product-name-logo" loading="lazy">Simple 3D Time <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-name"><img src="assets/simple3dtime/logo.png" alt="" class="product-name-logo" loading="lazy">Simple 3D Time <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_simple3dtime"></div></div>
                 <div class="product-tagline">Minimal 3D watch face for Garmin</div>
                 <p class="product-desc">The time in crisp 3D text, nothing more. <strong>Clean, focused design</strong> with color customization for <strong>70+ Garmin devices</strong>.</p>
                 <div class="tags">
@@ -1268,6 +1296,39 @@
         if (img.complete && img.naturalWidth > 0) img.classList.add('img-loaded');
         else img.addEventListener('load', () => img.classList.add('img-loaded'));
     });
+
+    // Garmin app stats
+    (function () {
+        const apps = [
+            { key: 'racketscore',  id: '3e320d95-a886-4f6a-96dc-dc9dd225bae3' },
+            { key: 'tictactoe',    id: '1166f5c7-6b4e-46c9-b00c-e67081076a7e' },
+            { key: 'connect4',     id: '726d6a2b-6781-4b48-96a1-54011a8f4de1' },
+            { key: 'dotsandboxes', id: '70d5c00b-9ce7-4a2f-a9f0-27a39d0196c1' },
+            { key: 'raindrop',     id: '9437bbd2-e218-4e8a-bc53-a1d3a5bad911' },
+            { key: '3dtime',       id: 'e79296f1-a375-4742-8358-8cbb8be84996' },
+            { key: 'simple3dtime', id: 'be324f2c-7dbc-46e3-9e75-dab936a54b4b' },
+        ];
+        const dlIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>';
+        const reviewIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>';
+        apps.forEach(function (app) {
+            fetch('https://garmin-stats.cudina-fran.workers.dev/' + app.id)
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    var el = document.getElementById('stats_' + app.key);
+                    if (!el) return;
+                    var dl = data.downloadCount;
+                    var rating = data.averageRating;
+                    var reviews = data.reviewCount;
+                    var filled = Math.round(rating);
+                    var stars = '★'.repeat(filled) + '☆'.repeat(5 - filled);
+                    el.innerHTML =
+                        '<span class="app-stat">' + dlIcon + dl + '+</span>' +
+                        '<span class="app-stat"><span class="app-stat-stars">' + stars + '</span>\u00a0' + rating.toFixed(1) + '</span>' +
+                        '<span class="app-stat">' + reviewIcon + reviews + ' review' + (reviews !== 1 ? 's' : '') + '</span>';
+                })
+                .catch(function () {});
+        });
+    })();
 </script>
 
 </body>

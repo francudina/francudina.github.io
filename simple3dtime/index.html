@@ -470,6 +470,21 @@
         }
         .changelog-btn:hover { opacity: 0.7; }
 
+        .app-stats {
+            display: flex; align-items: center; gap: 8px;
+            flex-wrap: wrap; position: relative; z-index: 2;
+            margin-top: 12px; margin-bottom: 16px;
+        }
+        .app-stat {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 0.82rem; font-weight: 600; color: #1c3d2e;
+            background: rgba(255,255,255,0.88); border: 1.5px solid #8ecaab;
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 5px 13px;
+        }
+        .app-stat svg { width: 12px; height: 12px; flex-shrink: 0; }
+        .app-stat-stars { letter-spacing: 1px; color: #f5a623; }
+
         .back-to-top {
             position: fixed; bottom: calc(32px + env(safe-area-inset-bottom, 0px)); right: 24px;
             width: 44px; height: 44px; border-radius: 50%;
@@ -546,6 +561,7 @@
                 <span>Minimal</span>
                 <span>70+ Devices</span>
             </div>
+            <div class="app-stats" id="stats_simple3dtime"></div>
             <p class="page-subtitle">Time in three dimensions, nothing in the way</p>
         </div>
         <img src="../assets/simple3dtime/watch1.png" alt="Simple 3D Time watch face on a Garmin watch" class="hero-watch" loading="eager" fetchpriority="high">
@@ -682,6 +698,25 @@
         if (img.complete && img.naturalWidth > 0) img.classList.add('img-loaded');
         else img.addEventListener('load', () => img.classList.add('img-loaded'));
     });
+
+    // App stats
+    (function () {
+        var dlIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>';
+        var reviewIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>';
+        fetch('https://garmin-stats.cudina-fran.workers.dev/be324f2c-7dbc-46e3-9e75-dab936a54b4b')
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+                var el = document.getElementById('stats_simple3dtime');
+                if (!el) return;
+                var filled = Math.round(data.averageRating);
+                var stars = '★'.repeat(filled) + '☆'.repeat(5 - filled);
+                el.innerHTML =
+                    '<span class="app-stat">' + dlIcon + data.downloadCount + '+</span>' +
+                    '<span class="app-stat"><span class="app-stat-stars">' + stars + '</span>\u00a0' + data.averageRating.toFixed(1) + '</span>' +
+                    '<span class="app-stat">' + reviewIcon + data.reviewCount + ' review' + (data.reviewCount !== 1 ? 's' : '') + '</span>';
+            })
+            .catch(function () {});
+    })();
 </script>
 
 </body>
