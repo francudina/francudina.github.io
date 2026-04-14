@@ -207,7 +207,8 @@
 
         .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 32px; }
 
-        .page-title-row { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+        .page-title-row { margin-bottom: 12px; }
+        .page-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
 
         .page-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; letter-spacing: -1px; display: flex; align-items: center; gap: 16px; color: #3A3A3A; }
         [data-theme="dark"] .page-title { color: #3A3A3A; }
@@ -553,6 +554,8 @@
             <div class="label">Watch Face</div>
             <div class="page-title-row">
                 <h1 class="page-title"><img src="../assets/raindrop/logo.svg" alt="" class="page-title-logo">Raindrop</h1>
+            </div>
+            <div class="page-actions">
                 <a id="download_link_raindrop" href="https://apps.garmin.com/apps/9437bbd2-e218-4e8a-bc53-a1d3a5bad911" target="_blank" rel="noopener noreferrer" class="download-btn" onclick="gtag('event', 'download_link_raindrop', {event_category: 'engagement', event_label: 'Raindrop'});">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
                     Get it on Connect IQ

@@ -471,7 +471,8 @@
             -webkit-backdrop-filter: blur(8px);
         }
 
-        .page-title-row { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+        .page-title-row { margin-bottom: 12px; }
+        .page-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
 
         .download-btn {
             display: inline-flex;
@@ -794,9 +795,7 @@
             .hero-watch { position: absolute; top: 0; right: 20px; width: 80px; }
             .journey-pair { grid-template-columns: 1fr; }
             .journey-section { margin-bottom: 56px; }
-            .page-title-row { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; }
-            .page-title-row .page-title { width: 100%; }
-            .page-title-btn-group { display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+.page-title-btn-group { display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; }
             .changelog-item { grid-template-columns: 80px 1fr; gap: 0 16px; }
             .code-block { font-size: 0.72rem; }
         }
@@ -837,6 +836,8 @@
             <div class="label">Product</div>
             <div class="page-title-row">
                 <h1 class="page-title"><img src="../assets/racketscoreapp-logo.png" alt="" class="page-title-logo">RacketScore</h1>
+            </div>
+            <div class="page-actions">
                 <a id="download_link_racketscore" href="https://apps.garmin.com/apps/3e320d95-a886-4f6a-96dc-dc9dd225bae3" target="_blank" rel="noopener noreferrer" class="download-btn" onclick="gtag('event', 'download_link_racketscore', {event_category: 'engagement', event_label: 'RacketScore'});">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
                     Get it on Connect IQ
