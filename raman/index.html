@@ -571,10 +571,10 @@
     </div>
     <div class="screenshot-row-wrap" style="margin-bottom:80px;">
         <div class="screenshot-track" id="screenshotTrack">
-            <img src="../assets/raman/screenshot-draw.png" alt="Drawing a custom freeform sample shape" loading="lazy">
-            <img src="../assets/raman/screenshot-results.png" alt="Scan results with computed grid parameters" loading="lazy">
-            <img src="../assets/raman/screenshot-multipass.png" alt="Multi-pass scan plan for large samples" loading="lazy">
-            <img src="../assets/raman/screenshot-surface.png" alt="Surface area tooltip showing scan coverage" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-1.png" alt="Complex freeform sample with exclusion zones and surface area tooltip" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-2.png" alt="24-tile multi-pass scan plan with exclusion zones and CSV/PDF export" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-3.png" alt="Freeform polygon with rotation optimizer and alignment angles at P1" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-4.png" alt="Rotated tile view with surface area tooltip and alignment angles" loading="lazy">
         </div>
     </div>
 
@@ -582,9 +582,9 @@
     <div class="journey-section" id="draw">
         <div class="section-label">Before you scan</div>
         <h2>Draw what you actually want to measure <a class="section-anchor" href="#draw">#</a></h2>
-        <p class="journey-text">Most samples aren't rectangles. A tissue cross-section has irregular borders. A crystal fragment is polygonal. A cross-sectioned fiber is circular. Raman Sample Analyzer lets you trace the exact outline of your region of interest: <strong>rectangle, circle, or a fully custom freeform polygon</strong>, directly on a calibrated canvas using real microscope coordinates in µm or mm.</p>
+        <p class="journey-text">Most samples aren't rectangles. A tissue cross-section has irregular borders. A crystal fragment is polygonal. A cross-sectioned fiber is circular. Raman Sample Analyzer lets you trace the exact outline of your region of interest: <strong>rectangle, circle, or a fully custom freeform polygon</strong>, directly on a calibrated canvas using real microscope coordinates in µm or mm. Once a freeform shape is closed, <strong>two alignment arcs appear at vertex P1</strong> showing the angle each adjacent edge makes with the Y axis, so you can physically orient the sample on the stage before the scan begins, without guesswork.</p>
         <div class="journey-screenshot">
-            <img src="../assets/raman/screenshot-draw.png" alt="Interactive canvas showing a custom polygon being drawn with labeled vertices" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-3.png" alt="Freeform polygon drawn with labeled vertices P1–P4 and alignment angles at P1" loading="lazy">
         </div>
     </div>
 
@@ -592,9 +592,9 @@
     <div class="journey-section" id="grid">
         <div class="section-label">Smart coverage</div>
         <h2>Only measure what's inside the shape <a class="section-anchor" href="#grid">#</a></h2>
-        <p class="journey-text">Once your shape is drawn, set your <strong>step size in X and Y</strong> (or target dot count) and hit Generate. The planner uses a point-containment algorithm to build a scan grid that covers only the points inside your defined region, skipping every empty area. No wasted spectra, no inflated scan time, no post-processing to remove dead points. You get <strong>start coordinates, Δx/Δy deltas, Nx × Ny grid dimensions, and total point count</strong>, ready to enter directly into your instrument software.</p>
+        <p class="journey-text">Once your shape is drawn, set your <strong>step size in X and Y</strong> (or target dot count) and hit Generate. The planner uses a point-containment algorithm to build a scan grid that covers only the points inside your defined region, skipping every empty area. No wasted spectra, no inflated scan time, no post-processing to remove dead points. You get <strong>start coordinates, Δx/Δy deltas, Nx × Ny grid dimensions, and total point count</strong>, ready to enter directly into your instrument software. Need to skip a sub-region entirely? Draw <strong>exclusion zones</strong>: freeform no-scan areas anywhere on the sample (shown in red on the canvas). Any scan point that falls inside an exclusion zone is dropped automatically, as if that area doesn't exist.</p>
         <div class="journey-screenshot">
-            <img src="../assets/raman/screenshot-results.png" alt="Scan results panel showing pass details, start point, step sizes and grid dimensions" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-1.png" alt="Complex freeform shape with scan dots covering only the interior and surface area tooltip" loading="lazy">
         </div>
     </div>
 
@@ -602,9 +602,9 @@
     <div class="journey-section" id="multipass">
         <div class="section-label">Large samples</div>
         <h2>Sample bigger than your stage travel? Handled. <a class="section-anchor" href="#multipass">#</a></h2>
-        <p class="journey-text">Instruments like the Thermo Scientific DXR3 have a maximum stage scan range, typically <strong>90 mm × 70 mm</strong> per pass. When your sample is larger, you'd normally split the scan manually, figure out the tile boundaries, and reposition the stage between each tile. Raman Sample Analyzer does this automatically. Enter your stage size limit once and the planner tiles your region into the minimum number of passes, computing <strong>exact start coordinates for each pass</strong> so you know exactly where to position the stage. All passes are shown simultaneously on the canvas with distinct colors.</p>
+        <p class="journey-text">Instruments like the Thermo Scientific DXR3 have a maximum stage scan range, typically <strong>90 mm × 70 mm</strong> per pass. When your sample is larger, you'd normally split the scan manually, figure out the tile boundaries, and reposition the stage between each tile. Raman Sample Analyzer does this automatically. Enter your stage size limit once and the planner tiles your region into the minimum number of passes, computing <strong>exact start coordinates for each pass</strong> so you know exactly where to position the stage. All passes are shown simultaneously on the canvas with distinct colors. Switch to the <strong>Optimized tab</strong> to let the rotation optimizer find the angle that reduces the tile count further, fewer repositions, less total scan time. When the plan is ready, export it as a <strong>CSV of all scan points</strong> or a <strong>formatted PDF report</strong> with a canvas snapshot and the full per-tile breakdown.</p>
         <div class="journey-screenshot">
-            <img src="../assets/raman/screenshot-multipass.png" alt="Canvas showing a large sample split into nine automatically computed scan passes with distinct colors" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-2.png" alt="Large sample automatically split into 24 colored scan tiles with stage reposition instructions" loading="lazy">
         </div>
     </div>
 
@@ -612,9 +612,9 @@
     <div class="journey-section" id="estimate">
         <div class="section-label">Before you commit</div>
         <h2>Know your scan time before you start <a class="section-anchor" href="#estimate">#</a></h2>
-        <p class="journey-text">A poorly planned scan can tie up an instrument for hours or days. Raman Sample Analyzer calculates an <strong>estimated total scan time</strong> from your step size and the time-per-point you configure for your hardware. Hover any pass region to see its covered surface area instantly. Adjust step size or overlap and the estimate updates in real time, so you can find the right <strong>resolution vs. time tradeoff</strong> before touching the microscope. If your point count exceeds 10,000 or 50,000 points, explicit warnings appear to help you catch oversized scans early.</p>
+        <p class="journey-text">A poorly planned scan can tie up an instrument for hours or days. Raman Sample Analyzer calculates an <strong>estimated total scan time</strong> from your step size and the time-per-point you configure for your hardware. Hover any tile to see its covered surface area instantly. Adjust step size or overlap and the estimate updates in real time, so you can find the right <strong>resolution vs. time tradeoff</strong> before touching the microscope. If your point count exceeds 10,000 or 50,000 points, explicit warnings appear to help you catch oversized scans early. Tiles with zero scan points (fully covered by exclusion zones or outside the shape) are <strong>excluded from all counts and labels</strong> so the numbers you see always reflect what the instrument will actually measure. The <strong>rotation optimizer</strong> lets you compare the current tile layout against a rotated arrangement side by side: switching tabs instantly shows only the relevant tiles, so the comparison is always unambiguous.</p>
         <div class="journey-screenshot">
-            <img src="../assets/raman/screenshot-surface.png" alt="Canvas tooltip showing surface area of a highlighted scan pass with estimated time in the results panel" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-4.png" alt="Canvas showing surface area tooltip and rotation-optimized tile view with estimated scan time" loading="lazy">
         </div>
     </div>
 
@@ -669,6 +669,39 @@
                 <a class="section-anchor" href="#changelog">#</a>
             </summary>
             <div class="changelog-list">
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.1.0</span>
+                        <span class="changelog-item-date">Apr 20, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Rotation</div>
+                        <ul class="changelog-item-list">
+                            <li>Rotation tile toggle: switching to "Optimized" tab shows only those tiles; switching back to "Current" shows only the original tiles</li>
+                            <li>Rotated dot clipping fix: dots no longer disappear when the shape is moved near the viewport edge on the rotated tab</li>
+                            <li>Hover/focus fix (rotated): mousing over a tile on the rotated tab correctly highlights only that tile's dots</li>
+                            <li>Copy All (rotated): copying on the rotated tab now copies the rotated tile data with full decimal precision</li>
+                        </ul>
+                        <div class="changelog-item-group">Tiles</div>
+                        <ul class="changelog-item-list">
+                            <li>Tile counter fix: tiles with zero scan points are excluded from all counts and labels</li>
+                        </ul>
+                        <div class="changelog-item-group">Alignment</div>
+                        <ul class="changelog-item-list">
+                            <li>Alignment angles at P1: when a freeform shape is drawn, two arcs are shown at vertex P1 on the canvas indicating the angle each edge makes with the Y axis, to help physically align the sample with the stage</li>
+                        </ul>
+                        <div class="changelog-item-group">Export</div>
+                        <ul class="changelog-item-list">
+                            <li>CSV export: exports all scan points as a CSV file with point order number, tile name, X and Y in the current display unit</li>
+                            <li>PDF report: exports a formatted PDF with a canvas snapshot and all sidebar configuration (shape, scan parameters, stage constraints, per-tile table)</li>
+                        </ul>
+                        <div class="changelog-item-group">Exclusion Zones</div>
+                        <ul class="changelog-item-list">
+                            <li>Exclusion zones: draw freeform no-scan regions anywhere on the sample; scan points inside are skipped as if that area doesn't exist; zones are saved/restored in config export</li>
+                            <li>Tile preview hidden during exclusion drawing: scan grid is hidden while drawing an exclusion zone for a cleaner view</li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="changelog-item">
                     <div class="changelog-item-header">
                         <span class="changelog-item-version">v1.0.0</span>
