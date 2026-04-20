@@ -682,23 +682,43 @@
                             <li>Hover/focus fix (rotated): mousing over a tile on the rotated tab correctly highlights only that tile's dots</li>
                             <li>Copy All (rotated): copying on the rotated tab now copies the rotated tile data with full decimal precision</li>
                         </ul>
+                        <div class="changelog-item-group">Sample Boundary</div>
+                        <ul class="changelog-item-list">
+                            <li>Outer frame (formerly "Sample Frame"): configurable border inset from the sample edge that is excluded from scanning on all sides</li>
+                            <li>Inner offset: additional uniform inset applied inside the outer frame so the scan grid starts away from the boundary edge rather than right at it</li>
+                            <li>Both fields support all display units and reformat correctly when the global unit is changed</li>
+                        </ul>
                         <div class="changelog-item-group">Tiles</div>
                         <ul class="changelog-item-list">
                             <li>Tile counter fix: tiles with zero scan points are excluded from all counts and labels</li>
+                            <li>Cross-tile deduplication: scan points already claimed by an earlier tile are never repeated in subsequent tiles</li>
+                        </ul>
+                        <div class="changelog-item-group">Scan Grid</div>
+                        <ul class="changelog-item-list">
+                            <li>Total mode live calculation: when "Total Dots" input mode is active, step size and grid dimensions are recalculated automatically, accounting for shape geometry (circle uses exact area, freeform uses polygon area), exclusion zones, outer frame, and inner offset</li>
+                            <li>Grid anchoring: the scan grid now starts at the inner-offset boundary rather than the original shape edge</li>
                         </ul>
                         <div class="changelog-item-group">Alignment</div>
                         <ul class="changelog-item-list">
                             <li>Alignment angles at P1: when a freeform shape is drawn, two arcs are shown at vertex P1 on the canvas indicating the angle each edge makes with the Y axis, to help physically align the sample with the stage</li>
+                            <li>P1 point style unified: P1 now matches all other control points (white fill, blue stroke)</li>
                         </ul>
                         <div class="changelog-item-group">Export</div>
                         <ul class="changelog-item-list">
                             <li>CSV export: exports all scan points as a CSV file with point order number, tile name, X and Y in the current display unit</li>
                             <li>PDF report: exports a formatted PDF with a canvas snapshot and all sidebar configuration (shape, scan parameters, stage constraints, per-tile table)</li>
+                            <li>PDF dots: scan dots are now rendered on the PDF canvas snapshot regardless of current zoom level</li>
+                            <li>Config export/import: all new fields (outer frame, inner offset, exclusion zones, rotation optimizer, total mode) are fully round-tripped in the JSON config</li>
                         </ul>
                         <div class="changelog-item-group">Exclusion Zones</div>
                         <ul class="changelog-item-list">
                             <li>Exclusion zones: draw freeform no-scan regions anywhere on the sample; scan points inside are skipped as if that area doesn't exist; zones are saved/restored in config export</li>
                             <li>Tile preview hidden during exclusion drawing: scan grid is hidden while drawing an exclusion zone for a cleaner view</li>
+                        </ul>
+                        <div class="changelog-item-group">UI</div>
+                        <ul class="changelog-item-list">
+                            <li>Contextual tooltips: outer frame, inner offset, and exclusion zone tooltips appear on hover over the relevant control; removed standalone info icons</li>
+                            <li>Removed Quick Presets from scan parameters and Stage Presets from stage settings</li>
                         </ul>
                     </div>
                 </div>
