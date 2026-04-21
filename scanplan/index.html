@@ -133,8 +133,9 @@
 
         .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 32px; }
 
-        .page-header { display: flex; flex-direction: column; margin-bottom: 32px; }
+        .page-header { display: flex; flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 32px; margin-bottom: 32px; }
         .page-header-text { flex: 1; }
+        .hero-screenshot { width: 280px; flex-shrink: 0; border-radius: 6px; overflow: hidden; }
 
         .page-title {
             font-size: clamp(2rem, 5vw, 3.5rem);
@@ -161,33 +162,6 @@
 
         .hero-intro strong { color: var(--color-text); }
 
-        .screenshot-row-wrap { overflow: hidden; width: 100%; }
-
-        .screenshot-track {
-            display: flex;
-            gap: 16px;
-            width: max-content;
-        }
-
-        .screenshot-track img {
-            height: 340px;
-            width: auto;
-            border-radius: 12px;
-            border: 1px solid var(--color-border);
-            flex-shrink: 0;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        @media (min-width: 901px) {
-            .screenshot-track {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                width: 100%;
-            }
-            .screenshot-track img { height: auto; width: 100%; }
-            .screenshot-track img.clone { display: none; }
-        }
 
         .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 8px; }
 
@@ -219,6 +193,11 @@
             transition: opacity 0.2s;
         }
         h2:hover .section-anchor { opacity: 1; }
+
+        .journey-screenshot {
+            border-radius: 6px;
+            overflow: hidden;
+        }
 
         .journey-screenshot a { display: block; }
 
@@ -446,6 +425,7 @@
             .nav-links.open { display: flex; }
             .page-content { padding: 100px 24px 60px; }
             .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .hero-screenshot { display: none; }
             .journey-pair { grid-template-columns: 1fr; }
             .journey-section { margin-bottom: 56px; }
             .features-grid { grid-template-columns: 1fr; margin-top: 8px; margin-bottom: 16px; }
@@ -537,7 +517,6 @@
 
         img { opacity: 0; transition: opacity 1s ease; pointer-events: none; user-select: none; }
         img.img-loaded { opacity: 1; }
-        .screenshot-track img { transition: opacity 1.5s ease; }
     </style>
 </head>
 <body>
@@ -604,18 +583,11 @@
             </div>
             <p class="page-subtitle">Browser-based scan grid planner for any point-mapping microscopy instrument</p>
         </div>
+        <img src="../assets/scanplan/screenshot-v110-2.png" alt="Hover tooltip on scan point showing sequential number and X/Y coordinates" class="hero-screenshot" loading="eager">
     </div>
 
     <div class="hero-intro">
         <p>You're setting up a scan session. Your sample is an irregular tissue slice, a mineral fragment, a polymer film, or a cross-sectioned device, not a perfect rectangle. You need to cover every relevant area without wasting instrument time on empty slide. <strong>ScanPlan solves exactly that</strong>, for any instrument that scans in a point grid: Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, and more.</p>
-    </div>
-    <div class="screenshot-row-wrap" style="margin-bottom:80px;">
-        <div class="screenshot-track" id="screenshotTrack">
-            <img src="../assets/scanplan/screenshot-v110-1.png" alt="Complex freeform shape with exclusion zones, outer frame overlay and surface area tooltip" loading="lazy">
-            <img src="../assets/scanplan/screenshot-v110-2.png" alt="Hover tooltip on a scan point with exclusion zones and outer frame segments visible" loading="lazy">
-            <img src="../assets/scanplan/screenshot-v110-3.png" alt="Freeform polygon with rotation optimizer and alignment angles at P1" loading="lazy">
-            <img src="../assets/scanplan/screenshot-v110-4.png" alt="Rectangle sample with 10 colored tiles, outer frame bands and inner offset applied" loading="lazy">
-        </div>
     </div>
 
     <!-- Closing / Features summary -->
@@ -926,50 +898,6 @@
         }, 1500);
     });
 
-    // Screenshot scroll animation (mobile)
-    (function() {
-        const track = document.getElementById('screenshotTrack');
-        if (!track) return;
-
-        Array.from(track.querySelectorAll('img')).forEach(img => {
-            const clone = img.cloneNode(true);
-            clone.classList.add('clone');
-            track.appendChild(clone);
-        });
-
-        const wrap = track.parentElement;
-        const DURATION_MS = 16000;
-        let pos = 0, oneSetWidth = 0, lastTs = null, paused = false, resumeTimer;
-
-        function isMobile() { return window.innerWidth <= 900; }
-
-        function measure() {
-            const orig = track.querySelector('img:not(.clone)');
-            const clone = track.querySelector('img.clone');
-            if (orig && clone) oneSetWidth = clone.offsetLeft - orig.offsetLeft;
-        }
-
-        function step(ts) {
-            requestAnimationFrame(step);
-            if (!isMobile() || oneSetWidth <= 0) return;
-            if (!paused) {
-                if (lastTs !== null) {
-                    pos += ((ts - lastTs) / DURATION_MS) * oneSetWidth;
-                    if (pos >= oneSetWidth) pos -= oneSetWidth;
-                }
-                track.style.transform = 'translateX(' + (-pos) + 'px)';
-            }
-            lastTs = ts;
-        }
-
-        window.addEventListener('load', () => { measure(); requestAnimationFrame(step); });
-        window.addEventListener('resize', measure);
-
-        wrap.addEventListener('mouseenter', () => { clearTimeout(resumeTimer); paused = true; });
-        wrap.addEventListener('mouseleave', () => { clearTimeout(resumeTimer); resumeTimer = setTimeout(() => { paused = false; lastTs = null; }, 600); });
-        wrap.addEventListener('touchstart', () => { clearTimeout(resumeTimer); paused = true; }, { passive: true });
-        wrap.addEventListener('touchend', () => { clearTimeout(resumeTimer); resumeTimer = setTimeout(() => { paused = false; lastTs = null; }, 400); }, { passive: true });
-    })();
 
     // Set scroll-margin-top to actual nav height
     (function() {
