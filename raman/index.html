@@ -166,9 +166,9 @@
 
         .screenshot-track {
             display: flex;
-            gap: 0;
+            gap: 16px;
             flex-wrap: nowrap;
-            justify-content: space-between;
+            justify-content: center;
         }
 
         .screenshot-track img.clone { display: none; }
@@ -571,10 +571,10 @@
     </div>
     <div class="screenshot-row-wrap" style="margin-bottom:80px;">
         <div class="screenshot-track" id="screenshotTrack">
-            <img src="../assets/raman/screenshot-v110-1.png" alt="Complex freeform sample with exclusion zones and surface area tooltip" loading="lazy">
-            <img src="../assets/raman/screenshot-v110-2.png" alt="24-tile multi-pass scan plan with exclusion zones and CSV/PDF export" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-1.png" alt="Complex freeform shape with exclusion zones, outer frame overlay and surface area tooltip" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-2.png" alt="Hover tooltip on a scan point with exclusion zones and outer frame segments visible" loading="lazy">
             <img src="../assets/raman/screenshot-v110-3.png" alt="Freeform polygon with rotation optimizer and alignment angles at P1" loading="lazy">
-            <img src="../assets/raman/screenshot-v110-4.png" alt="Rotated tile view with surface area tooltip and alignment angles" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-4.png" alt="Rectangle sample with 10 colored tiles, outer frame bands and inner offset applied" loading="lazy">
         </div>
     </div>
 
@@ -592,9 +592,9 @@
     <div class="journey-section" id="grid">
         <div class="section-label">Smart coverage</div>
         <h2>Only measure what's inside the shape <a class="section-anchor" href="#grid">#</a></h2>
-        <p class="journey-text">Once your shape is drawn, set your <strong>step size in X and Y</strong> (or target dot count) and hit Generate. The planner uses a point-containment algorithm to build a scan grid that covers only the points inside your defined region, skipping every empty area. No wasted spectra, no inflated scan time, no post-processing to remove dead points. You get <strong>start coordinates, Δx/Δy deltas, Nx × Ny grid dimensions, and total point count</strong>, ready to enter directly into your instrument software. Need to skip a sub-region entirely? Draw <strong>exclusion zones</strong>: freeform no-scan areas anywhere on the sample (shown in red on the canvas). Any scan point that falls inside an exclusion zone is dropped automatically, as if that area doesn't exist.</p>
+        <p class="journey-text">Once your shape is drawn, set your <strong>step size in X and Y</strong> (or target dot count) and hit Generate. The planner uses a point-containment algorithm to build a scan grid that covers only the points inside your defined region, skipping every empty area. No wasted spectra, no inflated scan time, no post-processing to remove dead points. You get <strong>start coordinates, Δx/Δy deltas, Nx × Ny grid dimensions, and total point count</strong>, ready to enter directly into your instrument software. Need to skip a sub-region entirely? Draw <strong>exclusion zones</strong>: freeform no-scan areas anywhere on the sample (shown in red on the canvas). Any scan point that falls inside an exclusion zone is dropped automatically, as if that area doesn't exist. Enable the <strong>outer frame overlay</strong> to visualize a per-edge physical border drawn outside the shape boundary: each polygon edge gets its own configurable frame width (F1, F2, F3...), making it easy to account for mounting frames or keep-out margins around the real sample edge.</p>
         <div class="journey-screenshot">
-            <img src="../assets/raman/screenshot-v110-1.png" alt="Complex freeform shape with scan dots covering only the interior and surface area tooltip" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-1.png" alt="Freeform sample with exclusion zones, colored outer frame overlay per edge, and surface area tooltip" loading="lazy">
         </div>
     </div>
 
@@ -602,9 +602,9 @@
     <div class="journey-section" id="multipass">
         <div class="section-label">Large samples</div>
         <h2>Sample bigger than your stage travel? Handled. <a class="section-anchor" href="#multipass">#</a></h2>
-        <p class="journey-text">Instruments like the Thermo Scientific DXR3 have a maximum stage scan range, typically <strong>90 mm × 70 mm</strong> per pass. When your sample is larger, you'd normally split the scan manually, figure out the tile boundaries, and reposition the stage between each tile. Raman Sample Analyzer does this automatically. Enter your stage size limit once and the planner tiles your region into the minimum number of passes, computing <strong>exact start coordinates for each pass</strong> so you know exactly where to position the stage. All passes are shown simultaneously on the canvas with distinct colors. Switch to the <strong>Optimized tab</strong> to let the rotation optimizer find the angle that reduces the tile count further, fewer repositions, less total scan time. When the plan is ready, export it as a <strong>CSV of all scan points</strong> or a <strong>formatted PDF report</strong> with a canvas snapshot and the full per-tile breakdown.</p>
+        <p class="journey-text">Instruments like the Thermo Scientific DXR3 have a maximum stage scan range, typically <strong>90 mm × 70 mm</strong> per pass. When your sample is larger, you'd normally split the scan manually, figure out the tile boundaries, and reposition the stage between each tile. Raman Sample Analyzer does this automatically. Enter your stage size limit once and the planner tiles your region into the minimum number of passes, computing <strong>exact start coordinates for each pass</strong> so you know exactly where to position the stage. All passes are shown simultaneously on the canvas with distinct colors. Hover any scan dot to see its <strong>sequential point number and exact X/Y coordinates</strong>, so you can verify coverage or trace individual points back to the instrument. Switch to the <strong>Optimized tab</strong> to let the rotation optimizer find the angle that reduces the tile count further, fewer repositions, less total scan time. When the plan is ready, export it as a <strong>CSV of all scan points</strong> or a <strong>formatted PDF report</strong> with a canvas snapshot and the full per-tile breakdown.</p>
         <div class="journey-screenshot">
-            <img src="../assets/raman/screenshot-v110-2.png" alt="Large sample automatically split into 24 colored scan tiles with stage reposition instructions" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-2.png" alt="Hover tooltip on scan point showing sequential number and X/Y coordinates, with outer frame and exclusion zones visible" loading="lazy">
         </div>
     </div>
 
@@ -612,9 +612,9 @@
     <div class="journey-section" id="estimate">
         <div class="section-label">Before you commit</div>
         <h2>Know your scan time before you start <a class="section-anchor" href="#estimate">#</a></h2>
-        <p class="journey-text">A poorly planned scan can tie up an instrument for hours or days. Raman Sample Analyzer calculates an <strong>estimated total scan time</strong> from your step size and the time-per-point you configure for your hardware. Hover any tile to see its covered surface area instantly. Adjust step size or overlap and the estimate updates in real time, so you can find the right <strong>resolution vs. time tradeoff</strong> before touching the microscope. If your point count exceeds 10,000 or 50,000 points, explicit warnings appear to help you catch oversized scans early. Tiles with zero scan points (fully covered by exclusion zones or outside the shape) are <strong>excluded from all counts and labels</strong> so the numbers you see always reflect what the instrument will actually measure. The <strong>rotation optimizer</strong> lets you compare the current tile layout against a rotated arrangement side by side: switching tabs instantly shows only the relevant tiles, so the comparison is always unambiguous.</p>
+        <p class="journey-text">A poorly planned scan can tie up an instrument for hours or days. Raman Sample Analyzer calculates an <strong>estimated total scan time</strong> from your step size and the time-per-point you configure for your hardware. Hover any tile to see its covered surface area instantly. Adjust step size or overlap and the estimate updates in real time, so you can find the right <strong>resolution vs. time tradeoff</strong> before touching the microscope. If your point count exceeds 10,000 or 50,000 points, explicit warnings appear to help you catch oversized scans early. Tiles with zero scan points (fully covered by exclusion zones or outside the shape) are <strong>excluded from all counts and labels</strong> so the numbers you see always reflect what the instrument will actually measure. Set an <strong>inner offset</strong> to push the scan grid inward from each tile boundary by a fixed distance, useful when the hardware cannot reliably start a scan right at the stage limit edge. The <strong>rotation optimizer</strong> lets you compare the current tile layout against a rotated arrangement side by side: switching tabs instantly shows only the relevant tiles, so the comparison is always unambiguous.</p>
         <div class="journey-screenshot">
-            <img src="../assets/raman/screenshot-v110-4.png" alt="Canvas showing surface area tooltip and rotation-optimized tile view with estimated scan time" loading="lazy">
+            <img src="../assets/raman/screenshot-v110-4.png" alt="Rectangle sample tiled into 10 colored passes with outer frame bands and inner offset applied" loading="lazy">
         </div>
     </div>
 
