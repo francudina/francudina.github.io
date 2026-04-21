@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4W5N770LK6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4W5N770LK6');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FAF8F3" id="themeColor">
+    <title>ScanPlan – Microscope Scan Grid Planner for Raman, Confocal, XRF, EBSD, SEM, AFM &amp; more</title>
+    <meta name="description" content="ScanPlan is a browser-based scan planning tool for any point-mapping microscopy instrument. Draw freeform sample shapes, set step size, add exclusion zones, and export optimised scan grids as CSV or PDF. Works with Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, and nano-FTIR setups.">
+    <meta name="keywords" content="scan planner, scan grid, microscope scan, Raman microscopy scan, Raman mapping, confocal scan, TERS scan, XRF mapping, EBSD scan, SEM EDS mapping, AFM scan plan, SIMS imaging, EPMA mapping, nano-FTIR, WITec Alpha300, Thermo Scientific DXR3, Horiba LabRAM, Renishaw inVia, Zeiss LSM, Leica SP8, Bruker Dimension, PHI nanoTOF, CAMECA IMS, sample mapping, freeform shape, exclusion zone, multi-pass scan, stage travel limit, scan time estimate, point grid planner">
+    <link rel="canonical" href="https://nioquant.com/scanplan/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nioquant.com/scanplan/">
+    <meta property="og:title" content="ScanPlan – Microscope Scan Grid Planner">
+    <meta property="og:description" content="Plan scan grids for any point-mapping instrument. Draw freeform sample shapes, set step size, add exclusion zones, and export as CSV or PDF. Raman, confocal, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA.">
+    <meta property="og:image" content="https://nioquant.com/assets/scanplan/screenshot-results.png">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ScanPlan",
+      "alternateName": "Microscope Scan Grid Planner",
+      "url": "https://scanplan.nioquant.com",
+      "description": "Browser-based scan planning tool for Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, and nano-FTIR instruments. Draw freeform sample shapes, add exclusion zones, and export optimised scan grids.",
+      "operatingSystem": "Web",
+      "applicationCategory": "UtilitiesApplication",
+      "applicationSubCategory": "Scientific Instrument Software",
+      "keywords": "scan planner, Raman microscopy, confocal scan, XRF mapping, EBSD, SEM EDS, AFM, SIMS, EPMA, scan grid, point mapping",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Organization", "name": "nioquant", "url": "https://nioquant.com" }
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../assets/scanplan/logo.svg">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-bg: #FAF8F3;
+            --color-bg-alt: #F1EFEA;
+            --color-text: #3A3A3A;
+            --color-text-muted: #666666;
+            --color-border: #e5e5e5;
+            --color-nav-bg: rgba(250, 248, 243, 0.9);
+            --color-nav-mobile-bg: rgba(250, 248, 243, 0.98);
+            --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --max-width: 900px;
+        }
+
+        [data-theme="dark"] {
+            --color-bg: #0e0e0e;
+            --color-bg-alt: #161616;
+            --color-text: #D3D3D3;
+            --color-text-muted: #999999;
+            --color-border: #2a2a2a;
+            --color-nav-bg: rgba(14, 14, 14, 0.9);
+            --color-nav-mobile-bg: rgba(14, 14, 14, 0.98);
+        }
+
+        html { scroll-behavior: smooth; overscroll-behavior: none; }
+
+        body {
+            font-family: var(--font);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 24px 32px;
+            padding-top: max(24px, env(safe-area-inset-top));
+            padding-left: max(32px, env(safe-area-inset-left));
+            padding-right: max(32px, env(safe-area-inset-right));
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--color-nav-bg);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem; font-weight: 700; color: var(--color-text);
+            text-decoration: none; letter-spacing: -0.5px;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .nav-logo-icon { width: 40px; height: 40px; }
+        .nav-right { display: flex; align-items: center; gap: 24px; }
+
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--color-text); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+        .nav-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--color-text-muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--color-text); }
+
+        .theme-toggle {
+            background: none; border: 1px solid var(--color-border); border-radius: 50%;
+            width: 36px; height: 36px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--color-text); transition: border-color 0.2s;
+        }
+        .theme-toggle:hover { border-color: var(--color-text-muted); }
+        .theme-toggle svg { width: 18px; height: 18px; }
+        .theme-toggle .icon-moon { display: block; }
+        .theme-toggle .icon-sun { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+        .page-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 120px 32px 80px;
+        }
+
+        .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 32px; }
+
+        .page-header { display: flex; flex-direction: column; margin-bottom: 32px; }
+        .page-header-text { flex: 1; }
+
+        .page-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .page-title-logo { width: 52px; height: 52px; border-radius: 12px; }
+
+        .page-subtitle { font-size: 1.1rem; color: var(--color-text-muted); margin-bottom: 0; line-height: 1.5; }
+
+        .hero-intro {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 720px;
+        }
+
+        .hero-intro strong { color: var(--color-text); }
+
+        .screenshot-row-wrap { overflow: hidden; width: 100%; }
+
+        .screenshot-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+        }
+
+        .screenshot-track img {
+            height: 340px;
+            width: auto;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            flex-shrink: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        @media (min-width: 901px) {
+            .screenshot-track {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                width: 100%;
+            }
+            .screenshot-track img { height: auto; width: 100%; }
+            .screenshot-track img.clone { display: none; }
+        }
+
+        .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 8px; }
+
+        .journey-section { margin-bottom: 80px; }
+
+        .journey-section h2 {
+            font-size: clamp(1.4rem, 3.5vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+
+        .journey-text {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .journey-text strong { color: var(--color-text); }
+
+        .section-anchor {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            margin-left: 6px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        h2:hover .section-anchor { opacity: 1; }
+
+        .journey-screenshot a { display: block; }
+
+        .journey-screenshot img {
+            width: 100%;
+            display: block;
+        }
+
+        .journey-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+            margin-bottom: 28px;
+        }
+
+        .tags span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            color: var(--color-text-muted);
+        }
+
+        .page-title-row { margin-bottom: 12px; }
+        .page-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+
+        .open-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--color-text);
+            color: var(--color-bg);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .open-btn:hover { opacity: 0.8; }
+        .open-btn svg { width: 16px; height: 16px; }
+
+        .source-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--color-border);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .source-btn:hover { opacity: 0.7; }
+        .source-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+        .closing {
+            margin-top: 80px;
+            scroll-margin-top: var(--nav-offset, 96px);
+        }
+
+        .closing h2 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .closing p {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--color-border);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card {
+            background: var(--color-bg-alt);
+            padding: 24px 20px;
+        }
+
+        .feature-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 0.88rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* Techniques section */
+        .techniques-section {
+            margin-top: 80px;
+            scroll-margin-top: var(--nav-offset, 96px);
+        }
+
+        .techniques-section h2 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .techniques-section > p {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            margin-bottom: 32px;
+            max-width: 720px;
+        }
+
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--color-border);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .technique-card {
+            background: var(--color-bg-alt);
+            padding: 24px 20px;
+        }
+
+        .technique-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--color-text);
+        }
+
+        .technique-card .technique-desc {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .technique-devices {
+            font-size: 0.78rem;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+        }
+
+        .technique-devices strong {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        /* Scroll hint */
+        .scroll-hint {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-text-muted);
+            animation: bounce 2s infinite;
+            opacity: 1;
+            transition: opacity 0.3s;
+            z-index: 98;
+            cursor: pointer;
+        }
+        .scroll-hint.hidden { opacity: 0; }
+        .scroll-hint svg { width: clamp(24px, 4vw, 44px); height: clamp(24px, 4vw, 44px); }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(6px); }
+            60% { transform: translateX(-50%) translateY(3px); }
+        }
+
+        .back-to-top {
+            position: fixed; bottom: calc(32px + env(safe-area-inset-bottom, 0px)); right: 24px;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--color-text); color: var(--color-bg); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 99;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { opacity: 0.7; }
+        .back-to-top svg { width: 20px; height: 20px; }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none; position: absolute; top: 70px; left: 0; right: 0;
+                background: var(--color-nav-mobile-bg); backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                flex-direction: column; padding: 24px 32px; gap: 16px;
+                border-bottom: 1px solid var(--color-border);
+            }
+            .nav-links.open { display: flex; }
+            .page-content { padding: 100px 24px 60px; }
+            .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .journey-pair { grid-template-columns: 1fr; }
+            .journey-section { margin-bottom: 56px; }
+            .features-grid { grid-template-columns: 1fr; margin-top: 8px; margin-bottom: 16px; }
+            .techniques-grid { grid-template-columns: 1fr; }
+            .feature-card { padding: 10px 12px; }
+            .technique-card { padding: 14px 14px; }
+            .closing { margin-top: 32px; }
+            .closing h2 { margin-bottom: 6px; }
+            .closing p { margin-bottom: 12px; }
+        }
+
+        .changelog-section {
+            margin-top: 64px;
+            scroll-margin-top: var(--nav-offset, 96px);
+        }
+
+        .changelog-section details summary {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            list-style: none;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: var(--color-text);
+            letter-spacing: -0.5px;
+            user-select: none;
+        }
+
+        .changelog-section details summary::-webkit-details-marker { display: none; }
+
+        .changelog-section details summary .chevron {
+            width: 22px; height: 22px;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+
+        .changelog-section details[open] summary .chevron { transform: rotate(180deg); }
+        .changelog-section details summary:hover { opacity: 0.8; }
+
+        .changelog-list {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .changelog-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 0 24px;
+            align-items: start;
+        }
+
+        .changelog-item-header {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-top: 2px;
+        }
+
+        .changelog-item-version { font-weight: 700; font-size: 0.92rem; color: var(--color-text); }
+        .changelog-item-date { font-size: 0.8rem; color: var(--color-text-muted); }
+
+        .changelog-item-list {
+            list-style: disc;
+            padding-left: 16px;
+            color: var(--color-text-muted);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .changelog-item-group {
+            font-weight: 600;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .changelog-item { grid-template-columns: 80px 1fr; gap: 0 16px; }
+        }
+
+        img { opacity: 0; transition: opacity 1s ease; pointer-events: none; user-select: none; }
+        img.img-loaded { opacity: 1; }
+        .screenshot-track img { transition: opacity 1.5s ease; }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 245 237" xmlns="http://www.w3.org/2000/svg">
+            <path d="M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z" fill="currentColor"/>
+            <path d="M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693" fill="currentColor"/>
+            <path d="M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z" fill="currentColor"/>
+        </svg>
+        nioquant
+    </a>
+    <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<main class="page-content">
+    <div class="page-header">
+        <div class="page-header-text">
+            <div class="label">Tool</div>
+            <div class="page-title-row">
+                <h1 class="page-title"><img src="../assets/scanplan/logo.svg" alt="" class="page-title-logo">ScanPlan</h1>
+            </div>
+            <div class="page-actions">
+                <a href="https://scanplan.nioquant.com" target="_blank" rel="noopener noreferrer" class="open-btn" onclick="gtag('event', 'open_scanplan_tool', {event_category: 'engagement', event_label: 'ScanPlan'});">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+                    Open ScanPlan
+                </a>
+                <a href="#changelog" class="source-btn" onclick="gtag('event', 'whatsnew_scanplan', {event_category: 'engagement', event_label: 'ScanPlan'});event.preventDefault();(function(){var d=document.getElementById('changelogDetails'),n=document.querySelector('.nav');d.open=true;setTimeout(function(){window.scrollTo({top:d.getBoundingClientRect().top+window.scrollY-n.offsetHeight-16,behavior:'smooth'});},50);}())">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+                    What's new
+                </a>
+                <a href="https://github.com/francudina/RamanMicroscopeTool" target="_blank" rel="noopener noreferrer" class="source-btn" onclick="gtag('event', 'source_scanplan_tool', {event_category: 'engagement', event_label: 'ScanPlan'});">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                    Source Code
+                </a>
+                <a href="/scanplan/licence.html" class="source-btn" onclick="gtag('event', 'license_scanplan', {event_category: 'engagement', event_label: 'ScanPlan'});">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                    Licence
+                </a>
+            </div>
+            <div class="tags">
+                <span>Raman Microscopy</span>
+                <span>Confocal</span>
+                <span>XRF Mapping</span>
+                <span>EBSD</span>
+                <span>SEM-EDS</span>
+                <span>AFM</span>
+                <span>SIMS</span>
+                <span>EPMA</span>
+                <span>Freeform Shapes</span>
+                <span>Multi-pass</span>
+                <span>Stage Constraints</span>
+                <span>Time Estimate</span>
+            </div>
+            <p class="page-subtitle">Browser-based scan grid planner for any point-mapping microscopy instrument</p>
+        </div>
+    </div>
+
+    <div class="hero-intro">
+        <p>You're setting up a scan session. Your sample is an irregular tissue slice, a mineral fragment, a polymer film, or a cross-sectioned device — not a perfect rectangle. You need to cover every relevant area without wasting instrument time on empty slide. <strong>ScanPlan solves exactly that</strong>, for any instrument that scans in a point grid: Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, and more.</p>
+    </div>
+    <div class="screenshot-row-wrap" style="margin-bottom:80px;">
+        <div class="screenshot-track" id="screenshotTrack">
+            <img src="../assets/scanplan/screenshot-v110-1.png" alt="Complex freeform shape with exclusion zones, outer frame overlay and surface area tooltip" loading="lazy">
+            <img src="../assets/scanplan/screenshot-v110-2.png" alt="Hover tooltip on a scan point with exclusion zones and outer frame segments visible" loading="lazy">
+            <img src="../assets/scanplan/screenshot-v110-3.png" alt="Freeform polygon with rotation optimizer and alignment angles at P1" loading="lazy">
+            <img src="../assets/scanplan/screenshot-v110-4.png" alt="Rectangle sample with 10 colored tiles, outer frame bands and inner offset applied" loading="lazy">
+        </div>
+    </div>
+
+    <!-- Closing / Features summary -->
+    <div class="closing" id="features">
+        <h2>Built for real instrument work</h2>
+        <p>Every feature in ScanPlan came from an actual frustration with manual scan setup. There's no account, no installation, no dependencies to manage. Open the browser and start drawing.</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>Three shape types</h4>
+                <p>Rectangle, circle, and fully custom freeform polygon with editable vertex coordinates.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Step or dot-count input</h4>
+                <p>Enter a step size in µm or a target number of scan points; the other value updates automatically.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Automatic multi-pass</h4>
+                <p>Splits large regions into minimum-tile passes when sample exceeds your configured stage travel limit.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Exclusion zones</h4>
+                <p>Draw freeform no-scan regions anywhere on the sample. Points inside are skipped automatically.</p>
+            </div>
+            <div class="feature-card">
+                <h4>µm / mm unit switching</h4>
+                <p>Work in whichever unit your instrument uses. All values convert instantly.</p>
+            </div>
+            <div class="feature-card">
+                <h4>No installation needed</h4>
+                <p>Runs entirely in the browser. No account, no setup, no dependencies to manage.</p>
+            </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px;">
+            <a href="https://scanplan.nioquant.com" target="_blank" rel="noopener noreferrer" class="open-btn" onclick="gtag('event', 'open_scanplan_tool_closing', {event_category: 'engagement', event_label: 'ScanPlan'});">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+                Open ScanPlan
+            </a>
+        </div>
+    </div>
+
+    <!-- 1. Draw your sample -->
+    <div class="journey-section" id="draw" style="margin-top:80px;">
+        <div class="section-label">Before you scan</div>
+        <h2>Draw what you actually want to measure <a class="section-anchor" href="#draw">#</a></h2>
+        <p class="journey-text">Most samples aren't rectangles. A tissue cross-section has irregular borders. A crystal fragment is polygonal. A cross-sectioned fiber is circular. ScanPlan lets you trace the exact outline of your region of interest: <strong>rectangle, circle, or a fully custom freeform polygon</strong>, directly on a calibrated canvas using real microscope coordinates in µm or mm. Once a freeform shape is closed, <strong>two alignment arcs appear at vertex P1</strong> showing the angle each adjacent edge makes with the Y axis, so you can physically orient the sample on the stage before the scan begins, without guesswork.</p>
+        <div class="journey-screenshot">
+            <img src="../assets/scanplan/screenshot-v110-3.png" alt="Freeform polygon drawn with labeled vertices P1–P4 and alignment angles at P1" loading="lazy">
+        </div>
+    </div>
+
+    <!-- 2. Smart scan grid -->
+    <div class="journey-section" id="grid">
+        <div class="section-label">Smart coverage</div>
+        <h2>Only measure what's inside the shape <a class="section-anchor" href="#grid">#</a></h2>
+        <p class="journey-text">Once your shape is drawn, set your <strong>step size in X and Y</strong> (or target dot count) and hit Generate. The planner uses a point-containment algorithm to build a scan grid that covers only the points inside your defined region, skipping every empty area. No wasted spectra, no inflated scan time, no post-processing to remove dead points. You get <strong>start coordinates, Δx/Δy deltas, Nx × Ny grid dimensions, and total point count</strong>, ready to enter directly into your instrument software. Need to skip a sub-region entirely? Draw <strong>exclusion zones</strong>: freeform no-scan areas anywhere on the sample. Any scan point that falls inside an exclusion zone is dropped automatically. Enable the <strong>outer frame overlay</strong> to visualize a per-edge physical border drawn outside the shape boundary: each polygon edge gets its own configurable frame width (F1, F2, F3...), making it easy to account for mounting frames or keep-out margins around the real sample edge.</p>
+        <div class="journey-screenshot">
+            <img src="../assets/scanplan/screenshot-v110-1.png" alt="Freeform sample with exclusion zones, colored outer frame overlay per edge, and surface area tooltip" loading="lazy">
+        </div>
+    </div>
+
+    <!-- 3. Multi-pass planning -->
+    <div class="journey-section" id="multipass">
+        <div class="section-label">Large samples</div>
+        <h2>Sample bigger than your stage travel? Handled. <a class="section-anchor" href="#multipass">#</a></h2>
+        <p class="journey-text">Many instruments have a maximum stage scan range per pass. When your sample is larger, you'd normally split the scan manually, figure out the tile boundaries, and reposition the stage between each tile. ScanPlan does this automatically. Enter your stage size limit once and the planner tiles your region into the minimum number of passes, computing <strong>exact start coordinates for each pass</strong> so you know exactly where to position the stage. All passes are shown simultaneously on the canvas with distinct colors. Hover any scan dot to see its <strong>sequential point number and exact X/Y coordinates</strong>, so you can verify coverage or trace individual points back to the instrument. Switch to the <strong>Optimized tab</strong> to let the rotation optimizer find the angle that reduces the tile count further — fewer repositions, less total scan time. When the plan is ready, export it as a <strong>CSV of all scan points</strong> or a <strong>formatted PDF report</strong> with a canvas snapshot and the full per-tile breakdown.</p>
+        <div class="journey-screenshot">
+            <img src="../assets/scanplan/screenshot-v110-2.png" alt="Hover tooltip on scan point showing sequential number and X/Y coordinates, with outer frame and exclusion zones visible" loading="lazy">
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px;">
+            <a href="../assets/scanplan/scan-report-sample.csv" target="_blank" rel="noopener noreferrer" class="source-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                Sample CSV
+            </a>
+            <a href="../assets/scanplan/scan-report-sample.pdf" target="_blank" rel="noopener noreferrer" class="source-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                Sample PDF Report
+            </a>
+        </div>
+    </div>
+
+    <!-- 4. Time and area -->
+    <div class="journey-section" id="estimate">
+        <div class="section-label">Before you commit</div>
+        <h2>Know your scan time before you start <a class="section-anchor" href="#estimate">#</a></h2>
+        <p class="journey-text">A poorly planned scan can tie up an instrument for hours or days. ScanPlan calculates an <strong>estimated total scan time</strong> from your step size and the time-per-point you configure for your hardware. Hover any tile to see its covered surface area instantly. Adjust step size or overlap and the estimate updates in real time, so you can find the right <strong>resolution vs. time tradeoff</strong> before touching the microscope. If your point count exceeds 10,000 or 50,000 points, explicit warnings appear to help you catch oversized scans early. Tiles with zero scan points are <strong>excluded from all counts and labels</strong> so the numbers you see always reflect what the instrument will actually measure. Set an <strong>inner offset</strong> to push the scan grid inward from each tile boundary by a fixed distance, useful when the hardware cannot reliably start a scan right at the stage limit edge.</p>
+        <div class="journey-screenshot">
+            <img src="../assets/scanplan/screenshot-v110-4.png" alt="Rectangle sample tiled into 10 colored passes with outer frame bands and inner offset applied" loading="lazy">
+        </div>
+    </div>
+
+    <!-- Techniques & Devices -->
+    <div class="techniques-section" id="techniques">
+        <h2>Works with any point-mapping instrument <a class="section-anchor" href="#techniques">#</a></h2>
+        <p>ScanPlan is instrument-agnostic. If your microscope scans a point grid across a sample surface and you enter X/Y start coordinates and step sizes, ScanPlan generates the plan. Here are the techniques and common instrument families it supports.</p>
+
+        <div class="techniques-grid">
+            <div class="technique-card">
+                <h4>Raman Microscopy</h4>
+                <p class="technique-desc">Chemical imaging via inelastic light scattering. Maps molecular composition, crystal phase, strain, and defects across a surface at submicron resolution.</p>
+                <p class="technique-devices"><strong>Devices:</strong> Thermo Scientific DXR3, Horiba LabRAM HR Evolution, Renishaw inVia Qontor, WITec Alpha300 R, Bruker Senterra, Kaiser Nomadic</p>
+            </div>
+            <div class="technique-card">
+                <h4>Confocal Fluorescence</h4>
+                <p class="technique-desc">Point-by-point fluorescence imaging with optical sectioning. Used for cell biology, material interfaces, and 3D volume reconstruction of labeled samples.</p>
+                <p class="technique-devices"><strong>Devices:</strong> Zeiss LSM 900 / 980, Leica SP8 / STELLARIS, Nikon A1 / AX, Olympus FV3000, Abberior STED instruments</p>
+            </div>
+            <div class="technique-card">
+                <h4>TERS / Nano-Raman</h4>
+                <p class="technique-desc">Tip-enhanced Raman spectroscopy combines AFM positioning with Raman detection at nanometer resolution. Requires precise nm-scale point grid planning.</p>
+                <p class="technique-devices"><strong>Devices:</strong> WITec Alpha300 RA, Horiba LabRAM Nano, attocube attoRaman, Bruker TERS module</p>
+            </div>
+            <div class="technique-card">
+                <h4>XRF Mapping</h4>
+                <p class="technique-desc">X-ray fluorescence element mapping. Scans a focused X-ray beam across the sample to produce element distribution maps on cross-sections, geological samples, and thin films.</p>
+                <p class="technique-devices"><strong>Devices:</strong> Bruker M4 Tornado, Rigaku Primus IV, Oxford ED2000, Horiba XGT-9000, EDAX Orbis</p>
+            </div>
+            <div class="technique-card">
+                <h4>EBSD / EDS in SEM</h4>
+                <p class="technique-desc">Electron backscatter diffraction and energy dispersive X-ray spectroscopy in scanning electron microscopes. Maps crystal orientation and elemental composition simultaneously across polished cross-sections.</p>
+                <p class="technique-devices"><strong>Devices:</strong> EDAX Velocity, Oxford AZtec HKL, Bruker QUANTAX EBSD, Thermo Fisher Apreo / Helios, Zeiss Sigma / Gemini</p>
+            </div>
+            <div class="technique-card">
+                <h4>AFM / SPM Scanning</h4>
+                <p class="technique-desc">Atomic force and scanning probe microscopy on irregular sample geometries: thin film patches, MEMS devices, biological sections. ScanPlan defines the measurement region before setting up the instrument.</p>
+                <p class="technique-devices"><strong>Devices:</strong> Bruker Dimension Icon / FastScan, Asylum Research MFP-3D / Cypher, Park Systems NX20, Oxford MFP-3D</p>
+            </div>
+            <div class="technique-card">
+                <h4>SIMS Imaging</h4>
+                <p class="technique-desc">Secondary ion mass spectrometry for isotope mapping and trace element analysis. Irregular sample boundaries on polished mounts benefit from precise scan region planning to avoid edge artefacts.</p>
+                <p class="technique-devices"><strong>Devices:</strong> CAMECA IMS 1280 / 7f, PHI nanoTOF II, IONTOF TOF.SIMS 5, Cameca NanoSIMS 50L</p>
+            </div>
+            <div class="technique-card">
+                <h4>EPMA Mapping</h4>
+                <p class="technique-desc">Electron probe microanalysis with wavelength dispersive spectrometers. Used for quantitative element mapping of minerals, alloys, and ceramics on polished sections with complex geometries.</p>
+                <p class="technique-devices"><strong>Devices:</strong> JEOL JXA-8530F / iHP200F, Cameca SXFive / SX100, Thermo Fisher MagnaRay WDS</p>
+            </div>
+            <div class="technique-card">
+                <h4>Nano-FTIR / s-SNOM</h4>
+                <p class="technique-desc">Scattering-type scanning near-field optical microscopy and nano-scale infrared spectroscopy. Maps chemical composition at 10–20 nm resolution. Point grid planning is critical to cover features efficiently.</p>
+                <p class="technique-devices"><strong>Devices:</strong> Neaspec neaSNOM, Bruker Anasys nanoIR3-s, attocube attoCFM, Molecular Vista PhotoIR</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="changelog-section" id="changelog">
+        <details id="changelogDetails" open>
+            <summary>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                What's new
+                <a class="section-anchor" href="#changelog">#</a>
+            </summary>
+            <div class="changelog-list">
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.1.0</span>
+                        <span class="changelog-item-date">Apr 20, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Rotation</div>
+                        <ul class="changelog-item-list">
+                            <li>Rotation tile toggle: switching to "Optimized" tab shows only those tiles; switching back to "Current" shows only the original tiles</li>
+                            <li>Rotated dot clipping fix: dots no longer disappear when the shape is moved near the viewport edge on the rotated tab</li>
+                            <li>Hover/focus fix (rotated): mousing over a tile on the rotated tab correctly highlights only that tile's dots</li>
+                            <li>Copy All (rotated): copying on the rotated tab now copies the rotated tile data with full decimal precision</li>
+                        </ul>
+                        <div class="changelog-item-group">Sample Boundary</div>
+                        <ul class="changelog-item-list">
+                            <li>Outer frame: configurable border inset from the sample edge that is excluded from scanning on all sides</li>
+                            <li>Inner offset: additional uniform inset applied inside the outer frame so the scan grid starts away from the boundary edge rather than right at it</li>
+                            <li>Both fields support all display units and reformat correctly when the global unit is changed</li>
+                        </ul>
+                        <div class="changelog-item-group">Tiles</div>
+                        <ul class="changelog-item-list">
+                            <li>Tile counter fix: tiles with zero scan points are excluded from all counts and labels</li>
+                            <li>Cross-tile deduplication: scan points already claimed by an earlier tile are never repeated in subsequent tiles</li>
+                        </ul>
+                        <div class="changelog-item-group">Scan Grid</div>
+                        <ul class="changelog-item-list">
+                            <li>Total mode live calculation: when "Total Dots" input mode is active, step size and grid dimensions are recalculated automatically</li>
+                            <li>Grid anchoring: the scan grid now starts at the inner-offset boundary rather than the original shape edge</li>
+                        </ul>
+                        <div class="changelog-item-group">Alignment</div>
+                        <ul class="changelog-item-list">
+                            <li>Alignment angles at P1: two arcs shown at vertex P1 indicating the angle each edge makes with the Y axis</li>
+                            <li>P1 point style unified: P1 now matches all other control points (white fill, blue stroke)</li>
+                        </ul>
+                        <div class="changelog-item-group">Export</div>
+                        <ul class="changelog-item-list">
+                            <li>CSV export: exports all scan points with point order number, tile name, X and Y in the current display unit</li>
+                            <li>PDF report: exports a formatted PDF with a canvas snapshot and all sidebar configuration</li>
+                            <li>Config export/import: all new fields are fully round-tripped in the JSON config</li>
+                        </ul>
+                        <div class="changelog-item-group">Exclusion Zones</div>
+                        <ul class="changelog-item-list">
+                            <li>Draw freeform no-scan regions anywhere on the sample; scan points inside are skipped</li>
+                            <li>Tile preview hidden during exclusion drawing for a cleaner view</li>
+                        </ul>
+                        <div class="changelog-item-group">UI</div>
+                        <ul class="changelog-item-list">
+                            <li>Contextual tooltips on hover for all controls</li>
+                            <li>Removed Quick Presets and Stage Presets for cleaner UI</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.0</span>
+                        <span class="changelog-item-date">Apr 16, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Shapes</div>
+                        <ul class="changelog-item-list">
+                            <li>Draw sample regions as rectangles, circles, or fully custom freeform polygons</li>
+                            <li>Interactive canvas with zoom and pan, calibrated in real microscope coordinates</li>
+                            <li>Editable polygon vertex coordinates directly in the control panel</li>
+                        </ul>
+                        <div class="changelog-item-group">Scan Grid</div>
+                        <ul class="changelog-item-list">
+                            <li>Point-containment algorithm generates scan points only within the defined shape</li>
+                            <li>Step size input (µm) or target dot-count mode with automatic synchronization</li>
+                            <li>Outputs start point, delta X/Y, Nx × Ny grid dimensions, and total point count per pass</li>
+                        </ul>
+                        <div class="changelog-item-group">Multi-pass</div>
+                        <ul class="changelog-item-list">
+                            <li>Automatically tiles samples that exceed the configured stage travel limit into minimum passes</li>
+                            <li>Each pass shown with distinct color on the canvas</li>
+                            <li>Exact start coordinates for each pass ready to enter into instrument software</li>
+                        </ul>
+                        <div class="changelog-item-group">Stage Constraints</div>
+                        <ul class="changelog-item-list">
+                            <li>Configurable max scan width, max scan height, and time-per-point for your instrument</li>
+                            <li>Estimated total scan time calculated from point count and time-per-point</li>
+                        </ul>
+                        <div class="changelog-item-group">Units &amp; Display</div>
+                        <ul class="changelog-item-list">
+                            <li>Switch between µm and mm units throughout the interface</li>
+                            <li>Dark and light theme support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </div>
+</main>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" /></svg>
+</button>
+
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const systemTheme = () => darkQuery.matches ? 'dark' : 'light';
+    const faviconSvg = (color) => `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 245 237'><path d='M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z' fill='${color}'/><path d='M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693' fill='${color}'/><path d='M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z' fill='${color}'/></svg>`;
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        const favicon = document.querySelector('link[rel="icon"]');
+        favicon.setAttribute('media', '');
+        favicon.href = faviconSvg(theme === 'dark' ? '%23D3D3D3' : '%233A3A3A');
+        const color = theme === 'dark' ? '#0e0e0e' : '#FAF8F3';
+        const old = document.getElementById('themeColor');
+        old.remove();
+        const meta = document.createElement('meta');
+        meta.name = 'theme-color'; meta.id = 'themeColor'; meta.content = color;
+        document.head.appendChild(meta);
+        document.body.style.backgroundColor = color;
+    }
+    setTheme(localStorage.getItem('theme') || systemTheme());
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+    });
+    darkQuery.addEventListener('change', () => { localStorage.removeItem('theme'); setTheme(systemTheme()); });
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => { navToggle.classList.toggle('active'); navLinks.classList.toggle('open'); });
+    navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { navToggle.classList.remove('active'); navLinks.classList.remove('open'); }); });
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => { backToTop.classList.toggle('visible', window.scrollY > window.innerHeight * 0.5); });
+    backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    // Scroll hint
+    const hint = document.createElement('div');
+    hint.className = 'scroll-hint';
+    hint.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>';
+    document.body.appendChild(hint);
+
+    const sections = Array.from(document.querySelectorAll('.journey-section, .closing, .techniques-section'));
+    hint.addEventListener('click', () => {
+        const scrollY = window.scrollY + window.innerHeight * 0.5;
+        const next = sections.find(s => s.offsetTop > scrollY);
+        if (next) next.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    let scrollTimer;
+    window.addEventListener('scroll', () => {
+        hint.classList.add('hidden');
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+            const atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 100;
+            if (!atBottom) hint.classList.remove('hidden');
+        }, 1500);
+    });
+
+    // Screenshot scroll animation (mobile)
+    (function() {
+        const track = document.getElementById('screenshotTrack');
+        if (!track) return;
+
+        Array.from(track.querySelectorAll('img')).forEach(img => {
+            const clone = img.cloneNode(true);
+            clone.classList.add('clone');
+            track.appendChild(clone);
+        });
+
+        const wrap = track.parentElement;
+        const DURATION_MS = 16000;
+        let pos = 0, oneSetWidth = 0, lastTs = null, paused = false, resumeTimer;
+
+        function isMobile() { return window.innerWidth <= 900; }
+
+        function measure() {
+            const orig = track.querySelector('img:not(.clone)');
+            const clone = track.querySelector('img.clone');
+            if (orig && clone) oneSetWidth = clone.offsetLeft - orig.offsetLeft;
+        }
+
+        function step(ts) {
+            requestAnimationFrame(step);
+            if (!isMobile() || oneSetWidth <= 0) return;
+            if (!paused) {
+                if (lastTs !== null) {
+                    pos += ((ts - lastTs) / DURATION_MS) * oneSetWidth;
+                    if (pos >= oneSetWidth) pos -= oneSetWidth;
+                }
+                track.style.transform = 'translateX(' + (-pos) + 'px)';
+            }
+            lastTs = ts;
+        }
+
+        window.addEventListener('load', () => { measure(); requestAnimationFrame(step); });
+        window.addEventListener('resize', measure);
+
+        wrap.addEventListener('mouseenter', () => { clearTimeout(resumeTimer); paused = true; });
+        wrap.addEventListener('mouseleave', () => { clearTimeout(resumeTimer); resumeTimer = setTimeout(() => { paused = false; lastTs = null; }, 600); });
+        wrap.addEventListener('touchstart', () => { clearTimeout(resumeTimer); paused = true; }, { passive: true });
+        wrap.addEventListener('touchend', () => { clearTimeout(resumeTimer); resumeTimer = setTimeout(() => { paused = false; lastTs = null; }, 400); }, { passive: true });
+    })();
+
+    // Set scroll-margin-top to actual nav height
+    (function() {
+        function setNavOffset() {
+            const nav = document.querySelector('.nav');
+            if (nav) document.documentElement.style.setProperty('--nav-offset', (nav.offsetHeight + 16) + 'px');
+        }
+        setNavOffset();
+        window.addEventListener('resize', setNavOffset);
+    })();
+
+    // Open changelog if navigated via hash
+    (function() {
+        if (location.hash === '#changelog') { const d = document.getElementById('changelogDetails'); if (d) d.open = true; }
+    })();
+
+    document.querySelectorAll('img').forEach(img => {
+        if (img.complete && img.naturalWidth > 0) img.classList.add('img-loaded');
+        else img.addEventListener('load', () => img.classList.add('img-loaded'));
+    });
+
+    document.querySelectorAll('.section-anchor').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            const url = location.origin + location.pathname + anchor.getAttribute('href');
+            navigator.clipboard.writeText(url).then(() => {
+                const prev = anchor.textContent;
+                anchor.textContent = '✓';
+                setTimeout(() => { anchor.textContent = prev; }, 1200);
+            }).catch(() => {});
+        });
+    });
+</script>
+
+</body>
+</html>

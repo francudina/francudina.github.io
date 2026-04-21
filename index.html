@@ -974,32 +974,33 @@
                 </div>
             </div>
         </a>
-        <!-- Raman Sample Analyzer -->
-        <a href="/raman/" class="product product-link" style="align-items: start;">
-            <img src="assets/raman/screenshot-v110-1.png" alt="Raman Sample Analyzer interface" class="product-logo" loading="lazy">
+        <!-- ScanPlan -->
+        <a href="/scanplan/" class="product product-link" style="align-items: start;">
+            <img src="assets/scanplan/screenshot-v110-1.png" alt="ScanPlan – microscope scan grid planner interface" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name"><img src="assets/raman/logo.svg" alt="" class="product-name-logo" loading="lazy">Raman Sample Analyzer <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
-                <div class="product-tagline">Scan planning tool for Raman microscopy</div>
-                <p class="product-desc">Draw your sample shape, rectangle, circle, or freeform polygon, and let the planner build an <strong>optimal scan grid</strong> covering only the interior. Block no-scan regions with <strong>exclusion zones</strong>, add per-edge <strong>outer frame</strong> margins, and set an <strong>inner offset</strong> to keep points away from tile edges.</p>
-                <p class="product-desc">Splits large samples into <strong>multi-pass tiles</strong> automatically. A <strong>rotation optimizer</strong> finds the angle with fewest tiles. Export as <strong>CSV or PDF</strong>. Built around the <strong>Thermo Scientific DXR3</strong>.</p>
+                <div class="product-name"><img src="assets/scanplan/logo.svg" alt="" class="product-name-logo" loading="lazy">ScanPlan <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-tagline">Browser-based scan grid planner for any point-mapping microscopy instrument</div>
+                <p class="product-desc">Draw your sample shape — rectangle, circle, or freeform polygon — and let the planner build an <strong>optimal scan grid</strong> covering only the interior. Block no-scan regions with <strong>exclusion zones</strong>, add per-edge <strong>outer frame</strong> margins, and set an <strong>inner offset</strong> to keep points away from tile edges.</p>
+                <p class="product-desc">Splits large samples into <strong>multi-pass tiles</strong> automatically. A <strong>rotation optimizer</strong> finds the angle with fewest tiles. Export as <strong>CSV or PDF</strong>. Works with <strong>Raman, confocal, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA</strong>, and more.</p>
                 <div class="tags">
+                    <span class="tag">Raman</span>
+                    <span class="tag">Confocal</span>
+                    <span class="tag">XRF / EBSD</span>
                     <span class="tag">Freeform Shapes</span>
-                    <span class="tag">Exclusion Zones</span>
-                    <span class="tag">Outer Frame</span>
                     <span class="tag">Multi-pass</span>
                     <span class="tag">CSV / PDF Export</span>
                 </div>
                 <div class="btn-row">
-                    <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'open_raman_tool', {event_category: 'engagement', event_label: 'RamanScanPlanner'}); window.open('https://raman.nioquant.com', '_blank');">
+                    <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'open_scanplan_tool', {event_category: 'engagement', event_label: 'ScanPlan'}); window.open('https://scanplan.nioquant.com', '_blank');">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
-                        Try Analyzer
+                        Open ScanPlan
                     </span>
-                    <span class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_raman', {event_category: 'engagement', event_label: 'RamanScanPlanner'}); window.location='/raman/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
+                    <span class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_scanplan', {event_category: 'engagement', event_label: 'ScanPlan'}); window.location='/scanplan/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
                 </div>
                 <div class="product-screenshots">
-                    <img src="assets/raman/screenshot-v110-2.png" alt="Exclusion zones and outer frame on freeform sample" loading="lazy">
-                    <img src="assets/raman/screenshot-v110-3.png" alt="Rotation optimizer with alignment angles at P1" loading="lazy">
-                    <img src="assets/raman/screenshot-v110-4.png" alt="Rectangle tiled with outer frame and inner offset" loading="lazy">
+                    <img src="assets/scanplan/screenshot-v110-2.png" alt="Exclusion zones and outer frame on freeform sample" loading="lazy">
+                    <img src="assets/scanplan/screenshot-v110-3.png" alt="Rotation optimizer with alignment angles at P1" loading="lazy">
+                    <img src="assets/scanplan/screenshot-v110-4.png" alt="Rectangle tiled with outer frame and inner offset" loading="lazy">
                 </div>
             </div>
         </a>
