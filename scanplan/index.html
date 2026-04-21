@@ -56,7 +56,7 @@
             --color-text: #3A3A3A;
             --color-text-muted: #666666;
             --color-border: #e5e5e5;
-            --color-nav-bg: rgba(250, 248, 243, 0.9);
+            --color-nav-bg: rgba(250, 248, 243, 0.05);
             --color-nav-mobile-bg: rgba(250, 248, 243, 0.98);
             --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --max-width: 900px;
@@ -68,7 +68,7 @@
             --color-text: #D3D3D3;
             --color-text-muted: #999999;
             --color-border: #2a2a2a;
-            --color-nav-bg: rgba(14, 14, 14, 0.9);
+            --color-nav-bg: rgba(14, 14, 14, 0.05);
             --color-nav-mobile-bg: rgba(14, 14, 14, 0.98);
         }
 
@@ -128,7 +128,61 @@
         .page-content {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 120px 32px 80px;
+            padding: 0 32px 80px;
+        }
+
+        .hero-banner {
+            position: relative;
+            background: var(--color-bg);
+        }
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 22%;
+            background: linear-gradient(to bottom, transparent, var(--color-bg));
+            pointer-events: none;
+            z-index: 2;
+        }
+        .hero-banner-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: calc(var(--nav-offset, 88px) + 4px) 32px 0;
+            position: relative;
+            z-index: 3;
+            pointer-events: none;
+        }
+        .hero-banner-inner a,
+        .hero-banner-inner button {
+            pointer-events: auto;
+        }
+        #scanplan-graph-bg {
+            position: absolute;
+            top: -88px;
+            left: 0;
+            right: 0;
+            height: 420px;
+            z-index: 1;
+            overflow: hidden;
+            opacity: 0.85;
+        }
+        #scanplan-graph-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 90%;
+            background: linear-gradient(to bottom, transparent, var(--color-bg));
+            pointer-events: none;
+            z-index: 10;
+        }
+        #scanplan-graph-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 55%;
+            background: linear-gradient(to top, transparent, var(--color-bg) 62%);
+            pointer-events: none;
+            z-index: 10;
         }
 
         .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 32px; }
@@ -423,7 +477,8 @@
                 border-bottom: 1px solid var(--color-border);
             }
             .nav-links.open { display: flex; }
-            .page-content { padding: 100px 24px 60px; }
+            .page-content { padding: 24px 24px 60px; }
+            .hero-banner-inner { padding: calc(var(--nav-offset, 76px) + 4px) 24px 32px; }
             .page-header { flex-direction: column; align-items: flex-start; gap: 12px; }
             .hero-screenshot { display: none; }
             .journey-pair { grid-template-columns: 1fr; }
@@ -542,8 +597,10 @@
     </div>
 </nav>
 
-<main class="page-content">
-    <div class="page-header">
+<div class="hero-banner">
+    <div id="scanplan-graph-bg"></div>
+    <div class="hero-banner-inner">
+        <div class="page-header">
         <div class="page-header-text">
             <div class="label">Tool</div>
             <div class="page-title-row">
@@ -583,12 +640,16 @@
             </div>
             <p class="page-subtitle">Browser-based scan grid planner for any point-mapping microscopy instrument</p>
         </div>
-        <img src="../assets/scanplan/screenshot-v110-2.png" alt="Hover tooltip on scan point showing sequential number and X/Y coordinates" class="hero-screenshot" loading="eager">
     </div>
 
-    <div class="hero-intro">
-        <p>You're setting up a scan session. Your sample is an irregular tissue slice, a mineral fragment, a polymer film, or a cross-sectioned device, not a perfect rectangle. You need to cover every relevant area without wasting instrument time on empty slide. <strong>ScanPlan solves exactly that</strong>, for any instrument that scans in a point grid: Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, and more.</p>
+        <div class="hero-intro">
+            <p>You're setting up a scan session. Your sample is an irregular tissue slice, a mineral fragment, a polymer film, or a cross-sectioned device, not a perfect rectangle. You need to cover every relevant area without wasting instrument time on empty slide. <strong>ScanPlan solves exactly that</strong>, for any instrument that scans in a point grid: Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, and more.</p>
+        </div>
     </div>
+</div>
+
+<main class="page-content">
+    <img src="../assets/scanplan/screenshot-v110-2.png" alt="Hover tooltip on scan point showing sequential number and X/Y coordinates" class="hero-screenshot" loading="eager" style="width:100%;margin-bottom:40px;">
 
     <!-- Closing / Features summary -->
     <div class="closing" id="features">
@@ -931,6 +992,120 @@
             }).catch(() => {});
         });
     });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/3d-force-graph/dist/3d-force-graph.min.js"></script>
+<script>
+(function () {
+    var container = document.getElementById('scanplan-graph-bg');
+    if (!container || typeof ForceGraph3D === 'undefined') return;
+
+    // Build a random connected network
+    var N = 52;
+    var nodes = Array.from({ length: N }, function (_, i) { return { id: i }; });
+    var links = [];
+    // Spanning tree so the graph is connected
+    for (var i = 1; i < N; i++) {
+        links.push({ source: i, target: Math.floor(Math.random() * i) });
+    }
+    // Extra edges for density
+    for (var j = 0; j < Math.round(N * 1.6); j++) {
+        links.push({
+            source: Math.floor(Math.random() * N),
+            target: Math.floor(Math.random() * N)
+        });
+    }
+
+    function isDark() {
+        return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+    function nodeColor() { return isDark() ? '#888888' : '#6e6860'; }
+    function linkColor() { return isDark() ? 'rgba(130,130,130,0.45)' : 'rgba(110,100,90,0.40)'; }
+
+    var graph = ForceGraph3D({ rendererConfig: { alpha: true, antialias: true } })(container)
+        .graphData({ nodes: nodes, links: links })
+        .backgroundColor('rgba(0,0,0,0)')
+        .nodeColor(nodeColor)
+        .nodeVal(2.8)
+        .nodeResolution(8)
+        .linkColor(linkColor)
+        .linkWidth(0.4)
+        .linkOpacity(1)
+        .enableNodeDrag(false)
+        .showNavInfo(false)
+        .width(container.offsetWidth)
+        .height(container.offsetHeight);
+
+    // Push nodes further apart so they fill the full viewport width
+    graph.d3Force('charge').strength(-280);
+    graph.d3Force('link').distance(80);
+
+    // Gentle auto-rotation; pauses while user interacts
+    var autoRotate = true;
+    var rotAngle = 0;
+    var dist = 180;
+
+    try {
+        var controls = graph.controls();
+        if (controls && controls.addEventListener) {
+            controls.addEventListener('start', function () { autoRotate = false; });
+            controls.addEventListener('end', function () {
+                setTimeout(function () {
+                    autoRotate = true;
+                    var pos = graph.cameraPosition();
+                    rotAngle = Math.atan2(pos.x, pos.z);
+                }, 3000);
+            });
+        }
+    } catch (e) {}
+
+    (function rotate() {
+        if (autoRotate) {
+            rotAngle += 0.0018;
+            graph.cameraPosition({
+                x: dist * Math.sin(rotAngle),
+                y: 30,
+                z: dist * Math.cos(rotAngle)
+            });
+        }
+        requestAnimationFrame(rotate);
+    }());
+
+    // Resize
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            graph.width(container.offsetWidth).height(container.offsetHeight);
+        }, 120);
+    });
+
+
+    // Respond to theme toggle
+    var themeObserver = new MutationObserver(function () {
+        graph.nodeColor(nodeColor).linkColor(linkColor);
+        updateNavBg();
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    // Nav opacity: transparent while animation is visible, opaque once scrolled past
+    function updateNavBg() {
+        var animBottom = container.getBoundingClientRect().bottom;
+        var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var base = dark ? '14,14,14' : '250,248,243';
+        var opacity;
+        if (animBottom > 80) {
+            opacity = 0.05;
+        } else if (animBottom <= 0) {
+            opacity = 1;
+        } else {
+            opacity = 0.05 + (1 - animBottom / 80) * 0.95;
+        }
+        document.documentElement.style.setProperty('--color-nav-bg', 'rgba(' + base + ',' + opacity + ')');
+    }
+    window.addEventListener('scroll', updateNavBg, { passive: true });
+    updateNavBg();
+}());
 </script>
 
 </body>
