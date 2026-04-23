@@ -12,16 +12,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#FAF8F3" id="themeColor">
-    <title>ScanPlan – Microscope Scan Grid Planner for Raman, Confocal, XRF, EBSD, SEM, AFM &amp; more</title>
-    <meta name="description" content="ScanPlan is a browser-based scan planning tool for any point-mapping microscopy instrument. Draw freeform sample shapes, set step size, add exclusion zones, and export optimised scan grids as CSV or PDF. Works with Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, and nano-FTIR setups.">
-    <meta name="keywords" content="scan planner, scan grid, microscope scan, Raman microscopy scan, Raman mapping, confocal scan, TERS scan, XRF mapping, EBSD scan, SEM EDS mapping, AFM scan plan, SIMS imaging, EPMA mapping, nano-FTIR, WITec Alpha300, Thermo Scientific DXR3, Horiba LabRAM, Renishaw inVia, Zeiss LSM, Leica SP8, Bruker Dimension, PHI nanoTOF, CAMECA IMS, sample mapping, freeform shape, exclusion zone, multi-pass scan, stage travel limit, scan time estimate, point grid planner">
+    <title>ScanPlan – Microscope Scan Grid Planner for Raman, Confocal, XRF, EBSD, XPS, SEM, AFM &amp; more</title>
+    <meta name="description" content="ScanPlan is a browser-based scan planning tool for any point-mapping microscopy instrument. Draw freeform sample shapes, set step size, add exclusion zones, and export optimised scan grids as CSV or PDF. Works with Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, XPS, and nano-FTIR setups.">
+    <meta name="keywords" content="scan planner, scan grid, microscope scan, Raman microscopy scan, Raman mapping, confocal scan, TERS scan, XRF mapping, EBSD scan, SEM EDS mapping, AFM scan plan, SIMS imaging, EPMA mapping, XPS mapping, X-ray photoelectron spectroscopy, nano-FTIR, WITec Alpha300, Thermo Scientific DXR3, Horiba LabRAM, Renishaw inVia, Zeiss LSM, Leica SP8, Bruker Dimension, PHI nanoTOF, CAMECA IMS, Thermo Fisher ESCALAB, Kratos AXIS, sample mapping, freeform shape, exclusion zone, multi-pass scan, stage travel limit, scan time estimate, point grid planner">
     <link rel="canonical" href="https://nioquant.com/scanplan/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nioquant.com/scanplan/">
     <meta property="og:title" content="ScanPlan – Microscope Scan Grid Planner">
-    <meta property="og:description" content="Plan scan grids for any point-mapping instrument. Draw freeform sample shapes, set step size, add exclusion zones, and export as CSV or PDF. Raman, confocal, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA.">
+    <meta property="og:description" content="Plan scan grids for any point-mapping instrument. Draw freeform sample shapes, set step size, add exclusion zones, and export as CSV or PDF. Raman, confocal, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, XPS.">
     <meta property="og:image" content="https://nioquant.com/assets/scanplan/screenshot-results.png">
 
     <!-- Structured data -->
@@ -32,11 +32,11 @@
       "name": "ScanPlan",
       "alternateName": "Microscope Scan Grid Planner",
       "url": "https://scanplan.nioquant.com",
-      "description": "Browser-based scan planning tool for Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, and nano-FTIR instruments. Draw freeform sample shapes, add exclusion zones, and export optimised scan grids.",
+      "description": "Browser-based scan planning tool for Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, XPS, and nano-FTIR instruments. Draw freeform sample shapes, add exclusion zones, and export optimised scan grids.",
       "operatingSystem": "Web",
       "applicationCategory": "UtilitiesApplication",
       "applicationSubCategory": "Scientific Instrument Software",
-      "keywords": "scan planner, Raman microscopy, confocal scan, XRF mapping, EBSD, SEM EDS, AFM, SIMS, EPMA, scan grid, point mapping",
+      "keywords": "scan planner, Raman microscopy, confocal scan, XRF mapping, EBSD, SEM EDS, AFM, SIMS, EPMA, XPS, X-ray photoelectron spectroscopy, scan grid, point mapping",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "author": { "@type": "Organization", "name": "nioquant", "url": "https://nioquant.com" }
     }
@@ -633,6 +633,7 @@
                 <span>AFM</span>
                 <span>SIMS</span>
                 <span>EPMA</span>
+                <span>XPS</span>
                 <span>Freeform Shapes</span>
                 <span>Multi-pass</span>
                 <span>Stage Constraints</span>
@@ -643,7 +644,7 @@
     </div>
 
         <div class="hero-intro">
-            <p>You're setting up a scan session. Your sample is an irregular tissue slice, a mineral fragment, a polymer film, or a cross-sectioned device, not a perfect rectangle. You need to cover every relevant area without wasting instrument time on empty slide. <strong>ScanPlan solves exactly that</strong>, for any instrument that scans in a point grid: Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, and more.</p>
+            <p>You're setting up a scan session. Your sample is an irregular tissue slice, a mineral fragment, a polymer film, or a cross-sectioned device, not a perfect rectangle. You need to cover every relevant area without wasting instrument time on empty slide. <strong>ScanPlan solves exactly that</strong>, for any instrument that scans in a point grid: Raman, confocal, TERS, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, XPS, and more.</p>
         </div>
     </div>
 </div>
@@ -791,6 +792,11 @@
                 <h4>Nano-FTIR / s-SNOM</h4>
                 <p class="technique-desc">Scattering-type scanning near-field optical microscopy and nano-scale infrared spectroscopy. Maps chemical composition at 10–20 nm resolution. Point grid planning is critical to cover features efficiently.</p>
                 <p class="technique-devices"><strong>Devices:</strong> Neaspec neaSNOM, Bruker Anasys nanoIR3-s, attocube attoCFM, Molecular Vista PhotoIR</p>
+            </div>
+            <div class="technique-card">
+                <h4>XPS Mapping</h4>
+                <p class="technique-desc">X-ray photoelectron spectroscopy imaging maps surface elemental composition and chemical bonding states across a sample. ScanPlan defines the spatial grid for area-averaged or high-resolution small-spot acquisition.</p>
+                <p class="technique-devices"><strong>Devices:</strong> Thermo Fisher ESCALAB Xi+ / K-Alpha, Kratos AXIS Supra / Ultra, PHI VersaProbe 4, SPECS PHOIBOS</p>
             </div>
         </div>
     </div>
