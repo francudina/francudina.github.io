@@ -800,6 +800,27 @@
             .code-block { font-size: 0.72rem; }
         }
 
+        /* Watch guide */
+        .guide-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+        .guide-step { display: flex; gap: 14px; align-items: flex-start; }
+        .guide-step-num { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; color: var(--color-text-muted); margin-top: 2px; }
+        .guide-step-text { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.7; padding-top: 3px; }
+        .guide-controls { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+        .guide-control { display: flex; gap: 12px; align-items: baseline; font-size: 0.92rem; line-height: 1.6; }
+        .guide-control-key { font-weight: 700; color: var(--color-text); min-width: 140px; flex-shrink: 0; font-size: 0.85rem; }
+        .guide-control-desc { color: var(--color-text-muted); }
+        .settings-group { margin-bottom: 24px; }
+        .settings-group-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--color-border); }
+        .settings-list { display: flex; flex-direction: column; }
+        .setting-item { display: grid; grid-template-columns: 170px 1fr; gap: 0 20px; padding: 9px 0; border-bottom: 1px solid var(--color-border); align-items: baseline; }
+        .setting-item:last-child { border-bottom: none; }
+        .setting-name { font-size: 0.88rem; font-weight: 600; color: var(--color-text); }
+        .setting-desc { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.6; }
+        @media (max-width: 768px) {
+            .setting-item { grid-template-columns: 1fr; gap: 2px; }
+            .guide-control-key { min-width: unset; }
+        }
+
         img { opacity: 0; transition: opacity 1s ease; pointer-events: none; user-select: none; }
         img.img-loaded { opacity: 1; }
         .watch-track img { transition: opacity 1.5s ease; }
@@ -881,7 +902,7 @@
             </div>
         </div>
 
-    <!-- 1. Dashboard — the home base -->
+    <!-- 1. Dashboard - the home base -->
     <div class="journey-section" id="dashboard">
         <div class="section-label">Your home base</div>
         <h2>Everything at a glance <a class="section-anchor" href="#dashboard">#</a></h2>
@@ -893,7 +914,7 @@
         </div>
     </div>
 
-    <!-- 2. Live Scoreboard — during the match -->
+    <!-- 2. Live Scoreboard - during the match -->
     <div class="journey-section" id="live-scoreboard">
         <div class="section-label">During the match</div>
         <h2>Let someone else watch the score <a class="section-anchor" href="#live-scoreboard">#</a></h2>
@@ -905,7 +926,7 @@
         </div>
     </div>
 
-    <!-- 3. Match History — after the match -->
+    <!-- 3. Match History - after the match -->
     <div class="journey-section" id="match-history">
         <div class="section-label">After the match</div>
         <h2>Every match, saved and searchable <a class="section-anchor" href="#match-history">#</a></h2>
@@ -917,7 +938,7 @@
         </div>
     </div>
 
-    <!-- 4. Match Map — where you played -->
+    <!-- 4. Match Map - where you played -->
     <div class="journey-section" id="match-map">
         <div class="section-label">Where you play</div>
         <h2>Pin every court on the map <a class="section-anchor" href="#match-map">#</a></h2>
@@ -929,7 +950,7 @@
         </div>
     </div>
 
-    <!-- 5 & 6. Analytics + Comparison — going deeper -->
+    <!-- 5 & 6. Analytics + Comparison - going deeper -->
     <div class="journey-section" id="analytics">
         <div class="section-label">Go deeper</div>
         <h2>Find out what's actually working <a class="section-anchor" href="#analytics">#</a></h2>
@@ -948,7 +969,7 @@
         </div>
     </div>
 
-    <!-- 7. Global Stats — the big picture -->
+    <!-- 7. Global Stats - the big picture -->
     <div class="journey-section" id="global-stats">
         <div class="section-label">The big picture</div>
         <h2>Track how your game evolves <a class="section-anchor" href="#global-stats">#</a></h2>
@@ -972,6 +993,145 @@
             <span>Table Tennis</span>
         </div>
         <p>Each sport has its own scoring rules, serve logic, and game modes built in. <strong>Golden point, advantage, timed matches, Americano, best of 3 or 5</strong>, you set it up once and it just works. Connect watches with your playing partners over ANT+ and everyone stays in sync, <strong>no phone required</strong>. Every match is saved as a native Garmin activity.</p>
+    </div>
+
+    <!-- Watch App Guide -->
+    <div class="journey-section" id="guide" style="margin-top:80px;">
+        <div class="section-label">On your watch</div>
+        <h2>Using the app <a class="section-anchor" href="#guide">#</a></h2>
+        <p class="journey-text">Open RacketScore from your watch activity list. The main menu has four sections: <strong>Games</strong> to start or resume a match, <strong>Records</strong> to browse past matches, <strong>Statistics</strong> for your career totals, and <strong>Settings</strong> to configure everything.</p>
+
+        <p class="journey-text" style="margin-bottom:14px;"><strong>Starting a match</strong></p>
+        <div class="guide-steps">
+            <div class="guide-step"><div class="guide-step-num">1</div><div class="guide-step-text">Go to <strong>Games</strong> and pick a saved game mode, or select <strong>Add New</strong> to create one.</div></div>
+            <div class="guide-step"><div class="guide-step-num">2</div><div class="guide-step-text">Choose your sport and configure the rules for that sport (see game setup below).</div></div>
+            <div class="guide-step"><div class="guide-step-num">3</div><div class="guide-step-text">Review the config summary, then select who serves first. The match begins.</div></div>
+        </div>
+
+        <p class="journey-text" style="margin-bottom:14px;"><strong>Joining another player's match</strong></p>
+        <p class="journey-text">If someone on the court is already hosting a match with ANT+ sharing enabled, you can join their game instead of starting your own. Select <strong>Join Game</strong> from the Games menu (only visible on watches with ANT+ support), enter the same pairing code as the host, and your watch connects automatically. You see the live score update in real time but cannot control scoring. That stays with the host. Your own fitness data (heart rate, calories, swings) is still tracked independently on your watch.</p>
+
+        <p class="journey-text" style="margin-bottom:14px;"><strong>Buttons during the match</strong></p>
+        <div class="guide-controls">
+            <div class="guide-control"><span class="guide-control-key">Down</span><span class="guide-control-desc">Score a point for your team.</span></div>
+            <div class="guide-control"><span class="guide-control-key">Up</span><span class="guide-control-desc">Score a point for the opponent.</span></div>
+            <div class="guide-control"><span class="guide-control-key">Start/Stop</span><span class="guide-control-desc">Pause the match. From the pause menu you can save, discard, or resume later.</span></div>
+            <div class="guide-control"><span class="guide-control-key">Back</span><span class="guide-control-desc">Undo the last point.</span></div>
+            <div class="guide-control"><span class="guide-control-key">Long-press Up</span><span class="guide-control-desc">Open the in-game menu: colors, font size, data fields, tap to score.</span></div>
+        </div>
+
+        <p class="journey-text">When the match ends, choose <strong>Save &amp; Continue</strong> to start another match in the same activity, <strong>Save</strong> to finish, or <strong>Discard</strong> to throw it away. During a match you can also choose <strong>Resume Later</strong> from the pause menu to save the current state and continue another time.</p>
+    </div>
+
+    <!-- Game Setup Reference -->
+    <div class="journey-section" id="game-setup">
+        <div class="section-label">When creating a game</div>
+        <h2>Game setup <a class="section-anchor" href="#game-setup">#</a></h2>
+        <p class="journey-text">Each game mode stores its own rules. These are configured when you create or edit a game mode, not in the global settings.</p>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Padel &amp; Tennis: Standard</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Deuce Rule</div><div class="setting-desc">What happens when a game reaches deuce. <strong>Golden Point</strong>: next point wins. <strong>Silver Point</strong>: one advantage each, then golden point. <strong>Advantage</strong>: classic deuce, play until someone leads by two.</div></div>
+                <div class="setting-item"><div class="setting-name">Sets</div><div class="setting-desc">How many sets to play: Best of 3, Best of 5, Pro Set (first to 9 games), or Unlimited.</div></div>
+                <div class="setting-item"><div class="setting-name">Tiebreak</div><div class="setting-desc">Tiebreak format when a set is level: 7-point, 10-point, or none. Only shown for Best of 3 and Best of 5.</div></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Padel &amp; Tennis: Mex/Americano</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Point Limit</div><div class="setting-desc">When the game ends: after a fixed total of points, when someone reaches a target, after a set time, or never (you stop manually).</div></div>
+                <div class="setting-item"><div class="setting-name">Serve Interval</div><div class="setting-desc">How often the serve rotates between players.</div></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Badminton, Squash &amp; Pickleball</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Points per Game</div><div class="setting-desc">The number of points needed to win a game (e.g. 11, 15, or 21 depending on the sport).</div></div>
+                <div class="setting-item"><div class="setting-name">Games to Win</div><div class="setting-desc">Best of 3 or Best of 5.</div></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Table Tennis</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Games to Win</div><div class="setting-desc">Best of 3 or Best of 5.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Reference -->
+    <div class="journey-section" id="settings">
+        <div class="section-label">Configuration</div>
+        <h2>All settings, explained <a class="section-anchor" href="#settings">#</a></h2>
+        <p class="journey-text">Global settings are under <strong>Settings</strong> in the main menu. Display options are also accessible mid-match via long-press Up.</p>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Sport &amp; Defaults</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Activity Type</div><div class="setting-desc">The default sport used when creating a new game. You can also turn on "Ask Before Game" to have the app prompt you each time.</div></div>
+                <div class="setting-item"><div class="setting-name">Team Mode</div><div class="setting-desc">Singles (1v1) or Doubles (2v2).</div></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Display</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Font Size</div><div class="setting-desc">Small or Medium for data field labels on the scoreboard. Use Medium if the text feels too small on your watch.</div></div>
+                <div class="setting-item"><div class="setting-name">Data Fields</div><div class="setting-desc">The four corners of the scoreboard can each show a different stat: heart rate, calories, battery, swings, power output, and more. Set any corner to None to hide it.</div></div>
+                <div class="setting-item"><div class="setting-name">Set Details</div><div class="setting-desc">Show or hide the game-by-game set breakdown on the scoreboard. On by default.</div></div>
+                <div class="setting-item"><div class="setting-name">Colors</div><div class="setting-desc">Set colors for your team, the opponent, and data fields. 11 preset themes are also available.</div></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Activity Recording</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Activity Recording</div><div class="setting-desc">Records the match as a Garmin fitness activity, the same way a run or ride is logged. On by default. Turn it off if you don't want the match saved as a workout.</div></div>
+                <div class="setting-item"><div class="setting-name">Reuse Activity</div><div class="setting-desc">Keeps one Garmin activity running across multiple back-to-back matches. Useful if you play several games in a session and want them grouped together.</div></div>
+                <div class="setting-item"><div class="setting-name">GPS Location</div><div class="setting-desc">Captures your location at match start. Used for the match map on the web dashboard. Optional.</div></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Controls &amp; Detection</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Tap to Score</div><div class="setting-desc">Score a point by tapping the screen. Automatically enabled on touchscreen watches. Turn it off if you prefer buttons only.</div></div>
+                <div class="setting-item"><div class="setting-name">Swing Sensitivity</div><div class="setting-desc">How easily a racket swing is detected. Set to <strong>Low</strong> if you're getting false counts, or <strong>High</strong> if real swings aren't being picked up. Default is Medium. Works on either wrist, no difference between left and right hand.</div></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Multiplayer (ANT+)</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Sharing</div><div class="setting-desc">Turns ANT+ wireless sharing on or off. When on, everyone on the court can see the live score on their own Garmin watch in real time. No phone needed.</div></div>
+                <div class="setting-item"><div class="setting-name">Pairing Code</div><div class="setting-desc">A number from 1 to 20. The host and everyone joining must use the same code to connect. Change it if you're on a busy court and other watches are interfering.</div></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Cloud Sync</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Sync Now</div><div class="setting-desc">Manually sends any unsynced matches to your server. Matches also sync automatically after each game when a connection is available.</div></div>
+                <div class="setting-item"><div class="setting-name">Pair with Server</div><div class="setting-desc">Links your watch to your web dashboard. Tap this, then scan the QR code shown in your dashboard settings to connect. The server address can be set as an IP address directly on the watch, or as a full URL (e.g. <code style="font-family:monospace;font-size:0.83em;">https://api-example.com</code>) via the RacketScore settings in the Garmin Connect IQ app on your phone, useful for cloud-hosted setups.</div></div>
+                <div class="setting-item"><div class="setting-name">Live Sync</div><div class="setting-desc">Streams the score to a browser in real time while you play. Anyone with the link can follow the match live. Requires a server connection.</div></div>
+                <div class="setting-item"><div class="setting-name">Server Config</div><div class="setting-desc">Where your server is: IP address or domain name, port, and HTTP or HTTPS. Can be set directly on the watch or via the Connect IQ app on your phone. Switch between the two anytime from this menu.</div></div>
+                <div class="setting-item"><div class="setting-name">Reset Password</div><div class="setting-desc">Generates a new 6-digit pairing password. Use this if the watch lost its connection and needs to re-pair.</div></div>
+                <div class="setting-item"><div class="setting-name">Backup to Cloud</div><div class="setting-desc">Sends all local match data to your server as a backup snapshot.</div></div>
+                <div class="setting-item"><div class="setting-name">Restore from Cloud</div><div class="setting-desc">Loads a previously saved backup from your server back onto the watch.</div></div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Data &amp; History</div>
+            <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Point Reasons</div><div class="setting-desc">Track the reason for each point: net, wall, or a regular winner. Off by default. Turn it on if you want more detail in your match stats.</div></div>
+                <div class="setting-item"><div class="setting-name">Keep Records</div><div class="setting-desc">How many matches are stored locally on the watch. Default is 15. Once you exceed the limit, the oldest are removed. Matches already synced to your server are never lost.</div></div>
+                <div class="setting-item"><div class="setting-name">Clear App Data</div><div class="setting-desc">Resets all data and settings to their defaults. Your server connection password and sync configuration are kept.</div></div>
+            </div>
+        </div>
     </div>
 
     <div class="selfhost-section" id="selfhost">
