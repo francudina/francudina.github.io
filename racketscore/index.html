@@ -1015,12 +1015,12 @@
         <div class="guide-controls">
             <div class="guide-control"><span class="guide-control-key">Down</span><span class="guide-control-desc">Score a point for your team.</span></div>
             <div class="guide-control"><span class="guide-control-key">Up</span><span class="guide-control-desc">Score a point for the opponent.</span></div>
-            <div class="guide-control"><span class="guide-control-key">Start/Stop</span><span class="guide-control-desc">Pause the match. From the pause menu you can save, discard, or resume later.</span></div>
+            <div class="guide-control"><span class="guide-control-key">Start/Stop</span><span class="guide-control-desc">Pause the match. From the pause menu you can save, discard, or change the serving player.</span></div>
             <div class="guide-control"><span class="guide-control-key">Back</span><span class="guide-control-desc">Undo the last point.</span></div>
-            <div class="guide-control"><span class="guide-control-key">Long-press Up</span><span class="guide-control-desc">Open the in-game menu: colors, font size, data fields, tap to score.</span></div>
+            <div class="guide-control"><span class="guide-control-key">Long-press Up</span><span class="guide-control-desc">Open the in-game menu: change server, colors, font size, data fields, tap to score.</span></div>
         </div>
 
-        <p class="journey-text">When the match ends, choose <strong>Save &amp; Continue</strong> to start another match in the same activity, <strong>Save</strong> to finish, or <strong>Discard</strong> to throw it away. During a match you can also choose <strong>Resume Later</strong> from the pause menu to save the current state and continue another time.</p>
+        <p class="journey-text">When the match ends, choose <strong>Save &amp; Continue</strong> to start another match in the same activity, <strong>Save</strong> to finish, or <strong>Discard</strong> to throw it away.</p>
     </div>
 
     <!-- Game Setup Reference -->
@@ -1098,6 +1098,7 @@
         <div class="settings-group">
             <div class="settings-group-title">Controls &amp; Detection</div>
             <div class="settings-list">
+                <div class="setting-item"><div class="setting-name">Change Server</div><div class="setting-desc">Reassign the serving player mid-match. Available from the in-game menu (long-press Up) and the pause menu. In singles shows P1 and P3; in doubles shows P1–P4 with team labels. The rotation sequence continues correctly from the new server.</div></div>
                 <div class="setting-item"><div class="setting-name">Tap to Score</div><div class="setting-desc">Score a point by tapping the screen. Automatically enabled on touchscreen watches. Turn it off if you prefer buttons only.</div></div>
                 <div class="setting-item"><div class="setting-name">Swing Sensitivity</div><div class="setting-desc">How easily a racket swing is detected. Set to <strong>Low</strong> if you're getting false counts, or <strong>High</strong> if real swings aren't being picked up. Default is Medium. Works on either wrist, no difference between left and right hand.</div></div>
             </div>
@@ -1280,6 +1281,35 @@ docker compose up -d</div>
                 <a class="section-anchor" href="#changelog">#</a>
             </summary>
             <div class="changelog-list">
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.8</span>
+                        <span class="changelog-item-date">May 20, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Change Server</div>
+                        <ul class="changelog-item-list">
+                            <li>Change Server is now available directly from the in-game menu (long-press UP) and the pause menu, no need to pause and re-enter settings</li>
+                            <li>Doubles shows P1–P4 with "(our team)" / "(their team)" labels; singles shows only P1 and P3</li>
+                            <li>Changing the server mid-match preserves correct rotation order, e.g. starting with P3 gives P3 &gt; P1 &gt; P4 &gt; P2</li>
+                            <li>Server change syncs instantly to the paired joiner watch via ANT+ and to the cloud</li>
+                        </ul>
+                        <div class="changelog-item-group">Bug Fixes</div>
+                        <ul class="changelog-item-list">
+                            <li>Fixed score display in the 3rd set of a best-of-3 showing 1, 2, 3 instead of 15, 30, 40 after a 1:1 set split</li>
+                            <li>Super tiebreak now defaults to off; previously defaulted to 10-point which silently triggered for all best-of-3 matches</li>
+                            <li>Super tiebreak set score now records correctly (e.g. 7:4) instead of always showing 1:0</li>
+                            <li>Match now ends correctly after winning a super tiebreak</li>
+                            <li>Tiebreak menu relabelled: "Full Set" (was "No"), "7-Point" and "10-Point" with "in final set" subtitle for clarity</li>
+                            <li>Removed "Resume Later" from the pause menu</li>
+                        </ul>
+                        <div class="changelog-item-group">New Devices</div>
+                        <ul class="changelog-item-list">
+                            <li>Forerunner&#174; 170 / 170 Music</li>
+                            <li>Forerunner&#174; 70</li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="changelog-item">
                     <div class="changelog-item-header">
                         <span class="changelog-item-version">v1.0.7</span>
