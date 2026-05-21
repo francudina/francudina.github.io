@@ -253,8 +253,8 @@
             .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: var(--color-nav-mobile-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); flex-direction: column; padding: 24px 32px; gap: 16px; border-bottom: 1px solid var(--color-border); }
             .nav-links.open { display: flex; }
             .page-content { padding: 100px 24px 60px; }
-            .page-header { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
-            .hero-watch { width: 120px; }
+            .page-header { flex-direction: column; align-items: flex-start; gap: 12px; position: relative; }
+            .hero-watch { position: absolute; top: 0; right: 0; width: 80px; }
             .journey-section { margin-bottom: 56px; flex-direction: column; align-items: flex-start; }
             .journey-screenshot img { width: 120px; }
             .changelog-item { grid-template-columns: 80px 1fr; gap: 0 16px; }
@@ -319,7 +319,7 @@
             </div>
             <p class="page-subtitle">AI Coaching Data Field for Garmin</p>
         </div>
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse on a Garmin watch" class="hero-watch" loading="eager" fetchpriority="high">
+        <img src="../assets/coachpulse/watch-hero.png" alt="CoachPulse on a Garmin watch" class="hero-watch" loading="eager" fetchpriority="high">
     </div>
 
     <div class="hero-intro">
@@ -333,7 +333,7 @@
             <p class="journey-text">A good coach notices when your form slips around kilometre four. They know when to push you and when to pull back, adjusting based on how you look today. Your Garmin is full of biometric data, but none of it talks back. CoachPulse connects that data to an AI and turns it into <strong>live coaching cues right on your watch screen</strong> while you are still moving.</p>
         </div>
         <div class="journey-screenshot">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse monitoring your workout" loading="lazy">
+            <img src="../assets/coachpulse/watch-start.png" alt="CoachPulse monitoring your workout" loading="lazy">
         </div>
     </div>
 
@@ -344,7 +344,7 @@
             <p class="journey-text">CoachPulse runs as a <strong>data field</strong> inside any Garmin activity. When something notable happens, it packages your current metrics and sends a prompt to the AI model of your choice. The cue comes back and appears on screen. <strong>No app switch, no phone unlock.</strong> You bring your own API key from OpenAI, Anthropic Claude, or Google Gemini.</p>
         </div>
         <div class="journey-screenshot">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse sending a coaching request" loading="lazy">
+            <img src="../assets/coachpulse/watch-howit.png" alt="CoachPulse sending a coaching request" loading="lazy">
         </div>
     </div>
 
@@ -355,7 +355,7 @@
             <p class="journey-text">CoachPulse fires at meaningful moments: <strong>workout start</strong> (readiness check), <strong>kilometre and time milestones</strong>, <strong>sustained high effort</strong> (zone 3+ for too long), and <strong>pace drops</strong> below your session average. A periodic check-in interval is also available. Every trigger can be turned on or off individually.</p>
         </div>
         <div class="journey-screenshot">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse showing a coaching cue" loading="lazy">
+            <img src="../assets/coachpulse/watch-trigger.png" alt="CoachPulse showing a coaching cue" loading="lazy">
         </div>
     </div>
 
@@ -366,7 +366,7 @@
             <p class="journey-text">Set a short session goal before you head out: "easy recovery run", "tempo intervals, stay in zone 3", "long slow distance". That goal travels with every prompt CoachPulse sends. <strong>A cue during a recovery run sounds different from one during a race-pace effort</strong>, even if the biometrics look similar.</p>
         </div>
         <div class="journey-screenshot">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse personalised to your session goal" loading="lazy">
+            <img src="../assets/coachpulse/watch-goal.png" alt="CoachPulse personalised to your session goal" loading="lazy">
         </div>
     </div>
 
@@ -377,7 +377,7 @@
             <p class="journey-text">Choose a <strong>Coaching Style</strong> from Relaxed to Aggressive. Control how much the AI weighs fatigue signals with <strong>Recovery Focus</strong>. Set <strong>Response Length</strong> to Short, Normal, or Long as your baseline preference — the word count also adapts automatically to the actual size of the data field slot, so responses fit cleanly whether you're on a full-screen layout or a compact split.</p>
         </div>
         <div class="journey-screenshot">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse coaching style settings" loading="lazy">
+            <img src="../assets/coachpulse/watch-recovery.png" alt="CoachPulse coaching style settings" loading="lazy">
         </div>
     </div>
 
@@ -388,7 +388,7 @@
             <p class="journey-text">After a cue fires, CoachPulse enters a cooldown. No new cues until the timer expires. The default is 5 minutes. A coach who speaks every 30 seconds stops being a coach and starts being a distraction. The last cue stays on screen until replaced, so you never miss it mid-stride.</p>
         </div>
         <div class="journey-screenshot">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse cooldown between cues" loading="lazy">
+            <img src="../assets/coachpulse/watch-cooldown.png" alt="CoachPulse cooldown between cues" loading="lazy">
         </div>
     </div>
 
