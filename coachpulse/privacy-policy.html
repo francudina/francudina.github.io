@@ -12,9 +12,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#FAF8F3" id="themeColor">
-    <title>Privacy Policy - TicTacToe</title>
-    <meta name="description" content="Privacy Policy for TicTacToe - Classic Board Game for Garmin">
-    <link rel="canonical" href="https://nioquant.com/tictactoe/privacy-policy.html">
+    <title>Privacy Policy - CoachPulse</title>
+    <meta name="description" content="Privacy Policy for CoachPulse - AI Coaching Data Field for Garmin">
+    <link rel="canonical" href="https://nioquant.com/coachpulse/privacy-policy.html">
 
     <link rel="icon" type="image/svg+xml" href="/assets/nioquant-logo.svg">
     <link rel="shortcut icon" type="image/png" href="/favicon.png">
@@ -201,9 +201,9 @@
     <aside class="sidebar">
         <div class="sidebar-label">Apps</div>
         <ul class="sidebar-list">
-            <li><a class="sidebar-item" href="/coachpulse/privacy-policy.html">CoachPulse</a></li>
+            <li><a class="sidebar-item active" href="/coachpulse/privacy-policy.html">CoachPulse</a></li>
             <li><a class="sidebar-item" href="/racketscore/privacy-policy.html">RacketScore</a></li>
-            <li><a class="sidebar-item active" href="/tictactoe/privacy-policy.html">TicTacToe</a></li>
+            <li><a class="sidebar-item" href="/tictactoe/privacy-policy.html">TicTacToe</a></li>
             <li><a class="sidebar-item" href="/connect4/privacy-policy.html">Connect 4</a></li>
             <li><a class="sidebar-item" href="/dotsandboxes/privacy-policy.html">Dots and Boxes</a></li>
         </ul>
@@ -212,70 +212,123 @@
     <main class="policy-content">
         <div class="label">Legal</div>
         <h1 class="policy-title">Privacy Policy</h1>
-        <p class="policy-app-name"><img src="../assets/tictactoe/logo.svg" alt="TicTacToe">TicTacToe</p>
-        <p class="policy-date">Effective date: March 3, 2026</p>
+        <p class="policy-app-name"><img src="../assets/coachpulse/logo.png" alt="CoachPulse">CoachPulse</p>
+        <p class="policy-date">Effective date: May 21, 2026</p>
 
         <div class="policy-section">
             <h2>Introduction</h2>
-            <p>This Privacy Policy describes how TicTacToe ("the App"), developed and operated by Nioquant, vl. Fran Čudina ("we", "us", "our"), collects, uses, and protects your information. TicTacToe is a classic board game available on the Garmin Connect IQ platform, featuring single-player, local two-player, and wireless multiplayer modes.</p>
+            <p>This Privacy Policy describes how CoachPulse ("the App"), developed and operated by Nioquant, vl. Fran Čudina ("we", "us", "our"), collects, uses, and protects your information. CoachPulse is an AI coaching data field available on the Garmin Connect IQ platform. It reads your biometric and activity data during a workout and sends it to a third-party AI provider of your choice to generate real-time coaching cues displayed on your Garmin watch.</p>
         </div>
 
         <div class="policy-section">
             <h2>Data We Collect</h2>
-            <p>The App collects minimal data, limited to:</p>
+            <p>The App reads the following data during use. All data stays on your device except for what is transmitted to the AI provider when a coaching cue is requested (see "Data Sent to AI Providers" below).</p>
 
-            <p><strong>Game Statistics</strong></p>
+            <p><strong>Biometric Data</strong></p>
             <ul>
-                <li>Wins, losses, and draws for each game mode (single-player, local, multiplayer)</li>
-                <li>Session statistics during active gameplay</li>
+                <li>Current, average, and maximum heart rate during the workout</li>
+                <li>Heart rate history during the previous sleep window (used to estimate overnight recovery)</li>
+                <li>Body battery level (from Garmin SensorHistory)</li>
+                <li>Stress level averaged over the past two hours (from Garmin SensorHistory)</li>
+                <li>Heart rate zones derived from your Garmin user profile</li>
             </ul>
 
-            <p><strong>Device Information</strong></p>
+            <p><strong>Activity Data</strong></p>
             <ul>
-                <li>Battery level and system time (used only to generate a random pairing code for multiplayer)</li>
+                <li>Sport type and sub-sport (for example: running, cycling, swimming)</li>
+                <li>Elapsed time, distance, and calories burned</li>
+                <li>Current and average speed or pace</li>
+                <li>Cadence (steps per minute for running, revolutions per minute for cycling)</li>
+                <li>Power output (cycling, if a power meter is connected)</li>
+                <li>Swim stroke type, SWOLF score, and distance per stroke</li>
+                <li>Altitude, total ascent, total descent, and climb rate</li>
+                <li>Ambient temperature and barometric pressure (from Garmin SensorHistory)</li>
+                <li>Training effect and energy expenditure rate</li>
+                <li>Structured workout step name and intensity (if a structured workout is active)</li>
+            </ul>
+
+            <p><strong>Recovery and Load Data</strong></p>
+            <ul>
+                <li>Sleep duration estimated from your Garmin user profile wake and sleep times</li>
+                <li>Acute training load (7-day rolling total workout minutes)</li>
+                <li>Chronic training load (28-day weekly average workout minutes)</li>
+            </ul>
+
+            <p><strong>User Settings</strong></p>
+            <ul>
+                <li>Session goal text (optional, entered by you in the app settings)</li>
+                <li>Coaching style and recovery focus preferences</li>
+                <li>AI provider selection, AI model selection, and your API key</li>
+                <li>Unit preference (metric or imperial)</li>
             </ul>
         </div>
 
         <div class="policy-section">
-            <h2>How We Use Your Data</h2>
-            <p>All collected data is used solely to provide the core functionality of the App:</p>
+            <h2>Data Sent to AI Providers</h2>
+            <p>When the App detects a coaching trigger (such as a heart rate alert, pace drop, milestone, or periodic check-in), it assembles a text prompt from your current biometric and activity snapshot and transmits it to the AI provider you have configured. The prompt contains no personally identifiable information such as your name, email address, or GPS coordinates.</p>
+            <p>The prompt includes a subset of the activity and recovery data listed above, for example: current heart rate and zone, pace, cadence, body battery, stress level, sleep duration, and training load. This data travels from your Garmin watch through the Garmin Connect app on your paired phone and over the internet to the AI provider API.</p>
+            <p>The following AI providers are supported. Your use of each provider is subject to their own privacy policy and terms of service:</p>
             <ul>
-                <li>Displaying your game statistics (win/loss/draw record)</li>
-                <li>Generating a random pairing code to connect with another player via ANT wireless</li>
-                <li>Synchronizing game state between two watches during multiplayer</li>
+                <li><strong>OpenAI</strong> via the OpenAI API. See <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">OpenAI Privacy Policy</a>.</li>
+                <li><strong>Anthropic (Claude)</strong> via the Anthropic API. See <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">Anthropic Privacy Policy</a>.</li>
+                <li><strong>Google (Gemini)</strong> via the Gemini API. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</li>
+            </ul>
+            <p>We do not control how AI providers store or process the data included in API requests. We recommend reviewing the privacy policy of your chosen provider before use.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>How We Use Your Data</h2>
+            <p>All data read by the App is used solely to provide its core functionality:</p>
+            <ul>
+                <li>Detecting workout conditions that warrant a coaching cue (heart rate alerts, pace drops, milestones, sustained effort, cadence issues, swim efficiency drops)</li>
+                <li>Building context-aware prompts that allow the AI provider to generate relevant, data-driven coaching advice</li>
+                <li>Displaying the AI response as a coaching cue on your Garmin watch</li>
+                <li>Triggering a vibration alert for genuine safety emergencies signaled by the AI response</li>
             </ul>
         </div>
 
         <div class="policy-section">
             <h2>Data Storage</h2>
-            <p>All data is stored locally on your Garmin watch using the device's built-in storage. No data is transmitted to any external server or cloud service.</p>
+            <p><strong>On your Garmin device and phone:</strong> App settings, AI provider selection, and your API key are stored locally in Garmin Connect IQ app properties on your paired phone. No activity data is persisted by the App beyond the current workout session.</p>
+            <p><strong>Our servers:</strong> We do not operate any servers that receive or store your data. The only outbound communication from the App is the API request sent directly to your chosen AI provider.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Your API Key</h2>
+            <p>CoachPulse requires you to supply your own API key for the AI provider you choose. Your key is stored locally in Garmin Connect IQ app properties and is transmitted only to the corresponding AI provider endpoint when a coaching request is made. We never receive your API key.</p>
+            <p>You are responsible for keeping your API key secure. You can update or remove it at any time through the app settings in Garmin Connect.</p>
         </div>
 
         <div class="policy-section">
             <h2>Data Sharing</h2>
-            <p>We do not sell, rent, or share your data with any third parties. Specifically:</p>
+            <p>We do not sell, rent, or share your data with any third parties beyond the AI provider API calls described above. Specifically:</p>
             <ul>
-                <li>No third-party analytics or tracking services are used</li>
-                <li>No crash reporting is sent to external services</li>
+                <li>No analytics or crash reporting is sent to any external service by us</li>
                 <li>No advertising networks receive your data</li>
-                <li>No data is transmitted over the internet</li>
-                <li>ANT wireless multiplayer is direct device-to-device communication only</li>
+                <li>We do not receive any data from your device or from AI provider responses</li>
             </ul>
         </div>
 
         <div class="policy-section">
-            <h2>Multiplayer Communication</h2>
-            <p>The App uses ANT wireless protocol for multiplayer gameplay. This is a short-range, direct device-to-device radio connection between two Garmin watches. No internet connection is required, and no game data passes through any external server.</p>
-        </div>
-
-        <div class="policy-section">
-            <h2>Sensors and Permissions</h2>
-            <p>The App requests only the ANT permission for wireless multiplayer. It does not access GPS, heart rate, accelerometer, or any other sensor on your device.</p>
+            <h2>Your Controls</h2>
+            <p>You have full control over the App's behavior through the settings in Garmin Connect:</p>
+            <ul>
+                <li><strong>AI Provider and Model:</strong> Choose between OpenAI, Anthropic Claude, and Google Gemini and select the specific model</li>
+                <li><strong>API Key:</strong> Enter, update, or clear your API key at any time</li>
+                <li><strong>Session Goal:</strong> Optionally provide a free-text goal that is included in AI prompts</li>
+                <li><strong>Coaching Triggers:</strong> Enable or disable individual triggers such as workout start, milestones, heart rate alerts, pace drop, and sustained effort</li>
+                <li><strong>Periodic Check-in:</strong> Set the interval for proactive AI check-ins, or disable them entirely</li>
+                <li><strong>Coaching Style and Recovery Focus:</strong> Adjust how aggressively the AI coaches and how much weight it gives to recovery signals</li>
+                <li><strong>Cooldown Period:</strong> Set the minimum time between coaching cues</li>
+                <li><strong>Response Length:</strong> Choose between short, normal, and long coaching cues</li>
+                <li><strong>Session Memory:</strong> Enable or disable session history so the AI can avoid repeating recent cues</li>
+            </ul>
         </div>
 
         <div class="policy-section">
             <h2>Third-Party Services</h2>
-            <p>TicTacToe runs on the Garmin Connect IQ platform. Your use of a Garmin device is subject to <a href="https://www.garmin.com/en-US/privacy/connect/" target="_blank" rel="noopener noreferrer">Garmin's Privacy Policy</a>. We are not responsible for data collected by Garmin independently of our App.</p>
+            <p>CoachPulse runs on the Garmin Connect IQ platform. Your use of a Garmin device is subject to <a href="https://www.garmin.com/en-US/privacy/connect/" target="_blank" rel="noopener noreferrer">Garmin's Privacy Policy</a>. We are not responsible for data collected by Garmin independently of the App.</p>
+            <p>All AI provider integrations are initiated by you through your own API keys. The data included in each AI request is described in the "Data Sent to AI Providers" section above.</p>
         </div>
 
         <div class="policy-section">

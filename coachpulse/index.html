@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4W5N770LK6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4W5N770LK6');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FAF8F3" id="themeColor">
+    <title>CoachPulse - AI Coaching Data Field for Garmin</title>
+    <meta name="description" content="Real-time AI coaching on your Garmin watch. CoachPulse reads your biometrics during a workout and delivers intelligent, timely coaching cues right on your wrist.">
+    <link rel="canonical" href="https://nioquant.com/coachpulse/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nioquant.com/coachpulse/">
+    <meta property="og:title" content="CoachPulse - AI Coaching Data Field for Garmin">
+    <meta property="og:description" content="Real-time AI coaching on your Garmin watch. Reads your biometrics and delivers intelligent coaching cues right on your wrist.">
+    <meta property="og:image" content="https://nioquant.com/assets/coachpulse/logo.png">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "CoachPulse",
+      "url": "https://nioquant.com/coachpulse/",
+      "description": "Real-time AI coaching data field for Garmin watches. Reads biometrics and delivers intelligent coaching cues during workouts.",
+      "operatingSystem": "Garmin Connect IQ",
+      "applicationCategory": "SportsApplication",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Organization", "name": "nioquant", "url": "https://nioquant.com" }
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../assets/nioquant-logo.svg">
+    <link rel="shortcut icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-bg: #FAF8F3;
+            --color-bg-alt: #F1EFEA;
+            --color-text: #3A3A3A;
+            --color-text-muted: #666666;
+            --color-border: #e5e5e5;
+            --color-nav-bg: rgba(250, 248, 243, 0.9);
+            --color-nav-mobile-bg: rgba(250, 248, 243, 0.98);
+            --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --max-width: 900px;
+        }
+
+        [data-theme="dark"] {
+            --color-bg: #0e0e0e;
+            --color-bg-alt: #161616;
+            --color-text: #D3D3D3;
+            --color-text-muted: #999999;
+            --color-border: #2a2a2a;
+            --color-nav-bg: rgba(14, 14, 14, 0.9);
+            --color-nav-mobile-bg: rgba(14, 14, 14, 0.98);
+        }
+
+        html { scroll-behavior: smooth; overscroll-behavior: none; }
+
+        body {
+            font-family: var(--font);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 24px 32px;
+            padding-top: max(24px, env(safe-area-inset-top));
+            padding-left: max(32px, env(safe-area-inset-left));
+            padding-right: max(32px, env(safe-area-inset-right));
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--color-nav-bg);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem; font-weight: 700; color: var(--color-text);
+            text-decoration: none; letter-spacing: -0.5px;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .nav-logo-icon { width: 40px; height: 40px; }
+        .nav-right { display: flex; align-items: center; gap: 24px; }
+
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--color-text); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+        .nav-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--color-text-muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--color-text); }
+
+        .theme-toggle {
+            background: none; border: 1px solid var(--color-border); border-radius: 50%;
+            width: 36px; height: 36px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--color-text); transition: border-color 0.2s;
+        }
+        .theme-toggle:hover { border-color: var(--color-text-muted); }
+        .theme-toggle svg { width: 18px; height: 18px; }
+        .theme-toggle .icon-moon { display: block; }
+        .theme-toggle .icon-sun { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+        [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
+        .page-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 120px 32px 80px;
+        }
+
+        .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 32px; }
+
+        .page-title-row { margin-bottom: 12px; }
+        .page-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+
+        .page-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; line-height: 1.15; letter-spacing: -1px; display: flex; align-items: center; gap: 16px; }
+        .page-title-logo { width: 52px; height: 52px; border-radius: 12px; }
+
+        .page-subtitle { font-size: 1.05rem; color: var(--color-text-muted); margin-bottom: 12px; line-height: 1.8; }
+
+        .page-header {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 32px; margin-bottom: 4px;
+        }
+        .page-header-text { flex: 1; }
+        .hero-watch { width: 160px; flex-shrink: 0; }
+
+        .hero-intro { max-width: 640px; margin-bottom: 80px; }
+        .hero-intro p { font-size: 1.15rem; color: var(--color-text-muted); line-height: 1.9; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; margin-bottom: 28px; }
+        .tags span { font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border: 1px solid var(--color-border); border-radius: 20px; color: var(--color-text-muted); }
+
+        .download-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 18px; background: var(--color-text); color: var(--color-bg);
+            text-decoration: none; font-size: 0.82rem; font-weight: 600;
+            border-radius: 20px; transition: opacity 0.2s; white-space: nowrap;
+        }
+        .download-btn:hover { opacity: 0.8; }
+        .download-btn svg { width: 16px; height: 16px; }
+
+        .changelog-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 18px; background: var(--color-border); border: 1px solid var(--color-border);
+            color: var(--color-text); text-decoration: none; font-size: 0.82rem; font-weight: 600;
+            border-radius: 20px; transition: opacity 0.2s; white-space: nowrap; cursor: pointer;
+        }
+        .changelog-btn:hover { opacity: 0.7; }
+
+        /* Journey sections — matches TicTacToe exactly */
+        .journey-section {
+            margin-bottom: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+        }
+
+        .journey-section-text { flex: 1; }
+
+        .journey-section .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-bottom: 12px;
+        }
+
+        .journey-section h2 {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        .journey-section .journey-text {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+            max-width: 580px;
+        }
+
+        .journey-screenshot { flex-shrink: 0; }
+        .journey-screenshot img { width: 160px; display: block; border-radius: 8px; }
+
+        /* Sections with no image (guide, settings, closing) */
+        .journey-section.no-image { display: block; }
+        .journey-section.no-image .journey-text { max-width: 100%; }
+
+        .closing { margin-top: 80px; max-width: 580px; }
+        .closing h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; }
+        .closing p { font-size: 1rem; color: var(--color-text-muted); line-height: 1.8; }
+
+        /* Guide steps */
+        .guide-steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+        .guide-step { display: flex; gap: 14px; align-items: flex-start; }
+        .guide-step-num { width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; color: var(--color-text-muted); margin-top: 2px; }
+        .guide-step-text { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.7; padding-top: 3px; }
+
+        /* Settings */
+        .settings-group { margin-bottom: 24px; }
+        .settings-group-title { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--color-border); }
+        .settings-list { display: flex; flex-direction: column; }
+        .setting-item { display: grid; grid-template-columns: 180px 1fr; gap: 0 20px; padding: 9px 0; border-bottom: 1px solid var(--color-border); align-items: baseline; }
+        .setting-item:last-child { border-bottom: none; }
+        .setting-name { font-size: 0.88rem; font-weight: 600; color: var(--color-text); }
+        .setting-desc { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.6; }
+
+        /* Changelog */
+        .changelog-section { margin-top: 64px; padding-top: 0; }
+        .changelog-section details summary { display: flex; align-items: center; gap: 12px; cursor: pointer; list-style: none; font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; color: var(--color-text); letter-spacing: -0.5px; user-select: none; }
+        .changelog-section details summary::-webkit-details-marker { display: none; }
+        .changelog-section details summary .chevron { width: 22px; height: 22px; transition: transform 0.2s; flex-shrink: 0; }
+        .changelog-section details[open] summary .chevron { transform: rotate(180deg); }
+        .changelog-section details summary:hover { opacity: 0.8; }
+        .changelog-list { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+        .changelog-item { display: grid; grid-template-columns: 100px 1fr; gap: 0 24px; align-items: start; }
+        .changelog-item-header { display: flex; flex-direction: column; gap: 4px; padding-top: 2px; }
+        .changelog-item-version { font-weight: 700; font-size: 0.92rem; color: var(--color-text); }
+        .changelog-item-date { font-size: 0.8rem; color: var(--color-text-muted); }
+        .changelog-item-group { font-weight: 600; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-muted); margin-top: 12px; margin-bottom: 4px; }
+        .changelog-item-list { list-style: disc; padding-left: 16px; color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.7; display: flex; flex-direction: column; gap: 4px; }
+
+        /* Back to top */
+        .back-to-top { position: fixed; bottom: calc(32px + env(safe-area-inset-bottom, 0px)); right: 24px; width: 44px; height: 44px; border-radius: 50%; background: var(--color-text); color: var(--color-bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 99; }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { opacity: 0.7; }
+        .back-to-top svg { width: 20px; height: 20px; }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: var(--color-nav-mobile-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); flex-direction: column; padding: 24px 32px; gap: 16px; border-bottom: 1px solid var(--color-border); }
+            .nav-links.open { display: flex; }
+            .page-content { padding: 100px 24px 60px; }
+            .page-header { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
+            .hero-watch { width: 120px; }
+            .journey-section { margin-bottom: 56px; flex-direction: column; align-items: flex-start; }
+            .journey-screenshot img { width: 120px; }
+            .changelog-item { grid-template-columns: 80px 1fr; gap: 0 16px; }
+            .setting-item { grid-template-columns: 1fr; gap: 2px; }
+        }
+
+        img { opacity: 0; transition: opacity 1s ease; pointer-events: none; user-select: none; }
+        img.img-loaded { opacity: 1; }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="/" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 245 237" xmlns="http://www.w3.org/2000/svg">
+            <path d="M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z" fill="currentColor"/>
+            <path d="M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693" fill="currentColor"/>
+            <path d="M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z" fill="currentColor"/>
+        </svg>
+        nioquant
+    </a>
+    <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<main class="page-content">
+
+    <div class="page-header">
+        <div class="page-header-text">
+            <div class="label">Product</div>
+            <div class="page-title-row">
+                <h1 class="page-title"><img src="../assets/coachpulse/logo.png" alt="" class="page-title-logo">CoachPulse</h1>
+            </div>
+            <div class="page-actions">
+                <span class="download-btn" style="opacity:0.5;cursor:default;">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                    Coming to Connect IQ
+                </span>
+                <a href="#changelog" class="changelog-btn" onclick="event.preventDefault();(function(){var d=document.getElementById('changelogDetails');d.open=true;setTimeout(function(){window.scrollTo({top:d.getBoundingClientRect().top+window.scrollY-96,behavior:'smooth'});},50);}())">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>
+                    What's new
+                </a>
+            </div>
+            <div class="tags">
+                <span>Running</span>
+                <span>Cycling</span>
+                <span>Swimming</span>
+                <span>Hiking</span>
+                <span>Strength</span>
+                <span>Any Sport</span>
+                <span>AI Coaching</span>
+                <span>Real-time Cues</span>
+            </div>
+            <p class="page-subtitle">AI Coaching Data Field for Garmin</p>
+        </div>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse on a Garmin watch" class="hero-watch" loading="eager" fetchpriority="high">
+    </div>
+
+    <div class="hero-intro">
+        <p>You lace up, start the activity, and run. Fifteen minutes in, your heart rate is creeping higher than it should. You push through anyway. You finish tired, a little overtrained, not quite sure if today helped or hurt. <strong>CoachPulse is the coach you wish had been watching.</strong></p>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">The problem</div>
+            <h2>Training alone is hard</h2>
+            <p class="journey-text">A good coach notices when your form slips around kilometre four. They know when to push you and when to pull back, adjusting based on how you look today. Your Garmin is full of biometric data, but none of it talks back. CoachPulse connects that data to an AI and turns it into <strong>live coaching cues right on your watch screen</strong> while you are still moving.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse monitoring your workout" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">Under the hood</div>
+            <h2>How it works</h2>
+            <p class="journey-text">CoachPulse runs as a <strong>data field</strong> inside any Garmin activity. When something notable happens, it packages your current metrics and sends a prompt to the AI model of your choice. The cue comes back and appears on screen. <strong>No app switch, no phone unlock.</strong> You bring your own API key from OpenAI, Anthropic Claude, or Google Gemini.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse sending a coaching request" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">When it speaks up</div>
+            <h2>What triggers a coaching cue</h2>
+            <p class="journey-text">CoachPulse fires at meaningful moments: <strong>workout start</strong> (readiness check), <strong>kilometre and time milestones</strong>, <strong>sustained high effort</strong> (zone 3+ for too long), and <strong>pace drops</strong> below your session average. A periodic check-in interval is also available. Every trigger can be turned on or off individually.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse showing a coaching cue" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">Your intent, in the prompt</div>
+            <h2>Your session, your goal</h2>
+            <p class="journey-text">Set a short session goal before you head out: "easy recovery run", "tempo intervals, stay in zone 3", "long slow distance". That goal travels with every prompt CoachPulse sends. <strong>A cue during a recovery run sounds different from one during a race-pace effort</strong>, even if the biometrics look similar.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse personalised to your session goal" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">Tone and sensitivity</div>
+            <h2>Coach it the way you want to be coached</h2>
+            <p class="journey-text">Choose a <strong>Coaching Style</strong> from Relaxed to Aggressive. Control how much the AI weighs fatigue signals with <strong>Recovery Focus</strong>. Set <strong>Response Length</strong> to Short, Normal, or Long as your baseline preference — the word count also adapts automatically to the actual size of the data field slot, so responses fit cleanly whether you're on a full-screen layout or a compact split.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse coaching style settings" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section">
+        <div class="journey-section-text">
+            <div class="section-label">Knowing when to stay quiet</div>
+            <h2>Smart enough to leave you alone</h2>
+            <p class="journey-text">After a cue fires, CoachPulse enters a cooldown. No new cues until the timer expires. The default is 5 minutes. A coach who speaks every 30 seconds stops being a coach and starts being a distraction. The last cue stays on screen until replaced, so you never miss it mid-stride.</p>
+        </div>
+        <div class="journey-screenshot">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='192'%3E%3Crect width='160' height='192' fill='%23f1efea' rx='8'/%3E%3Cline x1='55' y1='66' x2='105' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='105' y1='66' x2='55' y2='126' stroke='%23bbbbbb' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" alt="CoachPulse cooldown between cues" loading="lazy">
+        </div>
+    </div>
+
+    <div class="journey-section no-image">
+        <div class="section-label">Getting started</div>
+        <h2>Using CoachPulse on your watch</h2>
+        <p class="journey-text">CoachPulse is a <strong>data field</strong>, not a standalone app. You add it to a data screen inside an existing activity profile.</p>
+
+        <p class="journey-text" style="margin-top:20px;margin-bottom:14px;"><strong>Setup steps</strong></p>
+        <div class="guide-steps">
+            <div class="guide-step"><div class="guide-step-num">1</div><div class="guide-step-text">Install CoachPulse from the Garmin Connect IQ store onto your watch.</div></div>
+            <div class="guide-step"><div class="guide-step-num">2</div><div class="guide-step-text">Open the <strong>Garmin Connect</strong> app on your phone, navigate to your watch settings, and under <strong>Activities and Apps</strong> edit a data screen for your chosen activity.</div></div>
+            <div class="guide-step"><div class="guide-step-num">3</div><div class="guide-step-text">Add a data field slot and select <strong>CoachPulse</strong>. A full-screen single field gives the most room for longer coaching cues.</div></div>
+            <div class="guide-step"><div class="guide-step-num">4</div><div class="guide-step-text">Open <strong>CoachPulse settings</strong> in the Connect IQ section of the Garmin Connect app. Enter your API key, pick your provider and model, and configure your preferences.</div></div>
+            <div class="guide-step"><div class="guide-step-num">5</div><div class="guide-step-text">Start your activity and swipe to the CoachPulse screen. It shows <strong>Monitoring...</strong> while idle and cues appear automatically when triggered.</div></div>
+        </div>
+
+        <p class="journey-text"><strong>What the screen shows:</strong> idle shows "Monitoring..." in white, fetching shows "Preparing..." in grey, a cue appears centred in white, errors in orange. If the API key is missing a yellow prompt reminds you to set it.</p>
+    </div>
+
+    <div class="journey-section no-image">
+        <div class="section-label">Configuration</div>
+        <h2>All settings, explained</h2>
+        <p class="journey-text" style="margin-bottom:24px;">All settings are configured through the <strong>Garmin Connect IQ app</strong> on your phone. Changes take effect the next time you start an activity.</p>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Connection</div>
+            <div class="settings-list">
+                <div class="setting-item">
+                    <div class="setting-name">AI Provider</div>
+                    <div class="setting-desc">Which AI service to use: <strong>OpenAI</strong>, <strong>Anthropic Claude</strong>, or <strong>Google Gemini</strong>. Default is OpenAI.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">AI Model</div>
+                    <div class="setting-desc">The specific model to call. OpenAI: GPT-5.5 Pro, GPT-5.4 mini (default), GPT-5.4 nano. Claude: Opus 4.7, Sonnet 4.6, Haiku 4.6. Gemini: 2.5 Pro, 2.5 Flash (default), 2.5 Flash Lite.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">API Key</div>
+                    <div class="setting-desc">Your API key for the selected provider. Stored on device only, used exclusively for outbound coaching requests during a workout.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Session</div>
+            <div class="settings-list">
+                <div class="setting-item">
+                    <div class="setting-name">Session Goal</div>
+                    <div class="setting-desc">A short description of what you are trying to accomplish today, up to 120 characters. Leave blank to coach based on biometrics and sport type alone.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Session Memory</div>
+                    <div class="setting-desc">When on, the AI remembers its recent responses throughout the activity and uses them to avoid repetition and build on prior coaching. OpenAI uses server-side conversation threading; Claude and Gemini receive the last N responses in the system prompt. On by default.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">History Size</div>
+                    <div class="setting-desc">How many past coaching responses to include in the session memory context for Claude and Gemini. Range 3 to 20. Default 10. Has no effect when Session Memory is off or when using OpenAI (which uses server-side threading).</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Coaching Behaviour</div>
+            <div class="settings-list">
+                <div class="setting-item">
+                    <div class="setting-name">Coaching Style</div>
+                    <div class="setting-desc">How direct the AI should be. <strong>1 Relaxed</strong> to <strong>5 Aggressive</strong>. Default is 3 Balanced.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Recovery Focus</div>
+                    <div class="setting-desc">How much the AI weighs fatigue signals like body battery and stress. <strong>1 Ignore</strong> to <strong>5 Maximum</strong>. Default is 3 Balanced.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Response Length</div>
+                    <div class="setting-desc"><strong>Short</strong>: 5 to 6 words. <strong>Normal</strong>: 5 to 9 words (default). <strong>Long</strong>: 12 to 25 words. The actual word count also adapts automatically to the data field dimensions, so the same setting works well across full-screen and split-slot layouts.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-group">
+            <div class="settings-group-title">Trigger Control</div>
+            <div class="settings-list">
+                <div class="setting-item">
+                    <div class="setting-name">Cooldown</div>
+                    <div class="setting-desc">Minimum seconds between any two cues. Range 15 to 600. Default 300 seconds (5 minutes).</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Check-in Interval</div>
+                    <div class="setting-desc">Periodic cue every N minutes regardless of other triggers. Range 0 to 60. Default 0 (off).</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Intro Cue</div>
+                    <div class="setting-desc">Fire a cue at workout start based on your readiness and session goal. On by default.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Milestone Cues</div>
+                    <div class="setting-desc">Fire cues at kilometre and time checkpoints. On by default.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Effort Check-in</div>
+                    <div class="setting-desc">Fire a cue when you sustain zone 3+ for longer than the Effort Threshold. On by default.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Effort Threshold</div>
+                    <div class="setting-desc">Minutes of continuous zone 3+ effort before the effort check-in fires. Range 5 to 60. Default 20 minutes.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Pace Drop Alert</div>
+                    <div class="setting-desc">Fire a cue when your pace drops noticeably below your session average. On by default.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">HR Alerts</div>
+                    <div class="setting-desc">Fire cues on HR zone breaches (zone 4+ or unexpectedly low) and sudden HR spikes. On by default.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="closing">
+        <h2>Supported watches</h2>
+        <p>CoachPulse works on Garmin devices that support Connect IQ data fields with the Communications permission, covering most Fenix, Forerunner, Epix, Venu, Marq, and Instinct models from the last several years. A phone with Garmin Connect is required to relay AI requests during a workout.</p>
+    </div>
+
+    <div class="changelog-section" id="changelog">
+        <details id="changelogDetails" open>
+            <summary>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                What's new
+            </summary>
+            <div class="changelog-list">
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.0</span>
+                        <span class="changelog-item-date">May 21, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Initial Release</div>
+                        <ul class="changelog-item-list">
+                            <li>Real-time AI coaching data field for Garmin watches</li>
+                            <li>Support for OpenAI, Anthropic Claude, and Google Gemini via a single unified API key setting</li>
+                            <li>9 model options across all three providers (GPT-5.5 Pro, GPT-5.4 mini, GPT-5.4 nano, Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.6, Gemini 2.5 Pro, Gemini 2.5 Flash, Gemini 2.5 Flash Lite)</li>
+                            <li>Session goal field: describe your workout intent and the AI coaches toward it</li>
+                            <li>Coaching style selector: 5 levels from Relaxed to Aggressive</li>
+                            <li>Recovery focus selector: 5 levels from Ignore to Maximum</li>
+                            <li>Response length selector: Short (5 to 6 words), Normal (5 to 9 words), Long (12 to 25 words)</li>
+                            <li>Configurable trigger system: workout start cue, kilometre and time milestone cues, sustained effort check-in, pace drop alert</li>
+                            <li>Periodic check-in interval: optional fixed-interval cues every N minutes</li>
+                            <li>Effort threshold setting: configurable minutes in zone 3+ before effort check-in fires</li>
+                            <li>Cooldown between cues: 15 to 600 seconds, default 300 seconds</li>
+                            <li>Text wraps automatically and fills the full available field width; fixed one-word-per-line issue that occurred in narrow or bezel-padded layouts</li>
+                            <li>Response word count adapts to the actual data field dimensions — the same setting displays cleanly across full-screen layouts and small split slots</li>
+                            <li>API key validation prompt shown on screen if key is missing</li>
+                            <li>Support for 80+ Garmin devices including Fenix 7/8, Forerunner 265/965/970, Epix 2, Venu 3, Instinct 3, and more</li>
+                            <li>Sport-specific HR zones: running, cycling, and swimming activities use their respective calibrated zones instead of the generic profile</li>
+                            <li>Unit system detection: pace and speed adapt to the device's km or miles preference automatically</li>
+                            <li>Extended distance milestones at 50km and 100km for ultra events; extended time milestones at 3h and 4h for long efforts</li>
+                            <li>HR Alerts toggle: zone breach and HR spike cues can now be turned on or off independently alongside other trigger settings</li>
+                            <li>Provider and model mismatch detected before any API call and surfaced as a clear on-screen message</li>
+                            <li>Session memory: AI tracks its own cues across the entire activity; OpenAI uses server-side conversation threading, Claude and Gemini receive the last several cues in the system prompt to avoid repetition and build context over time</li>
+                            <li>Session memory toggle: choose stateful (session memory on) or stateless (each cue is independent) per workout</li>
+                            <li>History Size setting: configure how many past responses Claude and Gemini receive as context, from 3 to 20, default 10</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </details>
+    </div>
+
+</main>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
+    </svg>
+</button>
+
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const systemTheme = () => darkQuery.matches ? 'dark' : 'light';
+
+    const faviconSvg = (color) => `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 245 237'><path d='M36.0095 63.0097L40.088 165.77L131.878 209.19L126.654 109.334Z' fill='${color}'/><path d='M205.525 73.7515L210.803 172.321L131.638 135.366L130.202 108.875L205.3 73.2693' fill='${color}'/><path d='M127.839 105.628L117.913 100.71L114.988 26.7249L203.163 70.504Z' fill='${color}'/></svg>`;
+
+    function setTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        const favicon = document.querySelector('link[rel="icon"]');
+        favicon.setAttribute('media', '');
+        favicon.href = faviconSvg(theme === 'dark' ? '%23D3D3D3' : '%233A3A3A');
+        const color = theme === 'dark' ? '#0e0e0e' : '#FAF8F3';
+        const old = document.getElementById('themeColor');
+        old.remove();
+        const meta = document.createElement('meta');
+        meta.name = 'theme-color';
+        meta.id = 'themeColor';
+        meta.content = color;
+        document.head.appendChild(meta);
+        document.body.style.backgroundColor = color;
+    }
+
+    setTheme(localStorage.getItem('theme') || systemTheme());
+
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+    });
+
+    darkQuery.addEventListener('change', () => {
+        localStorage.removeItem('theme');
+        setTheme(systemTheme());
+    });
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => { navToggle.classList.toggle('active'); navLinks.classList.toggle('open'); });
+    navLinks.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { navToggle.classList.remove('active'); navLinks.classList.remove('open'); }); });
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > window.innerHeight) backToTop.classList.add('visible');
+        else backToTop.classList.remove('visible');
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    document.querySelectorAll('img').forEach(img => {
+        if (img.complete && img.naturalWidth > 0) img.classList.add('img-loaded');
+        else img.addEventListener('load', () => img.classList.add('img-loaded'));
+    });
+</script>
+
+</body>
+</html>
