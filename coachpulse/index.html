@@ -147,6 +147,25 @@
         .hero-intro { max-width: 640px; margin-bottom: 80px; }
         .hero-intro p { font-size: 1.15rem; color: var(--color-text-muted); line-height: 1.9; }
 
+        .app-stats {
+            display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+            margin-top: 12px; margin-bottom: 16px;
+        }
+        .app-stat {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 0.82rem; font-weight: 600; color: #1c3d2e;
+            background: rgba(142,202,171,0.2); border: 1.5px solid #8ecaab;
+            border-radius: 20px; padding: 5px 13px;
+        }
+        .app-stat svg { width: 12px; height: 12px; flex-shrink: 0; }
+        .star-rating { position: relative; display: inline-block; }
+        .star-empty { letter-spacing: 1px; color: rgba(0,0,0,0.2); }
+        .star-filled { position: absolute; top: 0; left: 0; overflow: hidden; white-space: nowrap; letter-spacing: 1px; color: #f5a623; }
+        [data-theme="dark"] .star-empty { color: rgba(255,255,255,0.2); }
+        [data-theme="dark"] .app-stat {
+            color: #8ecaab; background: rgba(142,202,171,0.1); border-color: #4a7a62;
+        }
+
         .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; margin-bottom: 28px; }
         .tags span { font-size: 0.75rem; font-weight: 600; padding: 5px 12px; border: 1px solid var(--color-border); border-radius: 20px; color: var(--color-text-muted); }
 
@@ -308,15 +327,12 @@
                 </a>
             </div>
             <div class="tags">
-                <span>Running</span>
-                <span>Cycling</span>
-                <span>Swimming</span>
-                <span>Hiking</span>
-                <span>Strength</span>
-                <span>Any Sport</span>
                 <span>AI Coaching</span>
                 <span>Real-time Cues</span>
+                <span>Data Field</span>
+                <span>Any Sport</span>
             </div>
+            <div class="app-stats" id="stats_coachpulse"></div>
             <p class="page-subtitle">AI Coaching Data Field for Garmin</p>
         </div>
         <img src="../assets/coachpulse/watch-hero.png" alt="CoachPulse on a Garmin watch" class="hero-watch" loading="eager" fetchpriority="high">
@@ -374,7 +390,7 @@
         <div class="journey-section-text">
             <div class="section-label">Tone and sensitivity</div>
             <h2>Coach it the way you want to be coached</h2>
-            <p class="journey-text">Choose a <strong>Coaching Style</strong> from Relaxed to Aggressive. Control how much the AI weighs fatigue signals with <strong>Recovery Focus</strong>. Set <strong>Response Length</strong> to Short, Normal, or Long as your baseline preference — the word count also adapts automatically to the actual size of the data field slot, so responses fit cleanly whether you're on a full-screen layout or a compact split.</p>
+            <p class="journey-text">Choose a <strong>Coaching Style</strong> from Relaxed to Aggressive. Control how much the AI weighs fatigue signals with <strong>Recovery Focus</strong>. Set <strong>Response Length</strong> to Short, Normal, or Long as your baseline preference. The word count also adapts automatically to the actual size of the data field slot, so responses fit cleanly whether you're on a full-screen layout or a compact split.</p>
         </div>
         <div class="journey-screenshot">
             <img src="../assets/coachpulse/watch-recovery.png" alt="CoachPulse coaching style settings" loading="lazy">
@@ -539,7 +555,7 @@
                             <li>Effort threshold setting: configurable minutes in zone 3+ before effort check-in fires</li>
                             <li>Cooldown between cues: 15 to 600 seconds, default 300 seconds</li>
                             <li>Text wraps automatically and fills the full available field width; fixed one-word-per-line issue that occurred in narrow or bezel-padded layouts</li>
-                            <li>Response word count adapts to the actual data field dimensions — the same setting displays cleanly across full-screen layouts and small split slots</li>
+                            <li>Response word count adapts to the actual data field dimensions. The same setting displays cleanly across full-screen layouts and small split slots</li>
                             <li>API key validation prompt shown on screen if key is missing</li>
                             <li>Support for 80+ Garmin devices including Fenix 7/8, Forerunner 265/965/970, Epix 2, Venu 3, Instinct 3, and more</li>
                             <li>Sport-specific HR zones: running, cycling, and swimming activities use their respective calibrated zones instead of the generic profile</li>
@@ -618,6 +634,26 @@
         if (img.complete && img.naturalWidth > 0) img.classList.add('img-loaded');
         else img.addEventListener('load', () => img.classList.add('img-loaded'));
     });
+</script>
+
+<script>
+    (function () {
+        var dlIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>';
+        var reviewIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" /></svg>';
+        fetch('https://garmin-stats.cudina-fran.workers.dev/developer')
+            .then(function (r) { return r.json(); })
+            .then(function (allApps) {
+                var data = allApps['e8e7a400-f711-495c-b9a5-eaed8cc5f349'];
+                var el = document.getElementById('stats_coachpulse');
+                if (!data || !el) return;
+                var starPct = (data.averageRating / 5 * 100).toFixed(1);
+                el.innerHTML =
+                    '<span class="app-stat">' + dlIcon + data.downloadCount + '+</span>' +
+                    '<span class="app-stat"><span class="star-rating"><span class="star-empty">★★★★★</span><span class="star-filled" style="width:' + starPct + '%">★★★★★</span></span>\u00a0' + data.averageRating.toFixed(1) + '</span>' +
+                    '<span class="app-stat">' + reviewIcon + data.reviewCount + ' review' + (data.reviewCount !== 1 ? 's' : '') + '</span>';
+            })
+            .catch(function () {});
+    })();
 </script>
 
 </body>

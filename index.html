@@ -976,24 +976,22 @@
         </a>
         <!-- CoachPulse -->
         <a href="/coachpulse/" class="product product-link" style="align-items: start;">
-            <img src="assets/coachpulse/logo.png" alt="CoachPulse AI coaching data field for Garmin" class="product-logo" loading="lazy">
+            <img src="assets/coachpulse/watch-hero.png" alt="CoachPulse AI coaching cue on Garmin watch" class="product-logo" loading="lazy">
             <div>
-                <div class="product-name"><img src="assets/coachpulse/logo.png" alt="" class="product-name-logo" loading="lazy">CoachPulse <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                <div class="product-name"><img src="assets/coachpulse/logo.png" alt="" class="product-name-logo" loading="lazy">CoachPulse <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_coachpulse"></div></div>
                 <div class="product-tagline">AI Coaching Data Field for Garmin</div>
                 <p class="product-desc">Your Garmin watch collects biometric data every second of your workout. <strong>CoachPulse connects that data to AI</strong> and delivers real-time coaching cues directly on your watch screen, without any app switching or phone interaction.</p>
                 <p class="product-desc">Supports <strong>OpenAI, Anthropic Claude, and Google Gemini</strong>. Bring your own API key. Configure coaching style, recovery sensitivity, response length, and which conditions trigger a cue.</p>
                 <div class="tags">
-                    <span class="tag">Running</span>
-                    <span class="tag">Cycling</span>
-                    <span class="tag">Any Sport</span>
                     <span class="tag">AI Coaching</span>
                     <span class="tag">Real-time Cues</span>
                     <span class="tag">Data Field</span>
+                    <span class="tag">Any Sport</span>
                 </div>
                 <div class="btn-row">
-                    <span class="product-download" style="opacity:0.55;cursor:default;">
+                    <span id="download_link_coachpulse" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_coachpulse', {event_category: 'engagement', event_label: 'CoachPulse'}); window.open('https://apps.garmin.com/apps/e8e7a400-f711-495c-b9a5-eaed8cc5f349', '_blank');">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Coming to Connect IQ
+                        Get it on Connect IQ
                     </span>
                     <span class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); window.location='/coachpulse/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
                 </div>
@@ -1358,6 +1356,7 @@
     // Garmin app stats
     (function () {
         const apps = [
+            { key: 'coachpulse',   id: 'e8e7a400-f711-495c-b9a5-eaed8cc5f349' },
             { key: 'racketscore',  id: '3e320d95-a886-4f6a-96dc-dc9dd225bae3' },
             { key: 'tictactoe',    id: '1166f5c7-6b4e-46c9-b00c-e67081076a7e' },
             { key: 'connect4',     id: '726d6a2b-6781-4b48-96a1-54011a8f4de1' },
