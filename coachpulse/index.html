@@ -634,6 +634,24 @@
             <div class="changelog-list">
                 <div class="changelog-item">
                     <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.1</span>
+                        <span class="changelog-item-date">May 22, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Fixes</div>
+                        <ul class="changelog-item-list">
+                            <li>All triggers (HR alerts, milestones, pace drop, periodic check-in) are now blocked until the activity timer is running; no AI calls fire on the pre-start screen</li>
+                            <li>Periodic check-in interval now counts from the moment you press START, not from when the data field loads</li>
+                        </ul>
+                        <div class="changelog-item-group">Improvements</div>
+                        <ul class="changelog-item-list">
+                            <li>Field shows "Awaiting Start" instead of "Monitoring..." while waiting for the activity timer to begin</li>
+                            <li>HR buffer continues filling during pre-start so spike detection has an accurate baseline the moment the timer starts</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
                         <span class="changelog-item-version">v1.0.0</span>
                         <span class="changelog-item-date">May 21, 2026</span>
                     </div>
