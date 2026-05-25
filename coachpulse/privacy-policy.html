@@ -213,7 +213,7 @@
         <div class="label">Legal</div>
         <h1 class="policy-title">Privacy Policy</h1>
         <p class="policy-app-name"><img src="../assets/coachpulse/logo.png" alt="CoachPulse">CoachPulse</p>
-        <p class="policy-date">Effective date: May 21, 2026</p>
+        <p class="policy-date">Effective date: May 25, 2026</p>
 
         <div class="policy-section">
             <h2>Introduction</h2>
@@ -224,13 +224,24 @@
             <h2>Data We Collect</h2>
             <p>The App reads the following data during use. All data stays on your device except for what is transmitted to the AI provider when a coaching cue is requested (see "Data Sent to AI Providers" below).</p>
 
+            <p><strong>Profile Data</strong></p>
+            <ul>
+                <li>Age (derived from birth year stored in your Garmin user profile)</li>
+                <li>Gender (from your Garmin user profile)</li>
+                <li>Height (from your Garmin user profile)</li>
+                <li>Weight (from your Garmin user profile)</li>
+                <li>Resting heart rate (from your Garmin user profile)</li>
+                <li>Average resting heart rate (from your Garmin user profile)</li>
+                <li>VO2max estimate for running (from your Garmin user profile, if available)</li>
+                <li>VO2max estimate for cycling (from your Garmin user profile, if available)</li>
+                <li>Heart rate zones for the current sport (from your Garmin user profile)</li>
+            </ul>
+
             <p><strong>Biometric Data</strong></p>
             <ul>
                 <li>Current, average, and maximum heart rate during the workout</li>
-                <li>Heart rate history during the previous sleep window (used to estimate overnight recovery)</li>
                 <li>Body battery level (from Garmin SensorHistory)</li>
                 <li>Stress level averaged over the past two hours (from Garmin SensorHistory)</li>
-                <li>Heart rate zones derived from your Garmin user profile</li>
             </ul>
 
             <p><strong>Activity Data</strong></p>
@@ -249,7 +260,6 @@
 
             <p><strong>Recovery and Load Data</strong></p>
             <ul>
-                <li>Sleep duration estimated from your Garmin user profile wake and sleep times</li>
                 <li>Acute training load (7-day rolling total workout minutes)</li>
                 <li>Chronic training load (28-day weekly average workout minutes)</li>
             </ul>
@@ -266,7 +276,7 @@
         <div class="policy-section">
             <h2>Data Sent to AI Providers</h2>
             <p>When the App detects a coaching trigger (such as a heart rate alert, pace drop, milestone, or periodic check-in), it assembles a text prompt from your current biometric and activity snapshot and transmits it to the AI provider you have configured. The prompt contains no personally identifiable information such as your name, email address, or GPS coordinates.</p>
-            <p>The prompt includes a subset of the activity and recovery data listed above, for example: current heart rate and zone, pace, cadence, body battery, stress level, sleep duration, and training load. This data travels from your Garmin watch through the Garmin Connect app on your paired phone and over the internet to the AI provider API.</p>
+            <p>The prompt includes a subset of the data listed above, for example: athlete profile (age, gender, height, weight, resting heart rate, VO2max), current heart rate and zone, pace, cadence, body battery, stress level, and training load. This data travels from your Garmin watch through the Garmin Connect app on your paired phone and over the internet to the AI provider API.</p>
             <p>The following AI providers are supported. Your use of each provider is subject to their own privacy policy and terms of service:</p>
             <ul>
                 <li><strong>OpenAI</strong> via the OpenAI API. See <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">OpenAI Privacy Policy</a>.</li>

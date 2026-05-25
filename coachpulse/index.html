@@ -630,6 +630,24 @@
             <div class="changelog-list">
                 <div class="changelog-item">
                     <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.3</span>
+                        <span class="changelog-item-date">May 25, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Improvements</div>
+                        <ul class="changelog-item-list">
+                            <li>API key is validated at startup with a quick ping before the activity begins; "Checking..." is shown while validating, and if the key is rejected (401 or 403) the setup prompt appears immediately instead of waiting silently for the first trigger to fail</li>
+                            <li>AI prompt now includes full athlete profile: age (derived from birth year), gender, height, weight, resting heart rate, average resting heart rate, and VO2max for running and cycling</li>
+                            <li>Heart rate zones now use the Activity.Sport type directly via getHeartRateZones2, giving accurate sport-specific zones for every sport rather than only running, cycling, and swimming</li>
+                        </ul>
+                        <div class="changelog-item-group">Fixes</div>
+                        <ul class="changelog-item-list">
+                            <li>HR zone boundaries were off by one: the minimum zone 1 threshold was being used as the zone 1 upper boundary, causing all zone assignments to read one zone lower than the actual value; corrected across zone detection, prompt output, and trigger thresholds</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
                         <span class="changelog-item-version">v1.0.1</span>
                         <span class="changelog-item-date">May 22, 2026</span>
                     </div>
