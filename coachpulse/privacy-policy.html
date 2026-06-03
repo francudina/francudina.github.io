@@ -213,16 +213,18 @@
         <div class="label">Legal</div>
         <h1 class="policy-title">Privacy Policy</h1>
         <p class="policy-app-name"><img src="../assets/coachpulse/logo.png" alt="CoachPulse">CoachPulse</p>
-        <p class="policy-date">Effective date: May 25, 2026</p>
+        <p class="policy-date">Effective date: June 3, 2026</p>
 
         <div class="policy-section">
             <h2>Introduction</h2>
-            <p>This Privacy Policy describes how CoachPulse ("the App"), developed and operated by Nioquant, vl. Fran Čudina ("we", "us", "our"), collects, uses, and protects your information. CoachPulse is an AI coaching data field available on the Garmin Connect IQ platform. It reads your biometric and activity data during a workout and sends it to a third-party AI provider of your choice to generate real-time coaching cues displayed on your Garmin watch.</p>
+            <p>This Privacy Policy applies to CoachPulse ("the App"), developed and operated by Nioquant, obrt za usluge, vl. Fran Čudina, Zagreb, Štefanićeva ulica 1, Croatia ("we", "us", "our"). CoachPulse is an AI coaching data field available on the Garmin Connect IQ platform. It reads your biometric and activity data during a workout and sends it to a third-party AI provider of your choice to generate real-time coaching cues displayed on your Garmin watch.</p>
+            <p>This policy applies to all users of the App regardless of their country of residence. Where specific regional rights apply, they are described in the "Your Privacy Rights" section below.</p>
+            <p><strong>Data Controller:</strong> Nioquant, obrt za usluge, vl. Fran Čudina, Zagreb, Štefanićeva ulica 1, Croatia. Contact: <a href="mailto:info@nioquant.com">info@nioquant.com</a>.</p>
         </div>
 
         <div class="policy-section">
             <h2>Data We Collect</h2>
-            <p>The App reads the following data during use. All data stays on your device except for what is transmitted to the AI provider when a coaching cue is requested (see "Data Sent to AI Providers" below).</p>
+            <p>The App reads the following data during use. All data stays on your device except for what is transmitted to the AI provider when a coaching cue is requested (see "Data Sent to AI Providers" below). We do not receive, store, or process any of this data on our own servers at any point.</p>
 
             <p><strong>Profile Data</strong></p>
             <ul>
@@ -271,11 +273,13 @@
                 <li>AI provider selection, AI model selection, and your API key</li>
                 <li>Unit preference (metric or imperial)</li>
             </ul>
+
+            <p><strong>Note on health and biometric data:</strong> Heart rate, body battery, stress level, VO2max, resting heart rate, weight, and similar data points are classified as health or biometric data under applicable privacy laws including the EU General Data Protection Regulation (GDPR), the UK GDPR, Brazil's LGPD, and various US state laws. This data is processed solely on your device and transmitted only to your chosen AI provider. We never receive it.</p>
         </div>
 
         <div class="policy-section">
             <h2>Data Sent to AI Providers</h2>
-            <p>When the App detects a coaching trigger (such as a heart rate alert, pace drop, milestone, or periodic check-in), it assembles a text prompt from your current biometric and activity snapshot and transmits it to the AI provider you have configured. The prompt contains no personally identifiable information such as your name, email address, or GPS coordinates.</p>
+            <p>When the App detects a coaching trigger (such as a heart rate alert, pace drop, milestone, or periodic check-in), it assembles a text prompt from your current biometric and activity snapshot and transmits it directly from your device to the AI provider you have configured. The prompt contains no personally identifiable information such as your name, email address, or GPS coordinates.</p>
             <p>The prompt includes a subset of the data listed above, for example: athlete profile (age, gender, height, weight, resting heart rate, VO2max), current heart rate and zone, pace, cadence, body battery, stress level, and training load. This data travels from your Garmin watch through the Garmin Connect app on your paired phone and over the internet to the AI provider API.</p>
             <p>The following AI providers are supported. Your use of each provider is subject to their own privacy policy and terms of service:</p>
             <ul>
@@ -283,7 +287,29 @@
                 <li><strong>Anthropic (Claude)</strong> via the Anthropic API. See <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer">Anthropic Privacy Policy</a>.</li>
                 <li><strong>Google (Gemini)</strong> via the Gemini API. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>.</li>
             </ul>
-            <p>We do not control how AI providers store or process the data included in API requests. We recommend reviewing the privacy policy of your chosen provider before use.</p>
+            <p>We do not control how AI providers store or process the data included in API requests. All three providers listed above are based in the United States. See "International Data Transfers" below for more information. We recommend reviewing the privacy policy of your chosen provider before use.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>International Data Transfers</h2>
+            <p>When you use the App, your biometric and activity data is transmitted from your Garmin device directly to the AI provider you have selected. All three supported AI providers (OpenAI, Anthropic, and Google) are headquartered in the United States and process data on infrastructure that may be located in the United States or other countries.</p>
+            <p>We do not ourselves transfer your data across borders, as we never receive it. The transfer occurs directly between your device and your chosen AI provider. By selecting an AI provider and entering your API key, you initiate and control this transfer.</p>
+            <p>If you are located in the European Economic Area (EEA), the United Kingdom, or Switzerland, please be aware that the AI providers you choose may transfer your data to countries that do not have an adequacy decision from the relevant authority. Each of the supported providers maintains Standard Contractual Clauses or equivalent transfer mechanisms under their API terms of service. We recommend reviewing each provider's data transfer documentation before use.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Legal Basis for Processing</h2>
+            <p>This section applies to users in the European Economic Area, the United Kingdom, and Switzerland, where data protection law requires a legal basis for each type of processing.</p>
+
+            <p><strong>General data (activity data, settings, recovery data)</strong></p>
+            <p>We process this data on the basis of <strong>performance of a contract</strong> (Article 6(1)(b) GDPR and UK GDPR). You install and configure the App to provide real-time coaching, and this data is necessary to deliver that service.</p>
+
+            <p><strong>Health and biometric data (heart rate, VO2max, body battery, stress, weight, resting heart rate)</strong></p>
+            <p>Health and biometric data is classified as special category data under Article 9 GDPR. We process this data on the basis of your <strong>explicit consent</strong> (Article 9(2)(a) GDPR). By deliberately installing the App, entering your API key, and activating it during a workout, you provide explicit consent for your biometric data to be used to generate coaching cues via your chosen AI provider.</p>
+            <p>You may withdraw this consent at any time by removing the App from your Garmin device or by clearing your API key in the app settings. Withdrawal of consent does not affect the lawfulness of processing that took place before withdrawal.</p>
+
+            <p><strong>Switzerland</strong></p>
+            <p>For users in Switzerland, the same legal bases apply under the revised Federal Act on Data Protection (nFADP, in force since 1 September 2023).</p>
         </div>
 
         <div class="policy-section">
@@ -295,12 +321,14 @@
                 <li>Displaying the AI response as a coaching cue on your Garmin watch</li>
                 <li>Triggering a vibration alert for genuine safety emergencies signaled by the AI response</li>
             </ul>
+            <p>We do not use your data for advertising, profiling, sale to third parties, or any purpose other than those listed above.</p>
         </div>
 
         <div class="policy-section">
-            <h2>Data Storage</h2>
-            <p><strong>On your Garmin device and phone:</strong> App settings, AI provider selection, and your API key are stored locally in Garmin Connect IQ app properties on your paired phone. No activity data is persisted by the App beyond the current workout session.</p>
-            <p><strong>Our servers:</strong> We do not operate any servers that receive or store your data. The only outbound communication from the App is the API request sent directly to your chosen AI provider.</p>
+            <h2>Data Storage and Retention</h2>
+            <p><strong>On your Garmin device and phone:</strong> App settings, AI provider selection, and your API key are stored locally in Garmin Connect IQ app properties on your paired phone. No activity or biometric data is persisted by the App beyond the current workout session.</p>
+            <p><strong>Our servers:</strong> We do not operate any servers that receive or store your data. The only outbound communication from the App is the API request sent directly from your device to your chosen AI provider. We hold no personal data and therefore have no data retention schedule to maintain on our end.</p>
+            <p><strong>AI provider retention:</strong> Each AI provider may retain API request data according to their own retention policies. Please review the privacy policy of your chosen provider for details.</p>
         </div>
 
         <div class="policy-section">
@@ -311,12 +339,70 @@
 
         <div class="policy-section">
             <h2>Data Sharing</h2>
-            <p>We do not sell, rent, or share your data with any third parties beyond the AI provider API calls described above. Specifically:</p>
+            <p>We do not sell, rent, trade, or share your data with any third parties beyond the AI provider API calls described above and initiated by you. Specifically:</p>
             <ul>
                 <li>No analytics or crash reporting is sent to any external service by us</li>
                 <li>No advertising networks receive your data</li>
                 <li>We do not receive any data from your device or from AI provider responses</li>
+                <li>We do not sell personal information, including health or biometric data, under any circumstances</li>
             </ul>
+        </div>
+
+        <div class="policy-section">
+            <h2>Your Privacy Rights</h2>
+            <p>Depending on your country or region of residence, you may have specific rights regarding your personal data. Because we do not store or receive your data, most rights relating to access, correction, or deletion of data held by an organisation do not apply to us directly. However, we describe your rights below and explain where to direct each type of request.</p>
+
+            <p><strong>European Economic Area and United Kingdom (GDPR / UK GDPR)</strong></p>
+            <p>If you are located in the EEA or UK, you have the following rights under the GDPR and UK GDPR:</p>
+            <ul>
+                <li><strong>Right of access (Article 15):</strong> You may request confirmation of whether we process your personal data and, if so, a copy of it. Because we hold no personal data, we will confirm this in response to any access request sent to info@nioquant.com.</li>
+                <li><strong>Right to rectification (Article 16):</strong> You may request correction of inaccurate data we hold. Profile data (age, weight, height, etc.) is stored in your Garmin profile and can be corrected directly in Garmin Connect.</li>
+                <li><strong>Right to erasure (Article 17):</strong> You may request deletion of personal data we hold. We hold none. To request deletion of data sent to an AI provider, contact that provider directly.</li>
+                <li><strong>Right to restriction of processing (Article 18):</strong> You may request that we restrict processing of your data. You can achieve this immediately by removing the App or clearing your API key.</li>
+                <li><strong>Right to data portability (Article 20):</strong> You may request a machine-readable copy of personal data you have provided to us. We hold no such data.</li>
+                <li><strong>Right to object (Article 21):</strong> You may object to processing based on legitimate interests. We do not rely on legitimate interests as a legal basis for processing health data.</li>
+                <li><strong>Right to withdraw consent:</strong> Where processing is based on consent, you may withdraw it at any time by removing the App or clearing your API key. Withdrawal does not affect prior processing.</li>
+                <li><strong>Right not to be subject to automated decision-making (Article 22):</strong> We do not carry out automated decision-making or profiling that produces legal or similarly significant effects.</li>
+            </ul>
+            <p>To exercise any of these rights, contact us at <a href="mailto:info@nioquant.com">info@nioquant.com</a>. We will respond within 30 days. You also have the right to lodge a complaint with a supervisory authority (see "Supervisory Authorities" below).</p>
+
+            <p><strong>Switzerland (nFADP)</strong></p>
+            <p>If you are located in Switzerland, you have rights under the revised Federal Act on Data Protection (nFADP) equivalent to those described above for EEA users, including the right of access, rectification, erasure, and the right to lodge a complaint with the Federal Data Protection and Information Commissioner (FDPIC) at <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer">www.edoeb.admin.ch</a>.</p>
+
+            <p><strong>United States</strong></p>
+            <p>Depending on the state in which you reside, you may have the following rights:</p>
+            <ul>
+                <li><strong>California (CCPA/CPRA):</strong> California residents have the right to know what personal information is collected, the right to delete personal information, the right to correct inaccurate personal information, the right to opt out of the sale or sharing of personal information, and the right not to be discriminated against for exercising these rights. We do not sell or share personal information. To submit a request, contact info@nioquant.com. For data held by AI providers, contact those providers directly.</li>
+                <li><strong>Virginia (VCDPA), Colorado (CPA), Connecticut (CTDPA), Texas (TDPSA), and other state privacy laws:</strong> Residents of these states have rights to access, correct, delete, and obtain a portable copy of personal data, and to opt out of targeted advertising and the sale of personal data. We do not conduct targeted advertising or sell data. Requests can be submitted to info@nioquant.com.</li>
+                <li><strong>Health data:</strong> In states where biometric or health data receives heightened protection (including Washington, Illinois, and Texas), we note that health and biometric data processed by the App is transmitted directly from your device to your chosen AI provider and is never received or held by us.</li>
+            </ul>
+
+            <p><strong>Brazil (LGPD)</strong></p>
+            <p>If you are located in Brazil, you have rights under the Lei Geral de Protecao de Dados (LGPD), including the right of access, correction, anonymisation or deletion, portability, information about sharing, and the right to revoke consent. Because we hold no personal data, most requests will need to be directed to your chosen AI provider. You may contact us at info@nioquant.com for any questions. You also have the right to file a complaint with the Autoridade Nacional de Protecao de Dados (ANPD).</p>
+
+            <p><strong>Canada (PIPEDA and Quebec Law 25)</strong></p>
+            <p>If you are located in Canada, you have rights under the Personal Information Protection and Electronic Documents Act (PIPEDA) and, if you are in Quebec, under Law 25 (Act respecting the protection of personal information in the private sector). These include the right to access personal information we hold about you and to challenge its accuracy. Because we hold no personal data, requests should be directed to your AI provider. Contact us at info@nioquant.com with any questions or to request our privacy practices documentation.</p>
+
+            <p><strong>Australia (Privacy Act 1988)</strong></p>
+            <p>If you are located in Australia, you have rights under the Privacy Act 1988 and the Australian Privacy Principles (APPs), including the right to access and correct personal information held about you. Because we hold no personal information, access and correction requests should be directed to your chosen AI provider. You may contact us at info@nioquant.com. You also have the right to lodge a complaint with the Office of the Australian Information Commissioner (OAIC) at <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">www.oaic.gov.au</a>.</p>
+
+            <p><strong>Japan (APPI)</strong></p>
+            <p>If you are located in Japan, you have rights under the Act on the Protection of Personal Information (APPI), including the right to disclosure, correction, and suspension of use of retained personal data. We hold no retained personal data. Contact us at info@nioquant.com for any questions.</p>
+
+            <p><strong>South Korea (PIPA)</strong></p>
+            <p>If you are located in South Korea, you have rights under the Personal Information Protection Act (PIPA), including the right to access, correct, delete, and suspend processing of personal information. We hold no personal information. Contact info@nioquant.com for any questions or to reach our designated personal information protection officer.</p>
+
+            <p><strong>India (DPDP Act 2023)</strong></p>
+            <p>If you are located in India, you have rights under the Digital Personal Data Protection Act 2023, including the right to access information about personal data processed, the right to correction and erasure, and the right to grievance redressal. We hold no personal data. Contact us at info@nioquant.com for any questions.</p>
+
+            <p><strong>South Africa (POPIA)</strong></p>
+            <p>If you are located in South Africa, you have rights under the Protection of Personal Information Act (POPIA), including the right to access, correct, and object to the processing of personal information. We hold no personal information. You may contact us at info@nioquant.com or lodge a complaint with the Information Regulator at <a href="https://inforegulator.org.za" target="_blank" rel="noopener noreferrer">inforegulator.org.za</a>.</p>
+
+            <p><strong>Singapore (PDPA)</strong></p>
+            <p>If you are located in Singapore, you have rights under the Personal Data Protection Act (PDPA), including the right to access and correct personal data held about you. We hold no personal data. Contact us at info@nioquant.com for any questions.</p>
+
+            <p><strong>New Zealand (Privacy Act 2020)</strong></p>
+            <p>If you are located in New Zealand, you have rights under the Privacy Act 2020, including the right to access and correct personal information held about you. We hold no personal information. You may contact us at info@nioquant.com or lodge a complaint with the Office of the Privacy Commissioner at <a href="https://www.privacy.org.nz" target="_blank" rel="noopener noreferrer">www.privacy.org.nz</a>.</p>
         </div>
 
         <div class="policy-section">
@@ -324,7 +410,7 @@
             <p>You have full control over the App's behavior through the settings in Garmin Connect:</p>
             <ul>
                 <li><strong>AI Provider and Model:</strong> Choose between OpenAI, Anthropic Claude, and Google Gemini and select the specific model</li>
-                <li><strong>API Key:</strong> Enter, update, or clear your API key at any time</li>
+                <li><strong>API Key:</strong> Enter, update, or clear your API key at any time. Clearing your key stops all data transmission to AI providers immediately.</li>
                 <li><strong>Session Goal:</strong> Optionally provide a free-text goal that is included in AI prompts</li>
                 <li><strong>Coaching Triggers:</strong> Enable or disable individual triggers such as workout start, milestones, heart rate alerts, pace drop, and sustained effort</li>
                 <li><strong>Periodic Check-in:</strong> Set the interval for proactive AI check-ins, or disable them entirely</li>
@@ -333,27 +419,57 @@
                 <li><strong>Response Length:</strong> Choose between short, normal, and long coaching cues</li>
                 <li><strong>Session Memory:</strong> Enable or disable session history so the AI can avoid repeating recent cues</li>
             </ul>
+            <p>Uninstalling the App from your Garmin device removes all locally stored settings, including your API key, and stops all processing immediately.</p>
         </div>
 
         <div class="policy-section">
             <h2>Third-Party Services</h2>
             <p>CoachPulse runs on the Garmin Connect IQ platform. Your use of a Garmin device is subject to <a href="https://www.garmin.com/en-US/privacy/connect/" target="_blank" rel="noopener noreferrer">Garmin's Privacy Policy</a>. We are not responsible for data collected by Garmin independently of the App.</p>
-            <p>All AI provider integrations are initiated by you through your own API keys. The data included in each AI request is described in the "Data Sent to AI Providers" section above.</p>
+            <p>All AI provider integrations are initiated by you through your own API keys. The data included in each AI request is described in the "Data Sent to AI Providers" section above. We act as a data processor only in the sense that we write the software that constructs the prompt; we never receive, store, or have access to the data itself.</p>
+        </div>
+
+        <div class="policy-section">
+            <h2>Supervisory Authorities</h2>
+            <p>If you believe your data protection rights have not been respected, you have the right to lodge a complaint with the relevant supervisory authority in your country. Key authorities include:</p>
+            <ul>
+                <li><strong>Croatia (our home authority):</strong> Agencija za zastitu osobnih podataka (AZOP) - <a href="https://azop.hr" target="_blank" rel="noopener noreferrer">azop.hr</a></li>
+                <li><strong>European Union:</strong> The data protection authority in your EU member state of residence</li>
+                <li><strong>United Kingdom:</strong> Information Commissioner's Office (ICO) - <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a></li>
+                <li><strong>Switzerland:</strong> Federal Data Protection and Information Commissioner (FDPIC) - <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer">edoeb.admin.ch</a></li>
+                <li><strong>Brazil:</strong> Autoridade Nacional de Protecao de Dados (ANPD) - <a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">gov.br/anpd</a></li>
+                <li><strong>Australia:</strong> Office of the Australian Information Commissioner (OAIC) - <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">oaic.gov.au</a></li>
+                <li><strong>South Africa:</strong> Information Regulator - <a href="https://inforegulator.org.za" target="_blank" rel="noopener noreferrer">inforegulator.org.za</a></li>
+                <li><strong>New Zealand:</strong> Office of the Privacy Commissioner - <a href="https://www.privacy.org.nz" target="_blank" rel="noopener noreferrer">privacy.org.nz</a></li>
+                <li><strong>Canada:</strong> Office of the Privacy Commissioner of Canada - <a href="https://www.priv.gc.ca" target="_blank" rel="noopener noreferrer">priv.gc.ca</a></li>
+                <li><strong>Singapore:</strong> Personal Data Protection Commission - <a href="https://www.pdpc.gov.sg" target="_blank" rel="noopener noreferrer">pdpc.gov.sg</a></li>
+            </ul>
         </div>
 
         <div class="policy-section">
             <h2>Children's Privacy</h2>
-            <p>The App is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+            <p>The App is not directed at children. The minimum age to use the App depends on your country of residence:</p>
+            <ul>
+                <li><strong>European Economic Area and UK:</strong> You must be at least 16 years old, or have verifiable parental consent if you are between 13 and 16, in accordance with GDPR Article 8.</li>
+                <li><strong>United States:</strong> You must be at least 13 years old in accordance with the Children's Online Privacy Protection Act (COPPA). Some US states may set a higher threshold.</li>
+                <li><strong>All other countries:</strong> You must meet the minimum digital consent age established by your country's applicable law, which is typically between 13 and 16 years of age.</li>
+            </ul>
+            <p>We do not knowingly collect or process personal information from children below the applicable minimum age. If you believe a child below the applicable age has used the App, please contact us at info@nioquant.com and we will take appropriate steps, which may include notifying the relevant AI provider.</p>
         </div>
 
         <div class="policy-section">
             <h2>Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated effective date. We encourage you to review this page periodically.</p>
+            <p>We may update this Privacy Policy from time to time to reflect changes in the App, applicable law, or our practices. Changes will be reflected on this page with an updated effective date. For material changes, we will make reasonable efforts to notify users, for example by updating the App listing on the Garmin Connect IQ Store. We encourage you to review this page periodically. Your continued use of the App after changes are posted constitutes acceptance of the updated policy.</p>
         </div>
 
         <div class="policy-section">
             <h2>Contact Us</h2>
-            <p>If you have questions about this Privacy Policy or your data, please contact us at <a href="mailto:info@nioquant.com">info@nioquant.com</a>.</p>
+            <p>If you have questions about this Privacy Policy, wish to exercise your privacy rights, or have a concern about how your data is handled, please contact us:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:info@nioquant.com">info@nioquant.com</a></li>
+                <li><strong>Data Controller:</strong> Nioquant, obrt za usluge, vl. Fran Čudina</li>
+                <li><strong>Address:</strong> Zagreb, Štefanićeva ulica 1, Croatia</li>
+            </ul>
+            <p>We aim to respond to all privacy-related enquiries within 30 days. If your request relates to data held by an AI provider (OpenAI, Anthropic, or Google), we will direct you to the appropriate contact at that provider.</p>
         </div>
     </main>
 </div>
