@@ -1284,6 +1284,21 @@ docker compose up -d</div>
             <div class="changelog-list">
                 <div class="changelog-item">
                     <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.10</span>
+                        <span class="changelog-item-date">Jun 6, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Live Charts</div>
+                        <ul class="changelog-item-list">
+                            <li>HR chart now plots the instantaneous heart rate per point; running max and average are computed live from received data instead of relying on cumulative watch stats</li>
+                            <li>Power chart now shows the last recorded swing power per point with the same gradient area fill as the HR chart</li>
+                            <li>Swings per point chart switched to area style with smooth curve and no dots, matching the rest of the chart set</li>
+                            <li>HR and Power charts are now also visible on the saved session timeline page after syncing from the watch</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
                         <span class="changelog-item-version">v1.0.9</span>
                         <span class="changelog-item-date">Jun 6, 2026</span>
                     </div>
@@ -1301,6 +1316,7 @@ docker compose up -d</div>
                         <div class="changelog-item-group">Bug Fixes</div>
                         <ul class="changelog-item-list">
                             <li>Back button on the match summary screen (after the game ends) now shows the Save / Save &amp; Continue / Discard menu instead of skipping directly to the main menu</li>
+                            <li>Web app layout is now fully responsive on mobile</li>
                         </ul>
                     </div>
                 </div>
