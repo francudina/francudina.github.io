@@ -24,4 +24,12 @@
     <loc>https://nioquant.com/dotsandboxes/</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://nioquant.com/gradient/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nioquant.com/bubbledive/</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>
