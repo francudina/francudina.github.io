@@ -304,61 +304,107 @@
             line-height: 1.7;
         }
 
-        /* ── Product ── */
-        .product {
+        /* ── Product Tiles ── */
+        .products-subsection-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-top: 56px;
+            margin-bottom: 16px;
+        }
+
+        .products-grid {
             display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 48px;
-            align-items: center;
-            margin-top: 80px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
         }
 
-        .product-logo {
-            width: 100%;
+        .product-tile {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            border: 1px solid var(--color-border);
             border-radius: 16px;
-        }
-
-        .product-link {
             text-decoration: none;
             color: inherit;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.18s, box-shadow 0.18s;
+            background: var(--color-bg);
         }
 
-        .product-link:hover {
+        .product-tile:hover {
             transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.07);
         }
 
-        .product-link:hover .product-arrow {
+        .product-tile:hover .product-arrow {
             transform: translateX(4px);
         }
 
-        .product-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 6px;
+        .product-tile-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 14px;
+        }
+
+        .product-tile-header--top {
+            align-items: flex-start;
+        }
+
+        .product-tile-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 14px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .product-tile-meta {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-tile-stats {
+            margin-top: 10px;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
         }
 
         .product-name-logo {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
         }
 
         .product-arrow {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             transition: transform 0.2s;
         }
 
         .product-tagline {
-            font-size: 0.9rem;
+            font-size: 0.78rem;
             color: var(--color-text-muted);
             font-weight: 500;
-            margin-bottom: 16px;
+            margin-top: 3px;
+        }
+
+        .product-tile-desc {
+            font-size: 0.88rem;
+            color: var(--color-text-muted);
+            line-height: 1.65;
+            margin-top: 12px;
+            flex: 1;
         }
 
         .product-desc {
@@ -418,6 +464,23 @@
             margin-top: 24px;
         }
 
+        .product-dl-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--color-border);
+            color: var(--color-text-muted);
+            cursor: pointer;
+            transition: opacity 0.2s;
+            flex-shrink: 0;
+            align-self: flex-start;
+        }
+        .product-dl-icon:hover { opacity: 0.7; }
+        .product-dl-icon svg { width: 16px; height: 16px; }
+
         .product-download {
             display: inline-flex;
             align-items: center;
@@ -471,15 +534,15 @@
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
-            margin-left: auto;
         }
         .app-stat {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--color-text-muted);
             font-weight: 500;
+            white-space: nowrap;
         }
         .app-stat svg { width: 11px; height: 11px; flex-shrink: 0; }
         .star-rating { position: relative; display: inline-block; }
@@ -802,25 +865,12 @@
                 line-height: 1.55;
             }
 
-            .product {
+            .products-grid {
                 grid-template-columns: 1fr;
-                text-align: left;
-                gap: 20px;
             }
 
             .product-name {
                 flex-wrap: wrap;
-            }
-
-            .app-stats {
-                margin-left: 0;
-                width: 100%;
-                margin-bottom: 8px;
-            }
-
-            .product-logo {
-                max-width: 140px;
-                margin: 0;
             }
 
             .tags {
@@ -945,262 +995,152 @@
     <div class="scene-inner reveal">
         <div class="label">Products</div>
         <h2 class="scene-title">What we've built</h2>
-        <a href="/racketscore/" class="product product-link" style="align-items: start;">
-            <img src="assets/racketscore/watch-scoreboard.png" alt="RacketScore on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/racketscoreapp-logo.png" alt="" class="product-name-logo" loading="lazy">RacketScore <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_racketscore"></div></div>
-                <div class="product-tagline">Racket Sports Tracker for Garmin</div>
-                <p class="product-desc">Turn your Garmin watch into a smart sports companion. RacketScore tracks your swings, measures <strong>shot power</strong>, and keeps score across <strong>six racket sports</strong>, all from your wrist.</p>
-                <p class="product-desc">Play with friends using <strong>real-time multiplayer sync</strong>, and follow every match live from a <strong>web dashboard</strong>. Whether you play padel, tennis, pickleball, or beyond, RacketScore has you covered.</p>
-                <div class="tags">
-                    <span class="tag">Padel</span>
-                    <span class="tag">Tennis</span>
-                    <span class="tag">Table Tennis</span>
-                    <span class="tag">Badminton</span>
-                    <span class="tag">Squash</span>
-                    <span class="tag">Pickleball</span>
+
+        <!-- Garmin Apps -->
+        <div class="products-subsection-label">Garmin Apps</div>
+        <div class="products-grid">
+            <!-- RacketScore -->
+            <a href="/racketscore/" class="product-tile">
+                <div class="product-tile-header product-tile-header--top">
+                    <img src="assets/racketscore/watch-scoreboard.png" alt="RacketScore" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/racketscoreapp-logo.png" alt="" class="product-name-logo" loading="lazy">RacketScore <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Racket Sports Tracker for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_racketscore"></div></div>
+                    </div>
+                    <span id="download_link_racketscore" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_racketscore', {event_category: 'engagement', event_label: 'RacketScore'}); window.open('https://apps.garmin.com/apps/3e320d95-a886-4f6a-96dc-dc9dd225bae3', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-                <div class="btn-row">
-                    <span id="download_link_racketscore" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_racketscore', {event_category: 'engagement', event_label: 'RacketScore'}); window.open('https://apps.garmin.com/apps/3e320d95-a886-4f6a-96dc-dc9dd225bae3', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span id="whatsnew_link_racketscore" class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_link_racketscore', {event_category: 'engagement', event_label: 'RacketScore'}); window.location='/racketscore/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
+                <p class="product-tile-desc">Track swings, measure shot power, and keep score across six racket sports with real-time multiplayer sync.</p>
+            </a>
+            <!-- CoachPulse -->
+            <a href="/coachpulse/" class="product-tile">
+                <div class="product-tile-header product-tile-header--top">
+                    <img src="assets/coachpulse/watch-hero.png" alt="CoachPulse" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/coachpulse/logo.png" alt="" class="product-name-logo" loading="lazy">CoachPulse <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">AI Coaching Data Field for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_coachpulse"></div></div>
+                    </div>
+                    <span id="download_link_coachpulse" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_coachpulse', {event_category: 'engagement', event_label: 'CoachPulse'}); window.open('https://apps.garmin.com/apps/e8e7a400-f711-495c-b9a5-eaed8cc5f349', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-                <div class="product-screenshots">
-                    <img src="assets/racketscore/match-history.png" alt="Match History" loading="lazy">
-                    <img src="assets/racketscore/match-map.png" alt="Match Map" loading="lazy">
-                    <img src="assets/racketscore/global-stats.png" alt="Global Stats" loading="lazy">
+                <p class="product-tile-desc">Real-time AI coaching cues on your Garmin screen during workouts, powered by OpenAI, Claude, or Gemini.</p>
+            </a>
+            <!-- TicTacToe -->
+            <a href="/tictactoe/" class="product-tile">
+                <div class="product-tile-header">
+                    <img src="assets/tictactoe/gameplay.png" alt="TicTacToe" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/tictactoe/logo.svg" alt="" class="product-name-logo" loading="lazy">TicTacToe <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Classic game for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_tictactoe"></div></div>
+                    </div>
+                    <span id="download_link_tictactoe" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_tictactoe', {event_category: 'engagement', event_label: 'TicTacToe'}); window.open('https://apps.garmin.com/apps/1166f5c7-6b4e-46c9-b00c-e67081076a7e', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-            </div>
-        </a>
-        <!-- CoachPulse -->
-        <a href="/coachpulse/" class="product product-link" style="align-items: start;">
-            <img src="assets/coachpulse/watch-hero.png" alt="CoachPulse AI coaching cue on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/coachpulse/logo.png" alt="" class="product-name-logo" loading="lazy">CoachPulse <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_coachpulse"></div></div>
-                <div class="product-tagline">AI Coaching Data Field for Garmin</div>
-                <p class="product-desc">Your Garmin watch collects biometric data every second of your workout. <strong>CoachPulse connects that data to AI</strong> and delivers real-time coaching cues directly on your watch screen, without any app switching or phone interaction.</p>
-                <p class="product-desc">Supports <strong>OpenAI, Anthropic Claude, and Google Gemini</strong>. Bring your own API key, validated on startup. The AI receives your full athlete profile including age, weight, and VO2max alongside live biometrics. Configure coaching style, recovery sensitivity, response length, and which conditions trigger a cue.</p>
-                <div class="tags">
-                    <span class="tag">AI Coaching</span>
-                    <span class="tag">Real-time Cues</span>
-                    <span class="tag">Any Sport</span>
+            </a>
+            <!-- Connect 4 -->
+            <a href="/connect4/" class="product-tile">
+                <div class="product-tile-header">
+                    <img src="assets/connect4/gameplay.png" alt="Connect 4" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/connect4/logo.svg" alt="" class="product-name-logo" loading="lazy">Connect 4 <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Strategy game for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_connect4"></div></div>
+                    </div>
+                    <span id="download_link_connect4" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_connect4', {event_category: 'engagement', event_label: 'Connect4'}); window.open('https://apps.garmin.com/apps/726d6a2b-6781-4b48-96a1-54011a8f4de1', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-                <div class="btn-row">
-                    <span id="download_link_coachpulse" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_coachpulse', {event_category: 'engagement', event_label: 'CoachPulse'}); window.open('https://apps.garmin.com/apps/e8e7a400-f711-495c-b9a5-eaed8cc5f349', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); window.location='/coachpulse/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
+            </a>
+            <!-- Dots and Boxes -->
+            <a href="/dotsandboxes/" class="product-tile">
+                <div class="product-tile-header">
+                    <img src="assets/dotsandboxes/gameplay.png" alt="Dots and Boxes" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/dotsandboxes/logo.svg" alt="" class="product-name-logo" loading="lazy">Dots & Boxes <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Strategy game for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_dotsandboxes"></div></div>
+                    </div>
+                    <span id="download_link_dotsandboxes" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_dotsandboxes', {event_category: 'engagement', event_label: 'DotsAndBoxes'}); window.open('https://apps.garmin.com/apps/70d5c00b-9ce7-4a2f-a9f0-27a39d0196c1', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-            </div>
-        </a>
-        <!-- ScanPlan -->
-        <a href="/scanplan/" class="product product-link" style="align-items: start;">
-            <img src="assets/scanplan/screenshot-v110-1.png" alt="ScanPlan – microscope scan grid planner interface" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/scanplan/logo.svg" alt="" class="product-name-logo" loading="lazy">ScanPlan <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
-                <div class="product-tagline">Browser-based scan grid planner for any point-mapping microscopy instrument</div>
-                <p class="product-desc">Draw your sample shape: rectangle, circle, or freeform polygon, and let the planner build an <strong>optimal scan grid</strong> covering only the interior. Block no-scan regions with <strong>exclusion zones</strong>, add per-edge <strong>outer frame</strong> margins, and set an <strong>inner offset</strong> to keep points away from tile edges.</p>
-                <p class="product-desc">Splits large samples into <strong>multi-pass tiles</strong> automatically. A <strong>rotation optimizer</strong> finds the angle with fewest tiles. Export as <strong>CSV or PDF</strong>. Works with <strong>Raman, confocal, XRF, EBSD, SEM-EDS, AFM, SIMS, EPMA, XPS</strong>, and more.</p>
-                <div class="tags">
-                    <span class="tag">Raman</span>
-                    <span class="tag">Confocal</span>
-                    <span class="tag">XRF / EBSD</span>
-                    <span class="tag">Freeform Shapes</span>
-                    <span class="tag">Multi-pass</span>
-                    <span class="tag">CSV / PDF Export</span>
+            </a>
+            <!-- Raindrop -->
+            <a href="/raindrop/" class="product-tile">
+                <div class="product-tile-header">
+                    <img src="assets/raindrop/watch4.png" alt="Raindrop" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/raindrop/logo.svg" alt="" class="product-name-logo" loading="lazy">Raindrop <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Animated watch face for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_raindrop"></div></div>
+                    </div>
+                    <span id="download_link_raindrop" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_raindrop', {event_category: 'engagement', event_label: 'Raindrop'}); window.open('https://apps.garmin.com/apps/9437bbd2-e218-4e8a-bc53-a1d3a5bad911', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-                <div class="btn-row">
-                    <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'open_scanplan_tool', {event_category: 'engagement', event_label: 'ScanPlan'}); window.open('https://scanplan.nioquant.com', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
-                        Open ScanPlan
-                    </span>
-                    <span class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_scanplan', {event_category: 'engagement', event_label: 'ScanPlan'}); window.location='/scanplan/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
+            </a>
+            <!-- 3D Time -->
+            <a href="/3dtime/" class="product-tile">
+                <div class="product-tile-header">
+                    <img src="assets/3dtime/watch1.png" alt="3D Time" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/3dtime/logo.png" alt="" class="product-name-logo" loading="lazy">3D Time <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Bold 3D watch face for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_3dtime"></div></div>
+                    </div>
+                    <span id="download_link_3dtime" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_3dtime', {event_category: 'engagement', event_label: '3DTime'}); window.open('https://apps.garmin.com/apps/e79296f1-a375-4742-8358-8cbb8be84996', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-                <div class="product-screenshots">
-                    <img src="assets/scanplan/screenshot-v110-2.png" alt="Exclusion zones and outer frame on freeform sample" loading="lazy">
-                    <img src="assets/scanplan/screenshot-v110-3.png" alt="Rotation optimizer with alignment angles at P1" loading="lazy">
-                    <img src="assets/scanplan/screenshot-v110-4.png" alt="Rectangle tiled with outer frame and inner offset" loading="lazy">
+            </a>
+            <!-- Simple 3D Time -->
+            <a href="/simple3dtime/" class="product-tile">
+                <div class="product-tile-header">
+                    <img src="assets/simple3dtime/watch1.png" alt="Simple 3D Time" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/simple3dtime/logo.png" alt="" class="product-name-logo" loading="lazy">Simple 3D Time <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Minimal 3D watch face for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_simple3dtime"></div></div>
+                    </div>
+                    <span id="download_link_simple3dtime" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_simple3dtime', {event_category: 'engagement', event_label: 'Simple 3D Time'}); window.open('https://apps.garmin.com/apps/be324f2c-7dbc-46e3-9e75-dab936a54b4b', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-            </div>
-        </a>
-        <!-- TicTacToe -->
-        <a href="/tictactoe/" class="product product-link">
-            <img src="assets/tictactoe/gameplay.png" alt="TicTacToe on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/tictactoe/logo.svg" alt="" class="product-name-logo" loading="lazy">TicTacToe <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_tictactoe"></div></div>
-                <div class="product-tagline">Classic game for Garmin</div>
-                <p class="product-desc">The game you already know, built for your wrist. Play solo or <strong>challenge a friend</strong> on another Garmin watch with <strong>real-time ANT+ multiplayer</strong>. No phone needed.</p>
-                <div class="tags">
-                    <span class="tag">Single Player</span>
-                    <span class="tag">Multiplayer</span>
-                    <span class="tag">ANT+ Sync</span>
+            </a>
+            <!-- Gradient -->
+            <a href="/gradient/" class="product-tile">
+                <div class="product-tile-header">
+                    <img src="assets/gradient/watch1.png" alt="Gradient" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/gradient/logo.png" alt="" class="product-name-logo" loading="lazy">Gradient <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Progress arc watch face for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_gradient"></div></div>
+                    </div>
+                    <span id="download_link_gradient" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_gradient', {event_category: 'engagement', event_label: 'Gradient'}); window.open('https://apps.garmin.com/apps/831da381-871f-48cd-892d-9e467eb434cb', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-                <div class="btn-row">
-                    <span id="download_link_tictactoe" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_tictactoe', {event_category: 'engagement', event_label: 'TicTacToe'}); window.open('https://apps.garmin.com/apps/1166f5c7-6b4e-46c9-b00c-e67081076a7e', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span id="whatsnew_link_tictactoe" class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_link_tictactoe', {event_category: 'engagement', event_label: 'TicTacToe'}); window.location='/tictactoe/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
+            </a>
+            <!-- Bubble Dive -->
+            <a href="/bubbledive/" class="product-tile">
+                <div class="product-tile-header">
+                    <img src="assets/bubbledive/watch1.png" alt="Bubble Dive" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/bubbledive/logo.png" alt="" class="product-name-logo" loading="lazy">Bubble Dive <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Animated bubble watch face for Garmin</div>
+                        <div class="product-tile-stats"><div class="app-stats" id="stats_bubbledive"></div></div>
+                    </div>
+                    <span id="download_link_bubbledive" class="product-dl-icon" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_bubbledive', {event_category: 'engagement', event_label: 'BubbleDive'}); window.open('https://apps.garmin.com/apps/da38ce90-cf33-4e31-b7e0-57026405850d', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg></span>
                 </div>
-            </div>
-        </a>
-        <!-- Connect 4 -->
-        <a href="/connect4/" class="product product-link">
-            <img src="assets/connect4/gameplay.png" alt="Connect 4 on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/connect4/logo.svg" alt="" class="product-name-logo" loading="lazy">Connect 4 <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_connect4"></div></div>
-                <div class="product-tagline">Strategy game for Garmin</div>
-                <p class="product-desc">Drop discs, think ahead, connect four. <strong>Three AI difficulty levels</strong> that actually challenge you, <strong>local 2-player mode</strong>, and <strong>ANT+ multiplayer</strong> between watches.</p>
-                <div class="tags">
-                    <span class="tag">AI Opponent</span>
-                    <span class="tag">2 Players</span>
-                    <span class="tag">Multiplayer</span>
-                    <span class="tag">3 Difficulties</span>
+            </a>
+        </div>
+
+        <!-- Other -->
+        <div class="products-subsection-label" style="margin-top: 56px;">Other</div>
+        <div class="products-grid">
+            <!-- ScanPlan -->
+            <a href="/scanplan/" class="product-tile">
+                <div class="product-tile-header">
+                    <img src="assets/scanplan/screenshot-v110-1.png" alt="ScanPlan" class="product-tile-icon" loading="lazy">
+                    <div class="product-tile-meta">
+                        <div class="product-name"><img src="assets/scanplan/logo.svg" alt="" class="product-name-logo" loading="lazy">ScanPlan <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg></div>
+                        <div class="product-tagline">Scan grid planner for microscopy</div>
+                    </div>
                 </div>
-                <div class="btn-row">
-                    <span id="download_link_connect4" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_connect4', {event_category: 'engagement', event_label: 'Connect4'}); window.open('https://apps.garmin.com/apps/726d6a2b-6781-4b48-96a1-54011a8f4de1', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span id="whatsnew_link_connect4" class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_link_connect4', {event_category: 'engagement', event_label: 'Connect4'}); window.location='/connect4/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
+                <p class="product-tile-desc">Browser-based planner that builds an optimal point grid for any microscopy instrument from rectangle, circle, or freeform shapes, with exclusion zones, multi-pass tiles, and CSV/PDF export.</p>
+                <div class="btn-row" style="margin-top: 6px; justify-content: flex-end;">
+                    <span class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'open_scanplan_tool', {event_category: 'engagement', event_label: 'ScanPlan'}); window.open('https://scanplan.nioquant.com', '_blank');"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>Open ScanPlan</span>
                 </div>
-            </div>
-        </a>
-        <!-- Dots and Boxes -->
-        <a href="/dotsandboxes/" class="product product-link">
-            <img src="assets/dotsandboxes/gameplay.png" alt="Dots and Boxes on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/dotsandboxes/logo.svg" alt="" class="product-name-logo" loading="lazy">Dots & Boxes <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_dotsandboxes"></div></div>
-                <div class="product-tagline">Strategy game for Garmin</div>
-                <p class="product-desc">Draw lines between dots, complete boxes, outscore your opponent. <strong>Three board sizes</strong>, an <strong>AI that thinks in chains</strong>, and <strong>multiplayer over ANT+</strong>.</p>
-                <div class="tags">
-                    <span class="tag">AI Opponent</span>
-                    <span class="tag">2 Players</span>
-                    <span class="tag">Multiplayer</span>
-                    <span class="tag">3 Board Sizes</span>
-                </div>
-                <div class="btn-row">
-                    <span id="download_link_dotsandboxes" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_dotsandboxes', {event_category: 'engagement', event_label: 'DotsAndBoxes'}); window.open('https://apps.garmin.com/apps/70d5c00b-9ce7-4a2f-a9f0-27a39d0196c1', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span id="whatsnew_link_dotsandboxes" class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_link_dotsandboxes', {event_category: 'engagement', event_label: 'DotsAndBoxes'}); window.location='/dotsandboxes/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
-                </div>
-            </div>
-        </a>
-        <!-- Raindrop -->
-        <a href="/raindrop/" class="product product-link">
-            <img src="assets/raindrop/watch4.png" alt="Raindrop watch face on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/raindrop/logo.svg" alt="" class="product-name-logo" loading="lazy">Raindrop <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_raindrop"></div></div>
-                <div class="product-tagline">Animated watch face for Garmin</div>
-                <p class="product-desc">A watch face that moves. <strong>Live raindrop animation</strong>, <strong>14 preset themes</strong>, and a per-element color picker for arc, time, date, background, and dots. Make it yours, down to every detail.</p>
-                <div class="tags">
-                    <span class="tag">Watch Face</span>
-                    <span class="tag">Animated</span>
-                    <span class="tag">Customizable</span>
-                    <span class="tag">14 Themes</span>
-                    <span class="tag">35 Colors</span>
-                </div>
-                <div class="btn-row">
-                    <span id="download_link_raindrop" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_raindrop', {event_category: 'engagement', event_label: 'Raindrop'}); window.open('https://apps.garmin.com/apps/9437bbd2-e218-4e8a-bc53-a1d3a5bad911', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span id="whatsnew_link_raindrop" class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_link_raindrop', {event_category: 'engagement', event_label: 'Raindrop'}); window.location='/raindrop/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
-                </div>
-            </div>
-        </a>
-        <!-- 3D Time -->
-        <a href="/3dtime/" class="product product-link">
-            <img src="assets/3dtime/watch1.png" alt="3D Time watch face on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/3dtime/logo.png" alt="" class="product-name-logo" loading="lazy">3D Time <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_3dtime"></div></div>
-                <div class="product-tagline">Bold 3D watch face for Garmin</div>
-                <p class="product-desc">Large dimensional numerals that fill the screen. <strong>Four configurable data fields</strong>, full color control, and support for <strong>70+ Garmin devices</strong>.</p>
-                <div class="tags">
-                    <span class="tag">Watch Face</span>
-                    <span class="tag">3D Time</span>
-                    <span class="tag">Customizable</span>
-                    <span class="tag">Data Fields</span>
-                </div>
-                <div class="btn-row">
-                    <span id="download_link_3dtime" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_3dtime', {event_category: 'engagement', event_label: '3DTime'}); window.open('https://apps.garmin.com/apps/e79296f1-a375-4742-8358-8cbb8be84996', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span id="whatsnew_link_3dtime" class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_link_3dtime', {event_category: 'engagement', event_label: '3DTime'}); window.location='/3dtime/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
-                </div>
-            </div>
-        </a>
-        <!-- Simple 3D Time -->
-        <a href="/simple3dtime/" class="product product-link">
-            <img src="assets/simple3dtime/watch1.png" alt="Simple 3D Time watch face on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/simple3dtime/logo.png" alt="" class="product-name-logo" loading="lazy">Simple 3D <br class="mobile-break">Time <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_simple3dtime"></div></div>
-                <div class="product-tagline">Minimal 3D watch face for Garmin</div>
-                <p class="product-desc">The time in crisp 3D text, nothing more. <strong>Clean, focused design</strong> with color customization for <strong>70+ Garmin devices</strong>.</p>
-                <div class="tags">
-                    <span class="tag">Watch Face</span>
-                    <span class="tag">3D Text</span>
-                    <span class="tag">Minimal</span>
-                </div>
-                <div class="btn-row">
-                    <span id="download_link_simple3dtime" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_simple3dtime', {event_category: 'engagement', event_label: 'Simple 3D Time'}); window.open('https://apps.garmin.com/apps/be324f2c-7dbc-46e3-9e75-dab936a54b4b', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span id="whatsnew_link_simple3dtime" class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_link_simple3dtime', {event_category: 'engagement', event_label: 'Simple 3D Time'}); window.location='/simple3dtime/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
-                </div>
-            </div>
-        </a>
-        <!-- Gradient -->
-        <a href="/gradient/" class="product product-link">
-            <img src="assets/gradient/watch1.png" alt="Gradient watch face on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/gradient/logo.png" alt="" class="product-name-logo" loading="lazy">Gradient <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_gradient"></div></div>
-                <div class="product-tagline">Progress arc watch face for Garmin</div>
-                <p class="product-desc">Large colored digits at the center. Two <strong>90-degree progress arcs</strong> at the top and bottom, each tracking a different data field. <strong>15 preset themes</strong> and 5 independent color slots across 35 named colors.</p>
-                <div class="tags">
-                    <span class="tag">Watch Face</span>
-                    <span class="tag">Progress Arcs</span>
-                    <span class="tag">15 Themes</span>
-                    <span class="tag">AOD</span>
-                </div>
-                <div class="btn-row">
-                    <span id="download_link_gradient" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_gradient', {event_category: 'engagement', event_label: 'Gradient'}); window.open('https://apps.garmin.com/apps/831da381-871f-48cd-892d-9e467eb434cb', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span id="whatsnew_link_gradient" class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_link_gradient', {event_category: 'engagement', event_label: 'Gradient'}); window.location='/gradient/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
-                </div>
-            </div>
-        </a>
-        <!-- Bubble Dive -->
-        <a href="/bubbledive/" class="product product-link">
-            <img src="assets/bubbledive/watch1.png" alt="Bubble Dive watch face on Garmin watch" class="product-logo" loading="lazy">
-            <div>
-                <div class="product-name"><img src="assets/bubbledive/logo.png" alt="" class="product-name-logo" loading="lazy">Bubble Dive <svg class="product-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg><div class="app-stats" id="stats_bubbledive"></div></div>
-                <div class="product-tagline">Animated bubble watch face for Garmin</div>
-                <p class="product-desc">Large colored digits with <strong>live rising bubble animations</strong> across the face. Three configurable data bubble fields and <strong>9 built-in themes</strong> across 54+ Garmin devices.</p>
-                <div class="tags">
-                    <span class="tag">Watch Face</span>
-                    <span class="tag">Animated Bubbles</span>
-                    <span class="tag">3 Data Fields</span>
-                    <span class="tag">9 Themes</span>
-                </div>
-                <div class="btn-row">
-                    <span id="download_link_bubbledive" class="product-download" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'download_link_bubbledive', {event_category: 'engagement', event_label: 'BubbleDive'}); window.open('https://apps.garmin.com/apps/da38ce90-cf33-4e31-b7e0-57026405850d', '_blank');">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                        Get it on Connect IQ
-                    </span>
-                    <span id="whatsnew_link_bubbledive" class="changelog-btn" onclick="event.preventDefault(); event.stopPropagation(); gtag('event', 'whatsnew_link_bubbledive', {event_category: 'engagement', event_label: 'BubbleDive'}); window.location='/bubbledive/#changelog';"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>What's new</span>
-                </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
 </section>
 
