@@ -630,6 +630,44 @@
             <div class="changelog-list">
                 <div class="changelog-item">
                     <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.5</span>
+                        <span class="changelog-item-date">July 16, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Improvements</div>
+                        <ul class="changelog-item-list">
+                            <li>Responses that got cut short (reasoning or thinking consuming the token budget) are now automatically retried once with a larger budget instead of showing a truncated or missing cue</li>
+                            <li>If a model still fails after that retry, the app now falls back once to a smaller, cheaper model from the same provider instead of giving up, so a cue still gets delivered</li>
+                            <li>Removed the Opus and GPT Pro tiers from the model list to keep cost predictable for everyone</li>
+                            <li>Removed GPT-5.6 Luna and Gemini 3.5 Flash after testing showed they were unreliable for this use case: Luna is a reasoning model that could silently eat the entire token budget, and Gemini 3.5 Flash responded 50 to 60 times slower than the other Gemini option, causing timeouts</li>
+                        </ul>
+                        <div class="changelog-item-group">Fixes</div>
+                        <ul class="changelog-item-list">
+                            <li>Fixed slow key validation on Gemini models that default to adaptive thinking, which was causing the "Checking..." screen to hang for many seconds before timing out</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
+                        <span class="changelog-item-version">v1.0.4</span>
+                        <span class="changelog-item-date">July 16, 2026</span>
+                    </div>
+                    <div>
+                        <div class="changelog-item-group">Improvements</div>
+                        <ul class="changelog-item-list">
+                            <li>New Font Size setting with three levels (Small, Medium, Large); Small remains the default</li>
+                            <li>Updated to current model lineups across all three providers and removed retired or discontinued models</li>
+                        </ul>
+                        <div class="changelog-item-group">Fixes</div>
+                        <ul class="changelog-item-list">
+                            <li>Gemini responses were getting cut off mid-sentence because the model's internal reasoning was silently consuming the response token budget; the reasoning budget is now disabled so the full budget goes to the visible coaching cue</li>
+                            <li>Gemini API key validation was not catching invalid keys, since Gemini reports a bad key as a different error code than OpenAI and Claude do; invalid Gemini keys now correctly show the setup prompt</li>
+                            <li>Claude Sonnet responses were occasionally dropped entirely because the model defaults to internal reasoning that could consume the whole response budget, leaving nothing for the coaching cue; reasoning is now disabled for Claude requests so the full budget goes to the cue</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-item-header">
                         <span class="changelog-item-version">v1.0.3</span>
                         <span class="changelog-item-date">May 25, 2026</span>
                     </div>
