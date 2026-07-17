@@ -13,14 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#FAF8F3" id="themeColor">
     <title>CoachPulse - AI Coaching Data Field for Garmin</title>
-    <meta name="description" content="Real-time AI coaching on your Garmin watch. CoachPulse reads your biometrics during a workout and delivers intelligent, timely coaching cues right on your wrist.">
+    <meta name="description" content="Real-time AI coaching on your Garmin watch. CoachPulse reads your biometrics during a workout and delivers intelligent, timely coaching cues right on your wrist. Pick from 7 coach personas, race against a goal time with live pacing, and get a debrief the coach remembers next session.">
     <link rel="canonical" href="https://nioquant.com/coachpulse/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nioquant.com/coachpulse/">
     <meta property="og:title" content="CoachPulse - AI Coaching Data Field for Garmin">
-    <meta property="og:description" content="Real-time AI coaching on your Garmin watch. Reads your biometrics and delivers intelligent coaching cues right on your wrist.">
+    <meta property="og:description" content="Real-time AI coaching on your Garmin watch. 7 coach personas, race mode with live pacing, and a coach that remembers your last workouts.">
     <meta property="og:image" content="https://nioquant.com/assets/coachpulse/logo.png">
 
     <!-- Structured data -->
@@ -30,7 +30,8 @@
       "@type": "SoftwareApplication",
       "name": "CoachPulse",
       "url": "https://nioquant.com/coachpulse/",
-      "description": "Real-time AI coaching data field for Garmin watches. Reads biometrics and delivers intelligent coaching cues during workouts.",
+      "description": "Real-time AI coaching data field for Garmin watches. Reads biometrics and delivers intelligent coaching cues during workouts, with 7 coach personas, race mode with live pacing, and coach memory across workouts.",
+      "softwareVersion": "1.0.7",
       "operatingSystem": "Garmin Connect IQ",
       "applicationCategory": "SportsApplication",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -418,6 +419,8 @@
             <div class="tags">
                 <span>AI Coaching</span>
                 <span>Real-time Cues</span>
+                <span>Race Mode</span>
+                <span>7 Coach Personas</span>
                 <span>Any Sport</span>
             </div>
             <div class="app-stats" id="stats_coachpulse"></div>
@@ -427,7 +430,7 @@
     </div>
 
     <div class="hero-intro">
-        <p>You lace up, start the activity, and run. Fifteen minutes in, your heart rate is creeping higher than it should. You push through anyway. You finish tired, a little overtrained, not quite sure if today helped or hurt. <strong>CoachPulse is the coach you wish had been watching.</strong></p>
+        <p>You lace up, start the activity, and run. Fifteen minutes in, your heart rate is creeping higher than it should. You push through anyway. You finish tired, a little overtrained, not quite sure if today helped or hurt. <strong>CoachPulse is the coach you wish had been watching.</strong> And now it comes with a voice you choose, a race plan it defends, and a memory of how your training has been going.</p>
     </div>
 
     </div>
@@ -461,7 +464,7 @@
         <div class="journey-section-text">
             <div class="section-label">When it speaks up</div>
             <h2>What triggers a coaching cue</h2>
-            <p class="journey-text">CoachPulse fires at meaningful moments: <strong>workout start</strong> (readiness check), <strong>kilometre and time milestones</strong>, <strong>sustained high effort</strong> (zone 3+ for too long), and <strong>pace drops</strong> below your session average. A periodic check-in interval is also available. Every trigger can be turned on or off individually.</p>
+            <p class="journey-text">CoachPulse fires at meaningful moments: a <strong>session briefing at workout start</strong>, <strong>kilometre and time milestones</strong>, <strong>sustained high effort</strong> (zone 3+ for too long), <strong>pace drops</strong> below your session average, and a <strong>final debrief when you stop the timer</strong>. Want a word right now? <strong>Press the lap button</strong> and the coach reads your effort and cues the next lap. A periodic check-in interval is also available, and every trigger can be turned on or off individually.</p>
         </div>
         <div class="journey-screenshot">
             <img src="../assets/coachpulse/watch-trigger.png" alt="CoachPulse showing a coaching cue" loading="lazy">
@@ -481,13 +484,31 @@
 
     <div class="journey-section">
         <div class="journey-section-text">
-            <div class="section-label">Tone and sensitivity</div>
-            <h2>Coach it the way you want to be coached</h2>
-            <p class="journey-text">Choose a <strong>Coaching Style</strong> from Relaxed to Aggressive. Control how much the AI weighs fatigue signals with <strong>Recovery Focus</strong>. Set <strong>Response Length</strong> to Short, Normal, or Long as your baseline preference. The word count also adapts automatically to the actual size of the data field slot, so responses fit cleanly whether you're on a full-screen layout or a compact split.</p>
+            <div class="section-label">Your coach, your voice</div>
+            <h2>Pick who is in your corner</h2>
+            <p class="journey-text">Every athlete responds to a different voice. Choose from <strong>7 coach personas</strong>: the classic Supportive Partner, a barking Drill Sergeant, a clinical Sports Scientist who cites your numbers, a Zen Master who cues breath and form, a gruff Old-School Trainer, a Hype Friend who celebrates every kilometre, or a Race Tactician who thinks in splits. Then dial in <strong>Push Level</strong> from Relaxed to Aggressive, because voice and intensity are separate things: a Zen Master at level 5 will calmly demand your best, and a Drill Sergeant at level 1 will loudly protect your recovery day. Want more? <strong>Custom Coach Notes</strong> let you type anything on top: your language, your quirks, your race.</p>
         </div>
         <div class="journey-screenshot">
-            <img src="../assets/coachpulse/watch-recovery.png" alt="CoachPulse coaching style settings" loading="lazy">
+            <img src="../assets/coachpulse/watch-recovery.png" alt="CoachPulse coach persona and push level settings" loading="lazy">
         </div>
+    </div>
+
+    <div class="journey-section no-image">
+        <div class="section-label">Race day</div>
+        <h2>A pacing strategist on your wrist</h2>
+        <p class="journey-text">Set a <strong>race target and a goal time</strong>, from a 5K to a marathon, 100K ultras, or full-distance bike legs, and every cue starts thinking like a race strategist. CoachPulse computes your required pace and tracks the gap live: <strong>how many seconds ahead or behind plan you are and your projected finish</strong>. Forty seconds up at halfway? A good coach tells you to bank nothing and hold back. Slipping behind at 30K? It tells you exactly what pace buys it back. That is what Race Mode does, on every trigger, all race long.</p>
+    </div>
+
+    <div class="journey-section no-image">
+        <div class="section-label">Before, during, after</div>
+        <h2>A coach that remembers you</h2>
+        <p class="journey-text">Real coaching does not start at kilometre one and end at the finish line. CoachPulse opens each session with a <strong>briefing</strong> that reads your body battery, sleep, and training load and sets the intent for today. When you stop the timer, it closes with a <strong>debrief</strong>: the takeaway that matters, backed by a number. And here is the part no data field has done before: <strong>it remembers</strong>. Notes from your last 8 workouts, what sport, when, and how it went, travel into the next briefing. Skip three days and your coach knows. String together a great week and your coach knows that too.</p>
+    </div>
+
+    <div class="journey-section no-image">
+        <div class="section-label">Fit and finish</div>
+        <h2>Every word earns its place</h2>
+        <p class="journey-text">Control how much the AI weighs fatigue signals with <strong>Recovery Focus</strong>. Set <strong>Response Length</strong> to Short, Normal, or Long as your baseline. The new <strong>Auto font size</strong> picks the largest font that fits each message and shrinks only when needed, while an explicit Small, Medium, or Large stays exactly that size and the coach simply writes shorter. Either way, every cue is sized to your field, whether you run a full-screen layout or a compact split.</p>
     </div>
 
     <div class="journey-section">
@@ -532,7 +553,7 @@
                 </div>
                 <div class="setting-item">
                     <div class="setting-name">AI Model</div>
-                    <div class="setting-desc">The specific model to call. OpenAI: GPT-5.5 Pro, GPT-5.4 mini (default), GPT-5.4 nano. Claude: Opus 4.7, Sonnet 4.6, Haiku 4.6. Gemini: 2.5 Pro, 2.5 Flash (default), 2.5 Flash Lite.</div>
+                    <div class="setting-desc">The specific model to call. OpenAI: GPT-5.4, GPT-5.6 Terra, GPT-5.4 mini (default). Claude: Sonnet 5, Haiku 4.5. Gemini: 3.1 Flash Lite. The lineup is kept to fast, cost-predictable models that respond quickly mid-workout; if a response gets cut short, CoachPulse automatically retries and can fall back to a smaller model in the same provider so a cue still arrives.</div>
                 </div>
                 <div class="setting-item">
                     <div class="setting-name">API Key</div>
@@ -549,12 +570,24 @@
                     <div class="setting-desc">A short description of what you are trying to accomplish today, up to 120 characters. Leave blank to coach based on biometrics and sport type alone.</div>
                 </div>
                 <div class="setting-item">
+                    <div class="setting-name">Race Target</div>
+                    <div class="setting-desc">The distance you are racing: 5K, 10K, 15K, Half Marathon, Marathon, 50K, 100K, or 40K, 90K, and 180K bike legs. Combined with Race Goal Time it activates Race Mode. Default is Off.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Race Goal Time</div>
+                    <div class="setting-desc">Your goal time in minutes for the race target. When both are set, every cue knows your required pace, the live gap to your plan, and your projected finish. 0 turns Race Mode off.</div>
+                </div>
+                <div class="setting-item">
                     <div class="setting-name">Session Memory</div>
                     <div class="setting-desc">When on, the AI remembers its recent responses throughout the activity and uses them to avoid repetition and build on prior coaching. OpenAI uses server-side conversation threading; Claude and Gemini receive the last N responses in the system prompt. On by default.</div>
                 </div>
                 <div class="setting-item">
                     <div class="setting-name">History Size</div>
                     <div class="setting-desc">How many past coaching responses to include in the session memory context for Claude and Gemini. Range 3 to 20. Default 10. Has no effect when Session Memory is off or when using OpenAI (which uses server-side threading).</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Coach Memory</div>
+                    <div class="setting-desc">When on, the watch keeps notes from your last 8 workouts (sport, date, and the debrief takeaway) and feeds them into the next session briefing and debrief, so the coach knows how your training has been going. Only workouts where CoachPulse ran are included. On by default.</div>
                 </div>
             </div>
         </div>
@@ -563,8 +596,16 @@
             <div class="settings-group-title">Coaching Behaviour</div>
             <div class="settings-list">
                 <div class="setting-item">
-                    <div class="setting-name">Coaching Style</div>
-                    <div class="setting-desc">How direct the AI should be. <strong>1 Relaxed</strong> to <strong>5 Aggressive</strong>. Default is 3 Balanced.</div>
+                    <div class="setting-name">Coach Persona</div>
+                    <div class="setting-desc">The voice coaching you: <strong>Supportive Partner</strong> (default), <strong>Drill Sergeant</strong>, <strong>Sports Scientist</strong>, <strong>Zen Master</strong>, <strong>Old-School Trainer</strong>, <strong>Hype Friend</strong>, or <strong>Race Tactician</strong>.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Custom Coach Notes</div>
+                    <div class="setting-desc">Free text, up to 200 characters, layered on top of the persona. Set your language, name a race, or describe how you like to be coached. It shapes tone and content but never overrides the safety rules.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Push Level</div>
+                    <div class="setting-desc">How hard the coach pushes you, independent of the persona voice. <strong>1 Relaxed</strong> to <strong>5 Aggressive</strong>. Default is 3 Balanced.</div>
                 </div>
                 <div class="setting-item">
                     <div class="setting-name">Recovery Focus</div>
@@ -573,6 +614,10 @@
                 <div class="setting-item">
                     <div class="setting-name">Response Length</div>
                     <div class="setting-desc"><strong>Short</strong>: 5 to 6 words. <strong>Normal</strong>: 5 to 9 words (default). <strong>Long</strong>: 12 to 25 words. The actual word count also adapts automatically to the data field dimensions, so the same setting works well across full-screen and split-slot layouts.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Font Size</div>
+                    <div class="setting-desc"><strong>Auto</strong> (default) draws each message in the largest font that fits and shrinks automatically when needed. Explicit <strong>Small</strong>, <strong>Medium</strong>, or <strong>Large</strong> keep that exact size, and the coach writes shorter cues to match.</div>
                 </div>
             </div>
         </div>
@@ -590,7 +635,15 @@
                 </div>
                 <div class="setting-item">
                     <div class="setting-name">Intro Cue</div>
-                    <div class="setting-desc">Fire a cue at workout start based on your readiness and session goal. On by default.</div>
+                    <div class="setting-desc">Open the session with a briefing that uses your readiness, session goal, and recent workouts to set today's intent. On by default.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Lap Coach</div>
+                    <div class="setting-desc">Press the lap button and the coach answers with a read of your effort and a cue for the next lap. Works with auto-lap and skips the usual cooldown, since you asked for it. Off by default to keep API usage predictable with auto-lap enabled.</div>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-name">Workout Debrief</div>
+                    <div class="setting-desc">When you stop the timer, the coach delivers a final summary with the most important takeaway from the session. This is also the note saved into Coach Memory. On by default.</div>
                 </div>
                 <div class="setting-item">
                     <div class="setting-name">Milestone Cues</div>
