@@ -1,0 +1,16 @@
+name = "nioquant-inquiry"
+main = "inquiry-worker.mjs"
+compatibility_date = "2026-10-04"
+
+[vars]
+ALLOWED_ORIGINS = "https://nioquant.com,https://www.nioquant.com"
+# This must be an address on a Resend-verified domain before deployment.
+MAIL_FROM = "nioquant <info@nioquant.com>"
+
+[[durable_objects.bindings]]
+name = "DAILY_IP_LIMITER"
+class_name = "DailyIpLimiter"
+
+[exports.DailyIpLimiter]
+type = "durable-object"
+storage = "sqlite"

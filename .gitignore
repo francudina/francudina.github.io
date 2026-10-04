@@ -1,2 +1,9 @@
 .DS_Store
 /*/.DS_Store
+
+# Cloudflare Workers local cache and local-only secrets
+backend/.wrangler/
+backend/.dev.vars
+backend/.env
+backend/.env.*
+!backend/.env.example

@@ -1,0 +1,239 @@
+/* Product and legal pages share the studio palette, navigation and type scale. */
+.app-detail,.legal-page {
+  --color-bg:var(--bg);
+  --color-bg-alt:var(--alt);
+  --color-text:var(--ink);
+  --color-text-muted:var(--muted);
+  --color-border:var(--line);
+}
+.app-intro { padding-top:48px; padding-bottom:56px; }
+.app-intro .breadcrumb { margin-bottom:36px; }
+.app-detail .page-header {
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  align-items:center;
+  gap:64px;
+}
+.app-detail .page-header-text { min-width:0; }
+.app-detail .label,.legal-page .label,.app-detail .section-label {
+  display:block;
+  color:var(--muted);
+  text-transform:uppercase;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.14em;
+  margin-bottom:16px;
+}
+.app-detail .page-title { display:flex; align-items:center; gap:16px; font-size:clamp(42px,4.8vw,64px); }
+.app-detail .page-title-logo { width:44px; height:44px; border-radius:10px; flex-shrink:0; }
+.app-detail .mobile-break { display:none; }
+.app-detail .page-subtitle { font-size:18px; line-height:1.6; margin-top:18px; max-width:520px; }
+.app-detail .page-actions { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:28px; }
+.app-detail .page-title-btn-group { display:contents; }
+.app-detail :is(.download-btn,.open-btn,.changelog-btn,.selfhost-btn,.source-btn) {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:44px;
+  padding:10px 16px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  font-size:12px;
+  font-weight:500;
+  background:transparent;
+  transition:background .2s,border-color .2s;
+}
+.app-detail :is(.download-btn,.open-btn) { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+.app-detail :is(.download-btn,.open-btn):hover { background:var(--accent); border-color:var(--accent); }
+.app-detail :is(.changelog-btn,.selfhost-btn,.source-btn):hover { background:var(--alt); }
+.app-detail .page-actions svg,.app-detail .open-btn svg { width:16px; height:16px; }
+.app-detail .tags,.app-detail .sports-list { display:flex; flex-wrap:wrap; gap:7px; margin:24px 0 0; }
+.app-detail .tags span,.app-detail .sports-list span { padding:4px 10px; border:1px solid var(--line); border-radius:30px; color:var(--muted); font-size:10px; }
+.app-detail .app-stats { display:flex; flex-wrap:wrap; gap:12px; margin-top:20px; }
+.app-detail .app-stats:empty { display:none; }
+.app-detail .app-stat { display:inline-flex; align-items:center; gap:5px; color:var(--muted); font-size:11px; }
+.app-detail .app-stat svg { width:12px; height:12px; }
+.app-detail .star-rating { display:inline-block; position:relative; }
+.app-detail .star-empty { color:var(--line); letter-spacing:1px; }
+.app-detail .star-filled { position:absolute; top:0; left:0; overflow:hidden; white-space:nowrap; color:var(--accent); letter-spacing:1px; }
+.app-hero-visual {
+  display:grid;
+  place-items:center;
+  min-height:380px;
+  border-radius:4px;
+  background:var(--alt);
+  padding:32px;
+}
+.app-detail .hero-watch { width:210px; height:290px; object-fit:contain; filter:drop-shadow(0 18px 15px rgba(0,0,0,.12)); }
+.garmin-app .app-hero-visual { background:var(--accent-bg); }
+.garmin-game .app-hero-visual { background:#ece6da; }
+[data-theme=dark] .garmin-game .app-hero-visual { background:#302d24; }
+.app-hero-interface { padding:24px; min-height:320px; }
+.app-hero-interface img { width:100%; border:1px solid var(--line); border-radius:4px; }
+.app-detail .hero-intro { margin-top:40px; padding-top:32px; border-top:1px solid var(--line); }
+.app-detail .hero-intro p { max-width:850px; font-size:17px; line-height:1.85; }
+.app-detail strong { color:var(--ink); font-weight:600; }
+.app-detail .page-content { padding-bottom:88px; }
+.app-detail :is(.journey-section,.closing,.techniques-section,.selfhost-section,.changelog-section) {
+  margin:0 0 64px;
+  padding-top:40px;
+  border-top:1px solid var(--line);
+  scroll-margin-top:112px;
+}
+.app-detail :is(.journey-section,.closing,.techniques-section,.selfhost-section,.changelog-section) h2 {
+  font-size:clamp(28px,3vw,38px);
+  line-height:1.2;
+  margin-bottom:20px;
+}
+.app-detail .journey-text,.app-detail .closing p,.app-detail .selfhost-intro { font-size:15px; line-height:1.85; margin-bottom:24px; max-width:850px; }
+.app-detail .journey-section:has(> .journey-section-text) { display:grid; grid-template-columns:1.3fr 1fr; align-items:center; gap:64px; }
+.app-detail .journey-section:has(> .journey-section-text) .journey-text { margin-bottom:0; }
+.app-detail .journey-section:has(> .journey-section-text) .journey-screenshot { padding:28px; background:var(--alt); min-height:300px; display:grid; place-items:center; }
+.app-detail .journey-section:has(> .journey-section-text) .journey-screenshot img { max-height:260px; max-width:210px; object-fit:contain; }
+.app-detail .journey-screenshot { border-radius:4px; overflow:hidden; border:1px solid var(--line); }
+.app-detail .journey-screenshot a { display:block; }
+.app-detail .journey-screenshot img { width:100%; }
+.app-detail .journey-pair { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.app-detail .section-anchor { font-size:14px; color:var(--muted); margin-left:8px; opacity:.4; }
+.app-detail .section-anchor:hover,.app-detail .section-anchor:focus-visible { opacity:1; }
+.app-detail .watch-row-wrap { overflow-x:auto; padding:24px 16px; margin:0 0 56px; background:var(--alt); border-radius:4px; }
+.app-detail .watch-track { display:flex; justify-content:space-around; gap:24px; min-width:760px; }
+.app-detail .watch-track img { width:140px; height:185px; object-fit:contain; flex-shrink:0; }
+.app-detail .sports-list { margin:0 0 24px; }
+.app-detail :is(.guide-steps,.guide-controls,.settings-list) { display:flex; flex-direction:column; gap:0; margin-bottom:28px; }
+.app-detail .guide-step { display:flex; align-items:baseline; gap:18px; padding:14px 0; border-bottom:1px solid var(--line); }
+.app-detail .guide-step-num { display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--accent-bg); color:var(--accent); font-size:12px; flex-shrink:0; }
+.app-detail :is(.guide-step-text,.guide-control-desc,.setting-desc) { color:var(--muted); font-size:14px; line-height:1.8; }
+.app-detail .guide-control,.app-detail .setting-item { display:grid; grid-template-columns:180px 1fr; gap:24px; padding:16px 0; border-bottom:1px solid var(--line); }
+.app-detail .guide-control-key,.app-detail .setting-name { font-size:13px; font-weight:500; }
+.app-detail .settings-group { margin-top:32px; }
+.app-detail .settings-group-title { font-size:13px; font-weight:600; margin-bottom:8px; }
+.app-detail .selfhost-summary { display:flex; align-items:center; gap:10px; font-size:clamp(28px,3vw,38px); font-weight:600; letter-spacing:-.04em; }
+.app-detail .selfhost-content { margin-top:24px; }
+.app-detail .selfhost-step { margin:24px 0; }
+.app-detail .selfhost-step h4 { font-size:12px; font-weight:500; text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; }
+.app-detail .selfhost-step p,.app-detail .selfhost-step ul { color:var(--muted); font-size:14px; margin-bottom:12px; }
+.app-detail .code-wrap { position:relative; min-width:0; }
+.app-detail .code-block { background:var(--alt); border:1px solid var(--line); border-radius:4px; padding:24px; padding-right:70px; font:12px/1.8 Menlo,Consolas,monospace; overflow-x:auto; white-space:pre; }
+.app-detail .copy-btn { position:absolute; top:10px; right:10px; min-height:32px; border:1px solid var(--line); background:var(--bg); border-radius:4px; font-size:11px; padding:5px 10px; }
+.app-detail .copy-btn.copied { color:var(--accent); }
+.app-detail .selfhost-note { border-left:2px solid var(--accent); padding-left:16px; font-size:13px; }
+.app-detail .changelog-section { margin-bottom:0; }
+.app-detail .changelog-section summary { display:flex; align-items:center; gap:14px; cursor:pointer; list-style:none; font-size:clamp(28px,3vw,38px); font-weight:600; letter-spacing:-.04em; line-height:1.3; }
+.app-detail .changelog-section summary::-webkit-details-marker { display:none; }
+.app-detail .changelog-section summary .chevron { transition:transform .2s; }
+.app-detail .changelog-section details[open] summary .chevron { transform:rotate(180deg); }
+.app-detail .changelog-list { margin-top:32px; }
+.app-detail .changelog-item { display:grid; grid-template-columns:120px 1fr; gap:24px; padding:24px 0; border-top:1px solid var(--line); }
+.app-detail .changelog-item-header { display:flex; flex-direction:column; gap:5px; }
+.app-detail .changelog-item-version { font-size:14px; font-weight:600; }
+.app-detail .changelog-item-date { font-size:12px; color:var(--muted); }
+.app-detail .changelog-item-list { padding-left:18px; margin:0; color:var(--muted); font-size:14px; line-height:1.8; }
+.app-detail .changelog-item-list li+li { margin-top:6px; }
+.app-detail .changelog-item-group { font-size:11px; font-weight:500; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; margin:20px 0 8px; }
+.app-detail .features-grid,.app-detail .techniques-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:28px; }
+.app-detail .feature-card,.app-detail .technique-card { padding:24px; border:1px solid var(--line); border-radius:4px; }
+.app-detail .feature-card h4,.app-detail .technique-card h3 { margin:0 0 12px; font-size:18px; font-weight:500; }
+.app-detail .feature-card p,.app-detail .technique-desc { font-size:13px; line-height:1.8; margin:0; }
+.app-detail .technique-devices { margin-top:14px; color:var(--muted); font-size:11px; }
+.back-to-top { position:fixed; bottom:24px; right:24px; display:grid; place-items:center; width:44px; height:44px; border:1px solid var(--line); border-radius:50%; background:var(--bg); opacity:0; visibility:hidden; transition:opacity .2s; z-index:15; }
+.back-to-top.visible { opacity:1; visibility:visible; }
+.legal-layout { display:grid; grid-template-columns:200px minmax(0,1fr); gap:64px; padding-top:48px; padding-bottom:88px; }
+.policy-nav { position:sticky; top:120px; align-self:start; }
+.policy-nav nav { display:flex; flex-direction:column; gap:4px; margin-top:18px; }
+.policy-nav a { font-size:12px; padding:10px 14px; min-height:44px; border-radius:4px; color:var(--muted); }
+.policy-nav a:hover { background:var(--alt); color:var(--ink); }
+.policy-nav a[aria-current=page] { background:var(--accent-bg); color:var(--accent); }
+.policy-content { min-width:0; max-width:780px; }
+.policy-content .breadcrumb { margin-bottom:32px; }
+.policy-content :is(h1,.policy-title,.page-title) { font-size:clamp(38px,4.4vw,56px); margin:0 0 20px; }
+.policy-content .page-title { display:flex; gap:14px; align-items:center; }
+.policy-content .page-title-logo { width:40px; height:40px; }
+.policy-app-name { display:flex; gap:10px; align-items:center; font-size:16px; color:var(--ink); }
+.policy-app-name img { width:28px; height:28px; border-radius:6px; }
+.policy-date,.policy-content .page-date { font-size:12px; color:var(--muted); margin:16px 0 40px; }
+.policy-content :is(.policy-section,.section) { margin-top:32px; padding-top:28px; border-top:1px solid var(--line); }
+.policy-content h2 { font-size:25px; line-height:1.3; margin-bottom:16px; letter-spacing:-.025em; }
+.policy-content p,.policy-content li { font-size:14px; line-height:1.9; }
+.policy-content p+p { margin-top:16px; }
+.policy-content ul { padding-left:20px; color:var(--muted); margin:16px 0; }
+.policy-content li+li { margin-top:8px; }
+.policy-content p a,.policy-content li a { text-decoration:underline; text-underline-offset:3px; }
+.policy-content .back-link { display:inline-flex; align-items:center; gap:10px; font-size:12px; color:var(--muted); margin-bottom:28px; min-height:44px; }
+.license-block { padding:28px; background:var(--alt); border:1px solid var(--line); border-radius:4px; white-space:pre-wrap; overflow-wrap:anywhere; font:13px/1.9 Menlo,Consolas,monospace; margin-top:32px; }
+.contact-policy .eyebrow { display:block; margin-bottom:16px; }
+.contact-policy>h2 { margin-top:32px; padding-top:28px; border-top:1px solid var(--line); }
+@media(max-width:1000px) {
+  .app-detail .page-header,.app-detail .journey-section:has(> .journey-section-text) { gap:32px; }
+  .app-detail .page-title { font-size:44px; }
+  .app-hero-visual { min-height:340px; padding:24px; }
+  .app-detail .hero-watch { width:180px; height:250px; }
+  .legal-layout { grid-template-columns:170px minmax(0,1fr); gap:32px; }
+  .app-detail .features-grid,.app-detail .techniques-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:760px) {
+  .app-intro { padding-top:28px; padding-bottom:40px; }
+  .app-intro .breadcrumb { margin-bottom:28px; }
+  .app-detail .page-header { grid-template-columns:1fr; gap:28px; }
+  .app-detail .page-title { font-size:clamp(36px,9vw,48px); gap:12px; }
+  .app-detail .page-title-logo { width:36px; height:36px; }
+  .app-detail .page-subtitle { font-size:16px; margin-top:14px; }
+  .app-detail .page-actions { margin-top:22px; }
+  .app-detail .tags { margin-top:20px; }
+  .app-hero-visual { min-height:280px; }
+  .app-detail .hero-watch { width:165px; height:225px; }
+  .app-hero-interface { min-height:0; padding:18px; }
+  .app-detail .hero-intro { margin-top:28px; padding-top:24px; }
+  .app-detail .hero-intro p { font-size:15px; }
+  .app-detail .journey-section:has(> .journey-section-text) { grid-template-columns:1fr; gap:24px; }
+  .app-detail .journey-section:has(> .journey-section-text) .journey-screenshot { min-height:260px; }
+  .app-detail .journey-section:has(> .journey-section-text) .journey-screenshot img { max-height:220px; max-width:175px; }
+  .app-detail :is(.journey-section,.closing,.techniques-section,.selfhost-section,.changelog-section) { margin-bottom:40px; padding-top:28px; }
+  .app-detail .journey-pair { grid-template-columns:1fr; }
+  .app-detail .watch-row-wrap { margin-bottom:40px; }
+  .app-detail .watch-track { justify-content:flex-start; min-width:0; width:max-content; gap:20px; }
+  .app-detail .watch-track img { width:125px; height:165px; }
+  .app-detail .guide-control,.app-detail .setting-item { grid-template-columns:1fr; gap:6px; }
+  .app-detail .changelog-item { grid-template-columns:1fr; gap:14px; }
+  .app-detail .changelog-item-header { flex-direction:row; align-items:center; gap:12px; }
+  .app-detail .features-grid,.app-detail .techniques-grid { grid-template-columns:1fr; }
+  .legal-layout { grid-template-columns:1fr; gap:32px; padding-top:28px; padding-bottom:56px; }
+  .policy-nav { position:static; min-width:0; }
+  .policy-nav nav { flex-direction:row; overflow-x:auto; margin-top:12px; padding-bottom:8px; }
+  .policy-nav a { white-space:nowrap; flex-shrink:0; }
+  .policy-content .breadcrumb { margin-bottom:24px; }
+  .policy-content :is(h1,.policy-title,.page-title) { font-size:38px; }
+  .back-to-top { right:16px; bottom:16px; }
+  .license-block { padding:20px; font-size:12px; }
+}
+.company-details {
+  margin:0;
+}
+.company-details > div {
+  display:grid;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:24px;
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
+}
+.company-details dt {
+  color:var(--muted);
+  font-size:12px;
+}
+.company-details dd {
+  margin:0;
+  font-size:14px;
+  line-height:1.8;
+  overflow-wrap:anywhere;
+}
+.company-details a {
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+@media(max-width:760px) {
+  .company-details > div {
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+}

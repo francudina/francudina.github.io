@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#faf8f3">
+    <title>
+      Software & Automations – nioquant
+    </title>
+    <meta name="description" content="Explore nioquant apps for Garmin, microscopy tools and custom workflow automations. Find RacketScore, CoachPulse, ScanPlan and more.">
+    <link rel="canonical" href="https://nioquant.com/software/">
+    <link rel="icon" type="image/svg+xml" href="/assets/nioquant-logo.svg">
+    <link rel="shortcut icon" href="/favicon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nioquant.com/software/">
+    <meta property="og:title" content="Software & Automations – nioquant">
+    <meta property="og:description" content="Explore nioquant apps for Garmin, microscopy tools and custom workflow automations. Find RacketScore, CoachPulse, ScanPlan and more.">
+    <meta property="og:image" content="https://nioquant.com/assets/racketscore/dashboard.png">
+    <link rel="stylesheet" href="/assets/site.css?v=20261004-selection">
+    <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "nioquant", "url": "https://nioquant.com/", "logo": "https://nioquant.com/assets/nioquant-logo.svg", "description": "Everyday software, automations, custom 3D modeling and iterative prototyping.", "email": "info@nioquant.com", "sameAs": ["https://www.linkedin.com/in/francudina/", "https://github.com/francudina", "https://instagram.com/nioquant"]}</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4W5N770LK6"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-4W5N770LK6');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <header class="nav">
+      <div class="container nav-inner">
+        <a href="/" class="nav-logo" aria-label="nioquant home">
+          <img src="/assets/nioquant-logo.svg" width="31" height="31" alt="">
+          nioquant
+        </a>
+        <div class="nav-right">
+          <nav aria-label="Main navigation">
+            <ul class="nav-links" id="navLinks">
+              <li>
+                <a href="/software/" aria-current="page">
+                  Software
+                </a>
+              </li>
+              <li>
+                <a href="/3d-modeling/">
+                  3D design
+                </a>
+              </li>
+              <li>
+                <a href="/#about">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="/contact/">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="nav-tools">
+            <a href="/contact/" class="list-link" aria-label="Review your inquiry list">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M8 7h12M8 12h12M8 17h12M4 7h.01M4 12h.01M4 17h.01"/>
+              </svg>
+              <span class="list-label">
+                Your list
+              </span>
+              <span class="list-count" data-list-count>
+                0
+              </span>
+            </a>
+            <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle colour theme">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M20.8 13A9 9 0 0 1 11 3.2 9 9 0 1 0 20.8 13Z"/>
+              </svg>
+            </button>
+            <button class="icon-button nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="software-hero">
+        <div class="container">
+          <div class="breadcrumb">
+            <a href="/">
+              Studio
+            </a>
+            <span>
+              /
+            </span>
+            <span>
+              Software
+            </span>
+          </div>
+          <div class="software-hero-layout">
+            <div class="software-hero-copy">
+              <span class="eyebrow">
+                Everyday software &amp; automations
+              </span>
+              <h1>
+                Less friction.
+                <br>
+                More useful tools.
+              </h1>
+              <p>
+                For your wrist, your work, and the moments in between. Small tools that make everyday life a little easier.
+              </p>
+              <div class="btn-row">
+                <a class="btn btn-primary" href="#garmin-apps">
+                  Explore Garmin apps
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M5 12h14m-6-6 6 6-6 6"/>
+                  </svg>
+                </a>
+                <a class="btn" href="#tools">
+                  Tools for your work
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M5 12h14m-6-6 6 6-6 6"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <figure class="software-hero-figure" data-app-carousel>
+              <a href="#garmin-apps" class="software-hero-stage" aria-label="Explore Garmin apps">
+                <span class="app-preview-label">
+                  Designed for your everyday
+                </span>
+                <div class="hero-watch-set">
+                  <img src="/assets/tictactoe/gameplay.png" width="631" height="874" alt="TicTacToe running on a Garmin watch" fetchpriority="high">
+                  <img src="/assets/racketscore/watch-scoreboard.png" width="462" height="640" alt="RacketScore match scoreboard on a Garmin watch" fetchpriority="high">
+                  <img src="/assets/connect4/gameplay.png" width="631" height="874" alt="Connect 4 running on a Garmin watch" fetchpriority="high">
+                </div>
+                <span class="hero-stage-note">
+                  A little more from your wrist
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M6 18 18 6M6 6h12v12"/>
+                  </svg>
+                </span>
+              </a>
+              <button class="hero-carousel-toggle" type="button" aria-label="Pause app previews" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M9 6v12M15 6v12"/>
+                </svg>
+              </button>
+              <figcaption>
+                <span>
+                  Digital tools / a collection of everyday ideas
+                </span>
+                <span>
+                  Garmin Connect IQ
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <nav class="software-index" aria-label="Software categories">
+        <div class="container software-index-inner">
+          <a href="#garmin-apps">
+            <span>
+              Apps
+            </span>
+            <small>
+              02
+            </small>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6"/>
+            </svg>
+          </a>
+          <a href="#watch-faces">
+            <span>
+              Watch faces
+            </span>
+            <small>
+              05
+            </small>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6"/>
+            </svg>
+          </a>
+          <a href="#games">
+            <span>
+              Games
+            </span>
+            <small>
+              03
+            </small>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6"/>
+            </svg>
+          </a>
+          <a href="#tools">
+            <span>
+              Work tools
+            </span>
+            <small>
+              01
+            </small>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6"/>
+            </svg>
+          </a>
+        </div>
+      </nav>
+      <div id="products">
+        <section class="section" id="garmin-apps">
+          <div class="container">
+            <div class="section-heading">
+              <div>
+                <span class="eyebrow">
+                  01 / Garmin apps
+                </span>
+                <h2>
+                  More from
+                  <br>
+                  every movement.
+                </h2>
+              </div>
+              <p>
+                Purpose-built apps for the things you love doing. Keep track of a match, or find a little direction in your next workout.
+              </p>
+            </div>
+            <div class="app-featured-grid">
+              <article class="app-gallery-card app-featured-card">
+                <a href="/racketscore/" class="app-preview app-featured-preview preview-sport" aria-label="Explore RacketScore">
+                  <span class="app-preview-label">
+                    RACKET SPORTS
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-side" src="/assets/racketscore/watch-sport-select.png" alt="" width="631" height="874" loading="lazy">
+                    <img class="app-watch-main" src="/assets/racketscore/watch-scoreboard.png" alt="RacketScore running on a Garmin watch" width="631" height="874" loading="lazy">
+                    <img class="app-watch-side" src="/assets/racketscore/watch-stats.png" alt="" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/racketscore/">
+                        RacketScore
+                      </a>
+                    </h3>
+                    <p>
+                      Track your match. Keep score. See your progress.
+                    </p>
+                  </div>
+                  <a href="/racketscore/" class="app-arrow" aria-label="Read about RacketScore">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_racketscore" aria-label="RacketScore download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/3e320d95-a886-4f6a-96dc-dc9dd225bae3" target="_blank" rel="noopener noreferrer" aria-label="Get RacketScore on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+              <article class="app-gallery-card app-featured-card">
+                <a href="/coachpulse/" class="app-preview app-featured-preview preview-coach" aria-label="Explore CoachPulse">
+                  <span class="app-preview-label">
+                    TRAINING & COACHING
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-side" src="/assets/coachpulse/watch-goal.png" alt="" width="631" height="874" loading="lazy">
+                    <img class="app-watch-main" src="/assets/coachpulse/watch-hero.png" alt="CoachPulse running on a Garmin watch" width="631" height="874" loading="lazy">
+                    <img class="app-watch-side" src="/assets/coachpulse/watch-recovery.png" alt="" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/coachpulse/">
+                        CoachPulse
+                      </a>
+                    </h3>
+                    <p>
+                      A little guidance, right when you need it.
+                    </p>
+                  </div>
+                  <a href="/coachpulse/" class="app-arrow" aria-label="Read about CoachPulse">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_coachpulse" aria-label="CoachPulse download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/e8e7a400-f711-495c-b9a5-eaed8cc5f349" target="_blank" rel="noopener noreferrer" aria-label="Get CoachPulse on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <p class="section-note">
+              Explore each app for features, supported devices and its Garmin Connect IQ download link.
+            </p>
+          </div>
+        </section>
+        <section class="section section-alt" id="watch-faces">
+          <div class="container">
+            <div class="section-heading">
+              <div>
+                <span class="eyebrow">
+                  02 / Watch faces
+                </span>
+                <h2>
+                  A small screen.
+                  <br>
+                  A little personality.
+                </h2>
+              </div>
+              <p>
+                Colour, depth and a touch of movement. Find a face that feels like you, with the details you want at a glance.
+              </p>
+            </div>
+            <div class="app-gallery-grid watch-face-grid">
+              <article class="app-gallery-card preview-sand">
+                <a href="/raindrop/" class="app-preview" aria-label="Explore Raindrop">
+                  <span class="app-preview-label">
+                    ANIMATED WATCH FACE
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-main" src="/assets/raindrop/watch4.png" alt="Raindrop running on a Garmin watch" width="631" height="874" loading="lazy">
+                    <img class="app-watch-secondary" src="/assets/raindrop/watch1.png" alt="" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/raindrop/">
+                        Raindrop
+                      </a>
+                    </h3>
+                    <p>
+                      Soft motion, weather and your everyday essentials.
+                    </p>
+                  </div>
+                  <a href="/raindrop/" class="app-arrow" aria-label="Read about Raindrop">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_raindrop" aria-label="Raindrop download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/9437bbd2-e218-4e8a-bc53-a1d3a5bad911" target="_blank" rel="noopener noreferrer" aria-label="Get Raindrop on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+              <article class="app-gallery-card preview-sage">
+                <a href="/3dtime/" class="app-preview" aria-label="Explore 3D Time">
+                  <span class="app-preview-label">
+                    WATCH FACE
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-main" src="/assets/3dtime/watch1.png" alt="3D Time running on a Garmin watch" width="631" height="874" loading="lazy">
+                    <img class="app-watch-secondary" src="/assets/3dtime/watch4.png" alt="" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/3dtime/">
+                        3D Time
+                      </a>
+                    </h3>
+                    <p>
+                      Bold depth. An unmistakable way to tell the time.
+                    </p>
+                  </div>
+                  <a href="/3dtime/" class="app-arrow" aria-label="Read about 3D Time">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_3dtime" aria-label="3D Time download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/e79296f1-a375-4742-8358-8cbb8be84996" target="_blank" rel="noopener noreferrer" aria-label="Get 3D Time on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+              <article class="app-gallery-card preview-stone">
+                <a href="/simple3dtime/" class="app-preview" aria-label="Explore Simple 3D Time">
+                  <span class="app-preview-label">
+                    WATCH FACE
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-main" src="/assets/simple3dtime/watch1.png" alt="Simple 3D Time running on a Garmin watch" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/simple3dtime/">
+                        Simple 3D Time
+                      </a>
+                    </h3>
+                    <p>
+                      The same sense of depth, with a quieter touch.
+                    </p>
+                  </div>
+                  <a href="/simple3dtime/" class="app-arrow" aria-label="Read about Simple 3D Time">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_simple3dtime" aria-label="Simple 3D Time download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/be324f2c-7dbc-46e3-9e75-dab936a54b4b" target="_blank" rel="noopener noreferrer" aria-label="Get Simple 3D Time on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+              <article class="app-gallery-card preview-blue">
+                <a href="/gradient/" class="app-preview" aria-label="Explore Gradient">
+                  <span class="app-preview-label">
+                    WATCH FACE
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-main" src="/assets/gradient/watch1.png" alt="Gradient running on a Garmin watch" width="631" height="874" loading="lazy">
+                    <img class="app-watch-secondary" src="/assets/gradient/watch4.png" alt="" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/gradient/">
+                        Gradient
+                      </a>
+                    </h3>
+                    <p>
+                      Colour and progress, at a glance.
+                    </p>
+                  </div>
+                  <a href="/gradient/" class="app-arrow" aria-label="Read about Gradient">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_gradient" aria-label="Gradient download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/831da381-871f-48cd-892d-9e467eb434cb" target="_blank" rel="noopener noreferrer" aria-label="Get Gradient on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+              <article class="app-gallery-card preview-lilac">
+                <a href="/bubbledive/" class="app-preview" aria-label="Explore Bubble Dive">
+                  <span class="app-preview-label">
+                    ANIMATED WATCH FACE
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-main" src="/assets/bubbledive/watch1.png" alt="Bubble Dive running on a Garmin watch" width="631" height="874" loading="lazy">
+                    <img class="app-watch-secondary" src="/assets/bubbledive/watch4.png" alt="" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/bubbledive/">
+                        Bubble Dive
+                      </a>
+                    </h3>
+                    <p>
+                      A little movement for your everyday watch.
+                    </p>
+                  </div>
+                  <a href="/bubbledive/" class="app-arrow" aria-label="Read about Bubble Dive">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_bubbledive" aria-label="Bubble Dive download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/da38ce90-cf33-4e31-b7e0-57026405850d" target="_blank" rel="noopener noreferrer" aria-label="Get Bubble Dive on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="games">
+          <div class="container">
+            <div class="section-heading">
+              <div>
+                <span class="eyebrow">
+                  03 / Games for Garmin
+                </span>
+                <h2>
+                  A moment to play.
+                </h2>
+              </div>
+              <p>
+                A few familiar games, made for your wrist. For a short break or one more round.
+              </p>
+            </div>
+            <div class="app-gallery-grid game-gallery-grid">
+              <article class="app-gallery-card preview-sand">
+                <a href="/tictactoe/" class="app-preview" aria-label="Explore TicTacToe">
+                  <span class="app-preview-label">
+                    QUICK PLAY
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-main" src="/assets/tictactoe/gameplay.png" alt="TicTacToe running on a Garmin watch" width="631" height="874" loading="lazy">
+                    <img class="app-watch-secondary" src="/assets/tictactoe/stats.png" alt="" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/tictactoe/">
+                        TicTacToe
+                      </a>
+                    </h3>
+                    <p>
+                      A familiar favourite, ready for a spare moment.
+                    </p>
+                  </div>
+                  <a href="/tictactoe/" class="app-arrow" aria-label="Read about TicTacToe">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_tictactoe" aria-label="TicTacToe download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/1166f5c7-6b4e-46c9-b00c-e67081076a7e" target="_blank" rel="noopener noreferrer" aria-label="Get TicTacToe on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+              <article class="app-gallery-card preview-blue">
+                <a href="/connect4/" class="app-preview" aria-label="Explore Connect 4">
+                  <span class="app-preview-label">
+                    STRATEGY
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-main" src="/assets/connect4/gameplay.png" alt="Connect 4 running on a Garmin watch" width="631" height="874" loading="lazy">
+                    <img class="app-watch-secondary" src="/assets/connect4/difficulty.png" alt="" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/connect4/">
+                        Connect 4
+                      </a>
+                    </h3>
+                    <p>
+                      Four in a row. One more reason to think ahead.
+                    </p>
+                  </div>
+                  <a href="/connect4/" class="app-arrow" aria-label="Read about Connect 4">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_connect4" aria-label="Connect 4 download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/726d6a2b-6781-4b48-96a1-54011a8f4de1" target="_blank" rel="noopener noreferrer" aria-label="Get Connect 4 on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+              <article class="app-gallery-card preview-sage">
+                <a href="/dotsandboxes/" class="app-preview" aria-label="Explore Dots &amp; Boxes">
+                  <span class="app-preview-label">
+                    STRATEGY
+                  </span>
+                  <div class="app-watch-set">
+                    <img class="app-watch-main" src="/assets/dotsandboxes/gameplay.png" alt="Dots &amp; Boxes running on a Garmin watch" width="631" height="874" loading="lazy">
+                    <img class="app-watch-secondary" src="/assets/dotsandboxes/stats.png" alt="" width="631" height="874" loading="lazy">
+                  </div>
+                  <span class="app-preview-link">
+                    Explore app
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </span>
+                </a>
+                <div class="app-caption">
+                  <div>
+                    <h3>
+                      <a href="/dotsandboxes/">
+                        Dots &amp; Boxes
+                      </a>
+                    </h3>
+                    <p>
+                      Join the dots. Close the boxes. Play a little longer.
+                    </p>
+                  </div>
+                  <a href="/dotsandboxes/" class="app-arrow" aria-label="Read about Dots &amp; Boxes">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6"/>
+                    </svg>
+                  </a>
+                </div>
+                <div class="app-footer">
+                  <div class="app-stats software-app-stats" id="stats_dotsandboxes" aria-label="Dots &amp; Boxes download and rating statistics">
+                    Garmin Connect IQ
+                  </div>
+                  <a class="app-download" href="https://apps.garmin.com/apps/70d5c00b-9ce7-4a2f-a9f0-27a39d0196c1" target="_blank" rel="noopener noreferrer" aria-label="Get Dots &amp; Boxes on Garmin Connect IQ (opens a new tab)">
+                    Get on Connect IQ
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M6 18 18 6M6 6h12v12"/>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section class="section section-alt" id="tools">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">
+                04 / Tools for your work
+              </span>
+              <h2>
+                Clearer plans.
+                <br>
+                Simpler workflows.
+              </h2>
+            </div>
+            <p>
+              Useful software goes beyond the watch. A practical tool for focused work, and room to build something for your workflow.
+            </p>
+          </div>
+          <article class="work-tool">
+            <a href="/scanplan/" class="work-tool-preview" aria-label="Explore ScanPlan">
+              <img src="/assets/scanplan/screenshot-v110-1.png" width="3024" height="1720" alt="ScanPlan microscopy scan grid planning interface" loading="lazy">
+            </a>
+            <div class="work-tool-copy">
+              <span class="eyebrow">
+                Browser-based · Microscopy
+              </span>
+              <h3>
+                ScanPlan
+              </h3>
+              <p>
+                Turn a sample area into a clear scan plan. Define your shapes, exclude regions, and export the grid for your microscopy workflow.
+              </p>
+              <div class="work-tool-tags">
+                <span>
+                  Custom shapes
+                </span>
+                <span>
+                  Exclusion zones
+                </span>
+                <span>
+                  CSV &amp; PDF export
+                </span>
+              </div>
+              <a href="/scanplan/" class="text-link">
+                Explore ScanPlan
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M5 12h14m-6-6 6 6-6 6"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="section" id="automations">
+        <div class="container software-automation">
+          <div>
+            <span class="eyebrow">
+              05 / Something of your own
+            </span>
+            <h2>
+              Your workflow.
+              <br>
+              A better way through it.
+            </h2>
+          </div>
+          <div>
+            <p>
+              Need a custom tool or an automation that connects your apps and data? Tell us what slows you down, and we can explore a simpler workflow.
+            </p>
+            <a class="text-link" href="/contact/">
+              Discuss a software project
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M5 12h14m-6-6 6 6-6 6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="contact-band" id="contact">
+        <div class="container">
+          <div>
+            <h2>
+              Have an idea in mind?
+            </h2>
+            <p>
+              Start with a question, a workflow, or a problem worth solving.
+            </p>
+          </div>
+          <a class="btn" href="/contact/">
+            Let’s talk
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M5 12h14m-6-6 6 6-6 6"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <a href="/" class="footer-brand">
+              nioquant
+            </a>
+            <p style="font-size:11px;margin-top:6px">
+              Digital tools. Tangible ideas.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href="/software/">
+              Software
+            </a>
+            <a href="/3d-modeling/">
+              3D design
+            </a>
+            <a href="/contact/">
+              Contact
+            </a>
+            <a href="https://instagram.com/nioquant" target="_blank" rel="noopener noreferrer">
+              Instagram ↗
+            </a>
+            <a href="https://github.com/francudina" target="_blank" rel="noopener noreferrer">
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+        <div class="footer-legal">
+          <p>© 2026 nioquant</p>
+          <div class="footer-legal-links">
+            <a href="/legal/">Company details</a>
+            <a href="/contact/privacy-policy.html">Contact privacy</a>
+            <a href="/racketscore/privacy-policy.html">App privacy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="toast" id="selectionToast" role="status" aria-live="polite" hidden>
+      <span id="toastMessage">
+      </span>
+      <a href="/contact/">
+        Review list →
+      </a>
+    </div>
+    <noscript>
+      <p class="container" style="padding:20px 0">
+        To save an inquiry list, enable JavaScript. You can also contact
+        <a href="mailto:info@nioquant.com">
+          info@nioquant.com
+        </a>
+        .
+      </p>
+    </noscript>
+    <script type="module" src="/assets/site.mjs?v=20261004-selection"></script>
+    <script type="module" src="/assets/software-carousel.mjs"></script>
+  </body>
+</html>
