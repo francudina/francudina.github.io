@@ -16,12 +16,11 @@
     <meta property="og:title" content="Contact Privacy – nioquant">
     <meta property="og:description" content="How nioquant handles inquiry details and locally saved service and design selections.">
     <meta property="og:image" content="https://nioquant.com/assets/studio/studio-forms.jpg">
-    <link rel="stylesheet" href="/assets/site.css?v=20261004-selection">
+    <link rel="stylesheet" href="/assets/site.css?v=20261004-footer">
     <link rel="stylesheet" href="/assets/app-pages.css">
     <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "nioquant", "url": "https://nioquant.com/", "logo": "https://nioquant.com/assets/nioquant-logo.svg", "description": "Everyday software, automations, custom 3D modeling and iterative prototyping.", "email": "info@nioquant.com", "sameAs": ["https://www.linkedin.com/in/francudina/", "https://github.com/francudina", "https://instagram.com/nioquant"]}</script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4W5N770LK6"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-4W5N770LK6');</script>
+    <script type="module" src="/assets/analytics.mjs?v=20261004-analytics"></script>
   </head>
   <body class="legal-page">
     <a class="skip-link" href="#main">
@@ -135,6 +134,12 @@
             Online inquiries are processed by a Cloudflare Worker and delivered through Resend to info@nioquant.com. Cloudflare Turnstile is used to protect the form from automated submissions. Your data is used to handle the inquiry, not to subscribe you to marketing.
           </p>
           <h2>
+            Website analytics
+          </h2>
+          <p>
+            This website uses Google Analytics to understand page visits, navigation, app download links, selected services and design concepts, and the progress of contact inquiries. Website events include public item IDs and licence preferences. Your name, email address, message, verification token and the contents of the email preview are not included in our analytics events. This website tracking is separate from the behavior of the apps described in their own privacy policies.
+          </p>
+          <h2>
             Your choices
           </h2>
           <p>
@@ -144,13 +149,12 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-top">
-          <div>
+          <div class="footer-identity">
             <a href="/" class="footer-brand">
-              nioquant
+              <img src="/assets/nioquant-logo.svg" width="24" height="24" alt="">
+              <span>nioquant</span>
             </a>
-            <p style="font-size:11px;margin-top:6px">
-              Digital tools. Tangible ideas.
-            </p>
+            <p class="footer-tagline">Digital tools. Tangible ideas.</p>
           </div>
           <div class="footer-links">
             <a href="/software/">
@@ -196,6 +200,6 @@
         .
       </p>
     </noscript>
-    <script type="module" src="/assets/site.mjs?v=20261004-selection"></script>
+    <script type="module" src="/assets/site.mjs?v=20261004-analytics"></script>
   </body>
 </html>

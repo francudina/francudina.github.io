@@ -1,4 +1,5 @@
 import { catalog, licenses, storageKey, normalizeSelection, selectionLines } from './catalog.mjs';
+import { selectionMetrics, createInquiryTracker } from './inquiry-analytics.mjs';
 import * as siteConfig from './site-config.mjs';
 
 // Older cached configuration files may predate optional spam-protection settings.
@@ -16,6 +17,25 @@ let dialogItem;
 let busy = false;
 
 try { selection = normalizeSelection(JSON.parse(localStorage.getItem(storageKey) || '[]')); } catch { selection = []; }
+
+function track(name, params = {}) {
+  try {
+    if (window.nioquantAnalytics) window.nioquantAnalytics.track(name, params);
+    else {
+      const queue = window.nioquantAnalyticsQueue ||= [];
+      if (queue.length < 100) queue.push([name, params]);
+    }
+  } catch { /* Tracking must never affect the list or form. */ }
+}
+function itemParams(value, source) {
+  const service = catalog.find(item => item.id === value.id)?.kind === 'service';
+  return {
+    items:[value], catalog_item_id:value.id, catalog_item_kind:service ? 'service' : 'model',
+    license_type:value.license, link_location:source,
+    section_id:source === 'contact_list' ? 'inquiry_list' : service ? 'packages' : 'collection',
+    item_list_id:service ? 'modeling_packages' : 'design_concepts', item_count:selection.length
+  };
+}
 
 function announce(message) {
   const toast = $('#selectionToast');
@@ -48,7 +68,7 @@ function licenseFor(id) {
   return document.querySelector(`[data-license-for="${id}"]`)?.value || 'personal';
 }
 
-function setSelection(id, license = 'personal') {
+function setSelection(id, license = 'personal', source = 'item_card') {
   if (busy) return;
   const item = catalog.find(item => item.id === id);
   if (!item) return;
@@ -61,6 +81,10 @@ function setSelection(id, license = 'personal') {
     announce(`${item.name} ${existing ? 'updated' : 'added to your list'}.`);
   }
   saveSelection();
+  const chosen = selection.find(value => value.id === id);
+  if (!chosen) track('remove_from_cart', itemParams(existing, source));
+  else if (existing) track('inquiry_license_change', itemParams(chosen, source));
+  else track('add_to_cart', itemParams(chosen, source));
 }
 
 function setButtonState(button, item, chosen) {
@@ -115,6 +139,7 @@ function renderSelection() {
         const index = selection.findIndex(value => value.id === selected.id);
         selection = selection.filter(value => value.id !== selected.id);
         saveSelection();
+        track('remove_from_cart', itemParams(selected, 'contact_list'));
         // Keep keyboard focus in the list after its DOM is rebuilt.
         const next = list.querySelectorAll('button');
         (next[Math.min(index, next.length - 1)] || $('#browseServices')).focus();
@@ -152,13 +177,17 @@ $$('[data-license-for]').forEach(select => {
       saveSelection();
       announce('Licence preference updated.');
     } else renderSelection();
+    track('inquiry_license_change', itemParams({ id:select.dataset.licenseFor, license:select.value }, 'concept_card'));
   });
 });
-$$('[data-add]').forEach(button => button.addEventListener('click', () => setSelection(button.dataset.add, licenseFor(button.dataset.add))));
+$$('[data-add]').forEach(button => button.addEventListener('click', () => setSelection(button.dataset.add, licenseFor(button.dataset.add), button.closest('.package-grid') ? 'package_card' : 'concept_card')));
 $('#clearSelection')?.addEventListener('click', () => {
   if (busy || selection.length === 0) return;
+  const removed = selection;
   selection = [];
   saveSelection();
+  track('remove_from_cart', { items:removed, item_count:0, link_location:'contact_list', method:'clear_all' });
+  track('inquiry_list_clear', { ...selectionMetrics(removed), link_location:'contact_list' });
   announce('Your inquiry list has been cleared.');
   $('#browseServices').focus();
 });
@@ -282,20 +311,42 @@ $$('[data-view-model]').forEach(button => button.addEventListener('click', () =>
   $('#dialogLicense').value = licenseFor(dialogItem.id);
   renderSelection();
   $('#modelDialog').showModal();
+  track('view_item', itemParams({ id:dialogItem.id, license:$('#dialogLicense').value }, 'concept_card'));
 }));
 $('#dialogClose')?.addEventListener('click', () => $('#modelDialog').close());
 $('#modelDialog')?.addEventListener('click', event => { if (event.target === $('#modelDialog')) $('#modelDialog').close(); });
-$('#modelDialog')?.addEventListener('close', () => { dialogItem = null; });
+$('#modelDialog')?.addEventListener('close', () => {
+  if (dialogItem) track('model_preview_close', { catalog_item_id:dialogItem.id, link_location:'model_dialog' });
+  dialogItem = null;
+});
 $('#dialogLicense')?.addEventListener('change', () => {
   const select = document.querySelector(`[data-license-for="${dialogItem.id}"]`);
   select.value = $('#dialogLicense').value;
   const existing = selection.find(value => value.id === dialogItem.id);
   if (existing) { existing.license = select.value; saveSelection(); } else renderSelection();
+  track('inquiry_license_change', itemParams({ id:dialogItem.id, license:select.value }, 'model_dialog'));
 });
-$('#dialogAdd')?.addEventListener('click', () => { setSelection(dialogItem.id, $('#dialogLicense').value); });
+$('#dialogAdd')?.addEventListener('click', () => { setSelection(dialogItem.id, $('#dialogLicense').value, 'model_dialog'); });
 
 const form = $('#inquiryForm');
 if (form) {
+  const analytics = createInquiryTracker(track);
+  let attemptRecorded = false;
+  $('#submitInquiry').addEventListener('click', () => {
+    if (busy || completed || !sendingReady) return;
+    analytics.attempt(selection);
+    attemptRecorded = true;
+  });
+  form.addEventListener('invalid', event => analytics.invalid(event.target.id), true);
+  function trackFormProgress(event) {
+    if (!['inquiryName', 'inquiryEmail', 'inquiryMessage', 'inquiryConsent'].includes(event.target.id)) return;
+    analytics.start(selection);
+    const fields = ['inquiryName', 'inquiryEmail', 'inquiryMessage'].map(id => $(`#${id}`));
+    if (fields.every(field => field.validity.valid && field.value.trim()) && $('#inquiryConsent').checked) analytics.completeFields(selection);
+  }
+  form.addEventListener('input', trackFormProgress);
+  form.addEventListener('change', trackFormProgress);
+  window.addEventListener('pagehide', () => analytics.abandon(selection));
   let requestId = null;
   let lastPayload = '';
   let completed = false;
@@ -322,7 +373,7 @@ if (form) {
         theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
       });
     };
-    script.onerror = () => { $('#submitInquiry').disabled = true; $('#setupNote').hidden = false; };
+    script.onerror = () => { $('#submitInquiry').disabled = true; $('#setupNote').hidden = false; analytics.failed('verification_load'); };
     document.head.append(script);
   }
   $$('[data-preview-field]').forEach(field => field.addEventListener('input', () => {
@@ -331,13 +382,17 @@ if (form) {
   }));
   form.addEventListener('submit', async event => {
     event.preventDefault();
+    if (busy || completed || !sendingReady) return;
+    if (!attemptRecorded) analytics.attempt(selection);
+    attemptRecorded = false;
     for (const id of ['inquiryName', 'inquiryMessage']) {
       const input = $(`#${id}`);
       input.setCustomValidity(input.value.trim() ? '' : 'Please enter a value.');
     }
-    if (busy || completed || !sendingReady || !form.reportValidity()) return;
+    if (!form.reportValidity()) return;
     const turnstileToken = turnstileWidgetId === null ? '' : window.turnstile?.getResponse(turnstileWidgetId);
     if (!turnstileToken) {
+      analytics.blocked('verification_required');
       $('#formStatus').dataset.kind = 'error';
       $('#formStatus').textContent = 'Please complete the verification before sending.';
       return;
@@ -357,14 +412,20 @@ if (form) {
     $('#submitInquiry').textContent = 'Sending…';
     form.querySelector('fieldset').disabled = true;
     renderSelection();
+    analytics.sending(selectedAtSend);
+    let failureType = 'network';
+    let httpStatus = 0;
     try {
       const response = await fetch(inquiryEndpoint, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...payload, requestId }), signal: AbortSignal.timeout(20000)
       });
+      httpStatus = response.status;
+      failureType = response.ok ? 'invalid_response' : response.status === 429 ? 'rate_limit' : response.status === 400 ? 'validation' : response.status === 403 ? 'verification' : 'server';
       const result = await response.json();
       if (!response.ok || result.ok !== true) throw new Error(result.error || 'Your inquiry could not be sent. Please try again.');
       completed = true;
+      analytics.confirmed(selectedAtSend, response, result);
       // Remove only the exact submitted choices; retain later changes made in another tab.
       selection = selection.filter(value => !selectedAtSend.some(sent => sent.id === value.id && sent.license === value.license));
       busy = false; saveSelection();
@@ -372,6 +433,7 @@ if (form) {
       $('#successPanel').hidden = false;
       $('#successTitle').focus();
     } catch (error) {
+      analytics.failed(error.name === 'TimeoutError' ? 'timeout' : failureType, httpStatus);
       status.dataset.kind = 'error';
       status.textContent = error.name === 'TimeoutError'
         ? 'Sending took too long. Your list and message are still here. Retry to check this same inquiry.'

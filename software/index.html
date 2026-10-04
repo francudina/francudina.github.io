@@ -16,11 +16,10 @@
     <meta property="og:title" content="Software & Automations – nioquant">
     <meta property="og:description" content="Explore nioquant apps for Garmin, microscopy tools and custom workflow automations. Find RacketScore, CoachPulse, ScanPlan and more.">
     <meta property="og:image" content="https://nioquant.com/assets/racketscore/dashboard.png">
-    <link rel="stylesheet" href="/assets/site.css?v=20261004-selection">
+    <link rel="stylesheet" href="/assets/site.css?v=20261004-footer">
     <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "nioquant", "url": "https://nioquant.com/", "logo": "https://nioquant.com/assets/nioquant-logo.svg", "description": "Everyday software, automations, custom 3D modeling and iterative prototyping.", "email": "info@nioquant.com", "sameAs": ["https://www.linkedin.com/in/francudina/", "https://github.com/francudina", "https://instagram.com/nioquant"]}</script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4W5N770LK6"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-4W5N770LK6');</script>
+    <script type="module" src="/assets/analytics.mjs?v=20261004-analytics"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">
@@ -823,13 +822,12 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-top">
-          <div>
+          <div class="footer-identity">
             <a href="/" class="footer-brand">
-              nioquant
+              <img src="/assets/nioquant-logo.svg" width="24" height="24" alt="">
+              <span>nioquant</span>
             </a>
-            <p style="font-size:11px;margin-top:6px">
-              Digital tools. Tangible ideas.
-            </p>
+            <p class="footer-tagline">Digital tools. Tangible ideas.</p>
           </div>
           <div class="footer-links">
             <a href="/software/">
@@ -875,7 +873,7 @@
         .
       </p>
     </noscript>
-    <script type="module" src="/assets/site.mjs?v=20261004-selection"></script>
+    <script type="module" src="/assets/site.mjs?v=20261004-analytics"></script>
     <script type="module" src="/assets/software-carousel.mjs"></script>
   </body>
 </html>

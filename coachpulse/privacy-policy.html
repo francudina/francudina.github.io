@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4W5N770LK6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4W5N770LK6');
-    </script>
+    <script type="module" src="/assets/analytics.mjs?v=20261004-analytics"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#FAF8F3" id="themeColor">
@@ -21,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261004-selection">
+<link rel="stylesheet" href="/assets/site.css?v=20261004-footer">
     <link rel="stylesheet" href="/assets/app-pages.css">
     <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
 </head>
@@ -350,13 +343,12 @@
 <footer class="footer">
       <div class="container">
         <div class="footer-top">
-          <div>
+          <div class="footer-identity">
             <a href="/" class="footer-brand">
-              nioquant
+              <img src="/assets/nioquant-logo.svg" width="24" height="24" alt="">
+              <span>nioquant</span>
             </a>
-            <p style="font-size:11px;margin-top:6px">
-              Digital tools. Tangible ideas.
-            </p>
+            <p class="footer-tagline">Digital tools. Tangible ideas.</p>
           </div>
           <div class="footer-links">
             <a href="/software/">
@@ -388,7 +380,7 @@
     </footer>
 <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 12 6-6 6 6M12 6v14"/></svg></button>
 
-<script type="module" src="/assets/site.mjs?v=20261004-selection"></script>
+<script type="module" src="/assets/site.mjs?v=20261004-analytics"></script>
 <script src="/assets/app-details.js" defer></script>
 </body>
 </html>
