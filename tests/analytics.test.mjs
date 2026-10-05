@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { runInNewContext } from 'node:vm';
 import { apps, analyticsItems, bootAnalytics, classifyLink, pageType, safeUrl, sanitizeEvent } from '../assets/analytics.mjs';
 import { createInquiryTracker } from '../assets/inquiry-analytics.mjs';
 
@@ -161,11 +162,11 @@ test('unfinished forms record their stage, while untouched forms do not count as
   assert.equal(events.at(-1).form_stage, 'send_error');
 });
 
-test('all 23 content pages use one bootstrap, no old click handlers or duplicate loaders; redirects stay untracked', async () => {
-  const pages = ['index.html', 'software/index.html', '3d-modeling/index.html', 'contact/index.html', 'contact/privacy-policy.html', 'legal/index.html', 'scanplan/licence.html',
+test('all 24 content pages use one bootstrap, no old click handlers or duplicate loaders; redirects stay untracked', async () => {
+  const pages = ['index.html', 'software/index.html', 'design/index.html', 'stands/index.html', 'contact/index.html', 'contact/privacy-policy.html', 'legal/index.html', 'scanplan/licence.html',
     ...Object.keys(apps).map(id => id + '/index.html'),
     ...['racketscore', 'coachpulse', 'tictactoe', 'connect4', 'dotsandboxes'].map(id => id + '/privacy-policy.html')];
-  assert.equal(pages.length, 23);
+  assert.equal(pages.length, 24);
   let oldLinks = 0;
   for (const page of pages) {
     const html = await readFile(new URL('../' + page, import.meta.url), 'utf8');
@@ -179,6 +180,43 @@ test('all 23 content pages use one bootstrap, no old click handlers or duplicate
     assert.doesNotMatch(html, /analytics\.mjs|gtag\s*\(/);
     assert.match(html, /scanplan/);
   }
+});
+
+test('laboratory designs keep shared ecommerce events and count as custom-service inquiries', () => {
+  assert.equal(pageType('/design/'), '3d_design');
+  assert.equal(pageType('/design/index.html'), '3d_design');
+  assert.equal(pageType('/stands/'), 'laboratory_stands');
+  assert.equal(pageType('/stands/index.html'), 'laboratory_stands');
+  const selected = [{ id:'lab-flask-stand' }, { id:'custom-lab-stand' }];
+  const clean = sanitizeEvent('add_to_cart', { items:selected, item_list_id:'laboratory_stands', link_location:'laboratory_card' });
+  assert.equal(clean.item_list_id, 'laboratory_stands');
+  assert.equal(clean.items[0].item_id, 'lab-flask-stand');
+  const events = [];
+  createInquiryTracker((name, params) => events.push({ name, ...params })).confirmed(selected, { ok:true }, { ok:true });
+  const lead = events.find(event => event.name === 'generate_lead');
+  assert.equal(lead.service_count, 2);
+  assert.equal(lead.concept_count, 0);
+  assert.equal(events.filter(event => event.name === 'inquiry_item_lead').length, 2);
+});
+
+test('moved design routes redirect without analytics and preserve campaign queries and section links', async () => {
+  const sitemap = await readFile(new URL('../sitemap.xml', import.meta.url), 'utf8');
+  for (const [oldPage, target] of [['3d-modeling/index.html', '/design/'], ['3d-modeling/lab-stands/index.html', '/stands/']]) {
+    const html = await readFile(new URL('../' + oldPage, import.meta.url), 'utf8');
+    assert.doesNotMatch(html, /analytics\.mjs|gtag\s*\(/);
+    assert.ok(html.includes('https://nioquant.com' + target));
+    let destination;
+    const location = { search:'?utm_source=instagram&analytics_debug=1', hash:'#selected-work', replace:url => { destination = url; } };
+    runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1], { window:{ location }, location });
+    assert.equal(destination, target + location.search + location.hash);
+    const newHtml = await readFile(new URL('../' + target.slice(1) + 'index.html', import.meta.url), 'utf8');
+    assert.ok(newHtml.includes('rel="canonical" href="https://nioquant.com' + target + '"'));
+    assert.ok(sitemap.includes('<loc>https://nioquant.com' + target + '</loc>'));
+    assert.doesNotMatch(newHtml, /(?:href|content)="[^\"]*\/3d-modeling\//);
+  }
+  assert.doesNotMatch(sitemap, /\/3d-modeling\//);
+  const design = await readFile(new URL('../design/index.html', import.meta.url), 'utf8');
+  assert.match(design, /href="\/stands\/"/);
 });
 
 test('every migrated app link and actual overview download maps to its intended shared action', async () => {

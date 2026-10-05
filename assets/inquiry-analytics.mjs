@@ -1,4 +1,4 @@
-import { catalog, normalizeSelection } from './catalog.mjs';
+import { catalog, normalizeSelection } from './catalog.mjs?v=20261004-lab';
 
 // Keep public catalog choices separate from the private mail payload.
 export function selectionMetrics(values) {

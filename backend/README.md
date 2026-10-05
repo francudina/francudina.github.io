@@ -23,6 +23,10 @@ The site stays on GitHub Pages. A separate Cloudflare Worker handles email throu
 
 The Worker verifies every Turnstile response server-side, then permits at most **three verified sending attempts per IP per UTC day**. The counter is reserved before the mail provider is called, so a provider failure still consumes one attempt; this is intentional, so retries cannot be used to bypass the sending limit. A SQLite-backed Durable Object supplies the counter, giving atomic increments and deleting the counter after the day ends. It also has a honeypot, bounded request size, an origin allowlist, strict input validation and Resend idempotency for retries. Origin checks are not authentication; the public contact endpoint may need additional spam protection if abuse becomes significant. No message content, raw IP address or API key is logged by this code.
 
+## Publishing catalog changes
+
+The laboratory collection adds `custom-lab-stand`, `lab-flask-stand`, `lab-flask-tube-stand` and `lab-funnel-stand` to the shared catalog. Redeploy the Worker from `backend/` with `npx wrangler deploy` when publishing these frontend changes. The deployment bundles the server-owned catalog; an older deployment will reject these new IDs. Existing secrets and the endpoint do not need to change.
+
 ## What is locked
 
 The browser sends name, email, message and selected IDs/licence preferences. It does **not** supply the recipient, product names, descriptions, prices or email suffix. The worker reconstructs that suffix using `assets/catalog.mjs`, which is also used for the read-only preview. Extra client fields such as `body` or edited product names are ignored, and unknown items/licences are rejected.

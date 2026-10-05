@@ -40,6 +40,20 @@ test('unknown items, invalid licences, duplicate IDs, unsafe name and missing co
   assert.match(buildEmail(validateInquiry({ ...valid(), selection: [] }), env().MAIL_FROM).text, /General inquiry/);
 });
 
+test('laboratory inquiries reach the server-owned email summary without fictitious licence or product details', () => {
+  const ids = ['custom-lab-stand', 'lab-flask-stand', 'lab-flask-tube-stand', 'lab-funnel-stand'];
+  const input = { ...valid(), selection:ids.map(id => ({ id, name:'FORGED TITLE', scope:'FORGED SCOPE', license:'commercial' })) };
+  const inquiry = validateInquiry(input);
+  assert.deepEqual(inquiry.selection, ids.map(id => ({ id })));
+  const email = buildEmail(inquiry, env().MAIL_FROM);
+  assert.deepEqual(email.to, ['info@nioquant.com']);
+  assert.match(email.text, /Custom laboratory stand/);
+  assert.match(email.text, /Laboratory flask \+ test tube stand/);
+  assert.match(email.text, /Laboratory funnel stand/);
+  assert.match(email.text, /agreed in the quote/);
+  assert.doesNotMatch(email.text, /FORGED|not yet available|Commercial use/);
+});
+
 test('daily IP limiter permits exactly three verified inquiries per UTC day', async () => {
   const values = new Map();
   const ctx = { storage: {

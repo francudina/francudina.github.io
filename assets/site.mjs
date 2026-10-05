@@ -1,5 +1,5 @@
-import { catalog, licenses, storageKey, normalizeSelection, selectionLines } from './catalog.mjs';
-import { selectionMetrics, createInquiryTracker } from './inquiry-analytics.mjs';
+import { catalog, licenses, storageKey, normalizeSelection, selectionLines } from './catalog.mjs?v=20261004-lab';
+import { selectionMetrics, createInquiryTracker } from './inquiry-analytics.mjs?v=20261004-lab';
 import * as siteConfig from './site-config.mjs';
 
 // Older cached configuration files may predate optional spam-protection settings.
@@ -28,12 +28,15 @@ function track(name, params = {}) {
   } catch { /* Tracking must never affect the list or form. */ }
 }
 function itemParams(value, source) {
-  const service = catalog.find(item => item.id === value.id)?.kind === 'service';
+  const item = catalog.find(item => item.id === value.id);
+  const service = item?.kind === 'service';
+  const laboratory = item?.collection === 'laboratory_stands';
+  const labSection = { laboratory_hero:'lab-intro', laboratory_feature:'selected-work', laboratory_cta:'custom-fit' }[source] || 'lab-designs';
   return {
     items:[value], catalog_item_id:value.id, catalog_item_kind:service ? 'service' : 'model',
     license_type:value.license, link_location:source,
-    section_id:source === 'contact_list' ? 'inquiry_list' : service ? 'packages' : 'collection',
-    item_list_id:service ? 'modeling_packages' : 'design_concepts', item_count:selection.length
+    section_id:source === 'contact_list' ? 'inquiry_list' : laboratory ? labSection : service ? 'packages' : 'collection',
+    item_list_id:laboratory ? 'laboratory_stands' : service ? 'modeling_packages' : 'design_concepts', item_count:selection.length
   };
 }
 
@@ -109,6 +112,9 @@ function renderSelection() {
     const chosen = selection.some(value => value.id === item.id && (item.kind === 'service' || value.license === licenseFor(item.id)));
     setButtonState(button, item, chosen);
   });
+  $$('[data-selection-for]').forEach(element => {
+    element.hidden = !selection.some(value => value.id === element.dataset.selectionFor);
+  });
   if (dialogItem) {
     const chosen = selection.some(value => value.id === dialogItem.id && value.license === $('#dialogLicense').value);
     setButtonState($('#dialogAdd'), dialogItem, chosen);
@@ -180,7 +186,12 @@ $$('[data-license-for]').forEach(select => {
     track('inquiry_license_change', itemParams({ id:select.dataset.licenseFor, license:select.value }, 'concept_card'));
   });
 });
-$$('[data-add]').forEach(button => button.addEventListener('click', () => setSelection(button.dataset.add, licenseFor(button.dataset.add), button.closest('.package-grid') ? 'package_card' : 'concept_card')));
+$$('[data-add]').forEach(button => button.addEventListener('click', () => setSelection(button.dataset.add, licenseFor(button.dataset.add), button.dataset.inquirySource || (button.closest('.package-grid') ? 'package_card' : 'concept_card'))));
+// A contact CTA keeps an existing choice selected instead of toggling it off.
+$$('[data-inquire]').forEach(link => link.addEventListener('click', () => {
+  const id = link.dataset.inquire;
+  if (!selection.some(value => value.id === id)) setSelection(id, 'personal', link.dataset.inquirySource || 'laboratory_cta');
+}));
 $('#clearSelection')?.addEventListener('click', () => {
   if (busy || selection.length === 0) return;
   const removed = selection;

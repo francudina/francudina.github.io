@@ -1,4 +1,4 @@
-import { catalog, normalizeSelection, storageKey } from './catalog.mjs';
+import { catalog, normalizeSelection, storageKey } from './catalog.mjs?v=20261004-lab';
 
 export const measurementId = 'G-4W5N770LK6';
 export const apps = {
@@ -37,7 +37,8 @@ export function pageType(path) {
   if (path === '/') return 'home';
   if (path.endsWith('privacy-policy.html')) return 'privacy';
   if (path === '/legal/' || path.endsWith('licence.html')) return 'legal';
-  if (path === '/3d-modeling/') return '3d_design';
+  if (path === '/design/') return '3d_design';
+  if (path === '/stands/') return 'laboratory_stands';
   if (path === '/contact/') return 'contact';
   if (path === '/software/') return 'software';
   return apps[path.split('/')[1]] ? 'app_detail' : 'other';
@@ -110,11 +111,15 @@ function placement(element) {
   if (element.closest('.toast')) return 'toast';
   if (element.closest('.nav')) return 'header';
   if (element.closest('.footer')) return 'footer';
+  if (element.closest('.lab-dialog')) return 'laboratory_gallery';
+  if (element.closest('.lab-card')) return 'laboratory_card';
+  if (element.closest('.lab-feature')) return 'laboratory_feature';
+  if (element.closest('.lab-custom-fit')) return 'laboratory_cta';
   if (element.closest('dialog')) return 'model_dialog';
   if (element.closest('.app-gallery-card')) return 'app_card';
   if (element.closest('.page-actions')) return 'app_hero';
   if (element.closest('.contact-band')) return 'contact_band';
-  if (element.closest('.hero,.software-hero,.page-intro')) return 'hero';
+  if (element.closest('.hero,.software-hero,.page-intro,.lab-intro')) return 'hero';
   if (element.closest('#inquiryForm')) return 'contact_form';
   if (element.closest('.policy-nav')) return 'legal_navigation';
   return 'content';
@@ -193,7 +198,7 @@ export function bootAnalytics(win, doc) {
         return;
       }
       // These actions are tracked only after their state actually changes in site.mjs.
-      if (element.matches('[data-add],[data-view-model],.remove-button,#clearSelection,#dialogAdd,#dialogClose,#submitInquiry')) return;
+      if (element.matches('[data-add],[data-view-model],[data-lab-open],[data-lab-view],[data-lab-close],.remove-button,#clearSelection,#dialogAdd,#dialogClose,#submitInquiry')) return;
       if (element.id === 'themeToggle') track('theme_change', { ...params, state:doc.documentElement.dataset.theme });
       else if (element.id === 'navToggle') track('menu_toggle', { ...params, state:element.getAttribute('aria-expanded') === 'true' ? 'open' : 'closed' });
       else if (element.classList.contains('hero-carousel-toggle')) track('preview_playback', { ...params, state:element.getAttribute('aria-label').startsWith('Play') ? 'paused' : 'playing' });
@@ -218,8 +223,8 @@ export function bootAnalytics(win, doc) {
         const element = entry.target;
         seen.add(element); observer.unobserve(element);
         const buttons = [...element.querySelectorAll('[data-add]')];
-        if (element.matches('.package-grid,.collection-grid')) {
-          const id = element.matches('.package-grid') ? 'modeling_packages' : 'design_concepts';
+        if (element.matches('.package-grid,.collection-grid,.lab-grid')) {
+          const id = element.dataset.itemList || (element.matches('.package-grid') ? 'modeling_packages' : 'design_concepts');
           track('view_item_list', { item_list_id:id, item_list_name:id, items:analyticsItems(buttons.map(button => ({ id:button.dataset.add }))) });
         } else if (element.matches('.app-featured-grid,.app-gallery-grid,.home-software-grid')) {
           const ids = [...new Set([...element.querySelectorAll('a[href]')].map(a => new URL(a.href).pathname.split('/')[1]).filter(id => Object.hasOwn(apps, id)))];
@@ -227,7 +232,7 @@ export function bootAnalytics(win, doc) {
         } else track('view_section', { section_id:contentId(element) });
       }
     }, { rootMargin:'-15% 0px -15% 0px', threshold:0 });
-    doc.querySelectorAll('main section[id],main .journey-section,main .closing[id],main .changelog-section[id],.package-grid,.collection-grid,.app-featured-grid,.app-gallery-grid,.home-software-grid').forEach(element => observer.observe(element));
+    doc.querySelectorAll('main section[id],main .journey-section,main .closing[id],main .changelog-section[id],.package-grid,.collection-grid,.lab-grid,.app-featured-grid,.app-gallery-grid,.home-software-grid').forEach(element => observer.observe(element));
   }
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', ready, { once:true });
   else ready();
