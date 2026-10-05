@@ -112,6 +112,7 @@ function placement(element) {
   if (element.closest('.nav')) return 'header';
   if (element.closest('.footer')) return 'footer';
   if (element.closest('.lab-dialog')) return 'laboratory_gallery';
+  if (element.closest('.home-lab')) return 'laboratory_home';
   if (element.closest('.lab-card')) return 'laboratory_card';
   if (element.closest('.lab-feature')) return 'laboratory_feature';
   if (element.closest('.lab-custom-fit')) return 'laboratory_cta';

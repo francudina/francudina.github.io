@@ -31,7 +31,7 @@ function itemParams(value, source) {
   const item = catalog.find(item => item.id === value.id);
   const service = item?.kind === 'service';
   const laboratory = item?.collection === 'laboratory_stands';
-  const labSection = { laboratory_hero:'lab-intro', laboratory_feature:'selected-work', laboratory_cta:'custom-fit' }[source] || 'lab-designs';
+  const labSection = { laboratory_home:'lab-work', laboratory_hero:'lab-intro', laboratory_feature:'selected-work', laboratory_cta:'custom-fit' }[source] || 'lab-designs';
   return {
     items:[value], catalog_item_id:value.id, catalog_item_kind:service ? 'service' : 'model',
     license_type:value.license, link_location:source,
